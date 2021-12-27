@@ -12,7 +12,7 @@ DEPENDENCIES=./.deps
 FONTS_DIR=${DEPENDENCIES}/fonts
 
 # Hack Nerd Fonts
-if ! ls "/usr/local/share/fonts/Hack*.ttf"; then
+if ! ls /usr/local/share/fonts/Hack*.ttf; then
     echo -e "${BOLDGREEN}installing Hack Nerd Fonts...${ENDCOLOR}"
 
     mkdir -p ${FONTS_DIR}
