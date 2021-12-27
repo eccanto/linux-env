@@ -12,6 +12,7 @@ DEPENDENCIES=./.deps
 BSPWM_DIR=${DEPENDENCIES}/bspwm
 SXHKD_DIR=${DEPENDENCIES}/sxhkd
 POLYBAR_DIR=${DEPENDENCIES}/polybar
+PICOM_DIR=${DEPENDENCIES}/picom
 TERMITE_DIR=${DEPENDENCIES}/termite
 BSPWM_CONFIG=~/.config/bspwm
 SXHKD_CONFIG=~/.config/sxhkd
@@ -98,3 +99,34 @@ if ! command -v polybar &> /dev/null; then
         popd
     popd
 fi
+
+# Picom
+sudo apt install meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev \
+    libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev \
+    libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev \
+    libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev \
+    uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
+
+if [[ ! -d ${PICOM_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
+    git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
+    pushd ${PICOM_DIR}
+        git submodule update --init --recursive
+    popd
+fi
+
+if ! command -v picom &> /dev/null; then
+    echo -e "${BOLDGREEN}installing picom...${ENDCOLOR}"
+    pushd ${PICOM_DIR}
+        meson --buildtype=release . build
+        ninja -C build
+        sudo ninja -C build install
+    popd
+fi
+
+# rofi
+sudo apt install rofi
+
+# end
+echo -e "${BOLDGREEN}finished.${ENDCOLOR}\n"
+echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash post_install_debian.sh\"${ENDCOLOR} command to complete the installation."
