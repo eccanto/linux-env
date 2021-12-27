@@ -12,18 +12,20 @@ DEPENDENCIES=./.deps
 FONTS_DIR=${DEPENDENCIES}/fonts
 
 # Hack Nerd Fonts
-echo -e "${BOLDGREEN}installing Hack Nerd Fonts...${ENDCOLOR}"
+if ! ls "/usr/local/share/fonts/Hack*.ttf"; then
+    echo -e "${BOLDGREEN}installing Hack Nerd Fonts...${ENDCOLOR}"
 
-mkdir -p ${FONTS_DIR}
-pushd ${FONTS_DIR}
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
-    mv Hack.zip /usr/local/share/fonts/
-    cd /usr/local/share/fonts/
-    unzip Hack.zip
-    rm Hack.zip
-popd
+    mkdir -p ${FONTS_DIR}
+    pushd ${FONTS_DIR}
+        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+        mv Hack.zip /usr/local/share/fonts/
+        cd /usr/local/share/fonts/
+        unzip Hack.zip
+        rm Hack.zip
+    popd
 
-fc-cache -v
+    fc-cache -v
+fi
 
 # firefox latest
 if ! command -v firefox &> /dev/null; then  # TODO -> verify version!!!
