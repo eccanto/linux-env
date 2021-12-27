@@ -18,10 +18,10 @@ if ! ls "/usr/local/share/fonts/Hack*.ttf"; then
     mkdir -p ${FONTS_DIR}
     pushd ${FONTS_DIR}
         wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
-        mv Hack.zip /usr/local/share/fonts/
-        cd /usr/local/share/fonts/
-        unzip Hack.zip
-        rm Hack.zip
+        sudo mv Hack.zip /usr/local/share/fonts/
+        sudo cd /usr/local/share/fonts/
+        sudo unzip Hack.zip
+        sudo rm Hack.zip
     popd
 
     fc-cache -v
