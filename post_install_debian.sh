@@ -17,9 +17,12 @@ if ! ls "/usr/local/share/fonts/Hack*.ttf"; then
 
     mkdir -p ${FONTS_DIR}
     pushd ${FONTS_DIR}
-        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+        if [[ ! -f Hack.zip ]]; then
+            echo -e "${BOLDGREEN}downloading Hack Nerd Fonts...${ENDCOLOR}"
+            wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+        fi
         sudo mv Hack.zip /usr/local/share/fonts/
-        sudo cd /usr/local/share/fonts/
+        cd /usr/local/share/fonts/
         sudo unzip Hack.zip
         sudo rm Hack.zip
     popd
