@@ -51,7 +51,7 @@ if ! command -v feh &> /dev/null; then
     echo -e "${BOLDGREEN}installing wallpapers...${ENDCOLOR}"
     sudo apt install feh
     sudo mkdir -p ${WALLPAPERS_STORAGE}
-    sudp cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
+    sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
 fi
