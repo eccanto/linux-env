@@ -9,9 +9,10 @@ BOLDGREEN="\e[1;${GREEN}m"
 ENDCOLOR="\e[0m"
 
 DEPENDENCIES=./.deps
-BSPWM_CONFIG=~/.config/bspwm
+BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 FONTS_DIR=${DEPENDENCIES}/fonts
-TERMITE_CONFIG=~/.config/termite
+TERMITE_DIR=${DEPENDENCIES}/termite
+TERMITE_CONFIG=$(realpath ~/.config/termite)
 DEFAULT_BG=./wallpapers/mountain.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
 
@@ -54,11 +55,21 @@ if ! command -v feh &> /dev/null; then
     sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
+    pkill -USR1 -x sxhkd
 fi
 
 # termite
-if [[ ! -d ${TERMITE_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
-    mkdir -p ${TERMITE_CONFIG}
-    cp ./termite/* ${TERMITE_CONFIG}
+if ! command -v termite &> /dev/null; then
+    echo -e "${BOLDGREEN}installing termite...${ENDCOLOR}"
+
+    git clone https://github.com/ls4154/termite-ubuntu.git ${TERMITE_DIR}
+    pushd ${TERMITE_DIR}
+        bash build.sh
+    popd
+
+    if [[ ! -d ${TERMITE_CONFIG} ]]; then
+        echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
+        mkdir -p ${TERMITE_CONFIG}
+        cp ./termite/* ${TERMITE_CONFIG}
+    fi
 fi
