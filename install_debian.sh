@@ -16,6 +16,7 @@ PICOM_DIR=${DEPENDENCIES}/picom
 TERMITE_DIR=${DEPENDENCIES}/termite
 BSPWM_CONFIG=~/.config/bspwm
 SXHKD_CONFIG=~/.config/sxhkd
+POLYBAR_CONFIG=~/.config/polybar
 
 # os
 sudo apt update
@@ -67,6 +68,7 @@ if [[ ! -d ${SXHKD_CONFIG} ]]; then
     cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
 fi
 
+# termite
 if ! command -v termite &> /dev/null; then
     echo -e "${BOLDGREEN}installing termite...${ENDCOLOR}"
     git clone https://github.com/ls4154/termite-ubuntu.git ${TERMITE_DIR}
@@ -98,6 +100,12 @@ if ! command -v polybar &> /dev/null; then
             sudo make install
         popd
     popd
+fi
+
+if [[ ! -d ${POLYBAR_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
+    mkdir -p ${POLYBAR_CONFIG}
+    cp ./polybar/* ${POLYBAR_CONFIG}
 fi
 
 # Picom
