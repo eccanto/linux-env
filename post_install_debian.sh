@@ -9,18 +9,18 @@ BOLDGREEN="\e[1;${GREEN}m"
 ENDCOLOR="\e[0m"
 
 DEPENDENCIES=./.deps
+BSPWM_CONFIG=~/.config/bspwm
 FONTS_DIR=${DEPENDENCIES}/fonts
+DEFAULT_BG=./wallpapers/mountain.jpg
+WALLPAPERS_STORAGE=/usr/local/share/wallpapers
 
 # Hack Nerd Fonts
-if ! ls /usr/local/share/fonts/Hack*.ttf; then
+if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
     echo -e "${BOLDGREEN}installing Hack Nerd Fonts...${ENDCOLOR}"
 
     mkdir -p ${FONTS_DIR}
     pushd ${FONTS_DIR}
-        if [[ ! -f Hack.zip ]]; then
-            echo -e "${BOLDGREEN}downloading Hack Nerd Fonts...${ENDCOLOR}"
-            wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
-        fi
+        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
         sudo mv Hack.zip /usr/local/share/fonts/
         cd /usr/local/share/fonts/
         sudo unzip Hack.zip
@@ -44,4 +44,13 @@ fi
 if ! command -v firejail &> /dev/null; then
     echo -e "${BOLDGREEN}installing firejail...${ENDCOLOR}"
     sudo apt install firejail
+fi
+
+# feh
+if ! command -v feh &> /dev/null; then
+    sudo apt install feh
+    sudo mkdir -p ${WALLPAPERS_STORAGE}
+    sudp cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
+
+    echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
 fi

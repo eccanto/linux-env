@@ -106,6 +106,8 @@ if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
     echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
     mkdir -p ${POLYBAR_CONFIG}
     cp -r ./polybar/* ${POLYBAR_CONFIG}
+
+    echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
 fi
 
 # Picom

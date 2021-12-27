@@ -77,3 +77,5 @@ bspc rule -a Pavucontrol state=floating follow=on center=on
 bspc rule -a Thunar desktop='^2' state=floating center=on follow=on
 bspc rule -a Viewnior state=floating center=on
 bspc rule -a mpv state=floating rectangle=925x519+0+0 center=on
+
+# --------------------------------------------- custom ---------------------------------------------
