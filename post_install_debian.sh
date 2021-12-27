@@ -66,10 +66,10 @@ if ! command -v termite &> /dev/null; then
     pushd ${TERMITE_DIR}
         bash build.sh
     popd
+fi
 
-    if [[ ! -d ${TERMITE_CONFIG} ]]; then
-        echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
-        mkdir -p ${TERMITE_CONFIG}
-        cp ./termite/* ${TERMITE_CONFIG}
-    fi
+if [[ ! -d ${TERMITE_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
+    mkdir -p ${TERMITE_CONFIG}
+    cp ./termite/* ${TERMITE_CONFIG}
 fi

@@ -43,14 +43,14 @@ if ! command -v bspwm &> /dev/null; then
         sudo make install
         sudo apt install bspwm
     popd
+fi
 
-    if [[ ! -d ${BSPWM_CONFIG} ]]; then
-        echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
-        mkdir -p ${BSPWM_CONFIG}
-        cp -r ./bspwm/* ${BSPWM_CONFIG}
+if [[ ! -d ${BSPWM_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
+    mkdir -p ${BSPWM_CONFIG}
+    cp -r ${BSPWM_DIR}/* ${BSPWM_CONFIG}
 
-        echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
-    fi
+    echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
 fi
 
 # sxhkd
@@ -66,12 +66,12 @@ if ! command -v sxhkd &> /dev/null; then
         make
         sudo make install
     popd
+fi
 
-    if [[ ! -d ${SXHKD_CONFIG} ]]; then
-        echo -e "${BOLDGREEN}configuring sxhkd...${ENDCOLOR}"
-        mkdir -p ${SXHKD_CONFIG}
-        cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
-    fi
+if [[ ! -d ${SXHKD_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring sxhkd...${ENDCOLOR}"
+    mkdir -p ${SXHKD_CONFIG}
+    cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
 fi
 
 # polybar
@@ -98,24 +98,24 @@ if ! command -v polybar &> /dev/null; then
             sudo make install
         popd
     popd
+fi
 
-    if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
-        echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
+if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
+    echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
 
-        git clone https://github.com/VaughnValle/blue-sky.git ${BLUE_SKY_DIR}
+    git clone https://github.com/VaughnValle/blue-sky.git ${BLUE_SKY_DIR}
 
-        mkdir -p ${POLYBAR_CONFIG}
+    mkdir -p ${POLYBAR_CONFIG}
 
-        echo -e "${BOLDGREEN}configuring polybar settings...${ENDCOLOR}"
-        cp -r ${BLUE_SKY_DIR}/polybar/* ${POLYBAR_CONFIG}
-        echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
+    echo -e "${BOLDGREEN}configuring polybar settings...${ENDCOLOR}"
+    cp -r ${BLUE_SKY_DIR}/polybar/* ${POLYBAR_CONFIG}
+    echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
 
-        echo -e "${BOLDGREEN}configuring polybar fonts...${ENDCOLOR}"
-        cp -r ${BLUE_SKY_DIR}/polybar/fonts/* /usr/share/fonts/truetype/
+    echo -e "${BOLDGREEN}configuring polybar fonts...${ENDCOLOR}"
+    cp -r ${BLUE_SKY_DIR}/polybar/fonts/* /usr/share/fonts/truetype/
 
-        fc-cache -v
-        pkill -USR1 -x sxhkd
-    fi
+    fc-cache -v
+    pkill -USR1 -x sxhkd
 fi
 
 # Picom
@@ -141,12 +141,12 @@ if ! command -v picom &> /dev/null; then
         ninja -C build
         sudo ninja -C build install
     popd
+fi
 
-    if [[ ! -d ${PICOM_CONFIG} ]]; then
-        echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
-        mkdir -p ${PICOM_CONFIG}
-        cp ./picom/* ${PICOM_CONFIG}
-    fi
+if [[ ! -d ${PICOM_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
+    mkdir -p ${PICOM_CONFIG}
+    cp ./picom/* ${PICOM_CONFIG}
 fi
 
 # rofi
