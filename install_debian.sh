@@ -102,10 +102,10 @@ if ! command -v polybar &> /dev/null; then
     popd
 fi
 
-if [[ ! -d ${POLYBAR_CONFIG} ]]; then
+if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
     echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
     mkdir -p ${POLYBAR_CONFIG}
-    cp ./polybar/* ${POLYBAR_CONFIG}
+    cp -r ./polybar/* ${POLYBAR_CONFIG}
 fi
 
 # Picom
