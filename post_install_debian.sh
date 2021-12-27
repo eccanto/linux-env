@@ -48,6 +48,7 @@ fi
 
 # feh
 if ! command -v feh &> /dev/null; then
+    echo -e "${BOLDGREEN}installing wallpapers...${ENDCOLOR}"
     sudo apt install feh
     sudo mkdir -p ${WALLPAPERS_STORAGE}
     sudp cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
