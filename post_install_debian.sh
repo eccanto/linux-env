@@ -23,6 +23,7 @@ sudo mv /usr/lib/firefox/firefox /usr/lib/firefox/firefox_backup
 sudo ln -s /opt/firefox/firefox /usr/lib/firefox/firefox
 
 # firejail
-sudo apt install firejail
-
-
+if ! command -v firejail &> /dev/null; then
+    echo -e "${BOLDGREEN}installing firejail...${ENDCOLOR}"
+    sudo apt install firejail
+fi

@@ -160,3 +160,10 @@ XF86AudioNext
 
 XF86AudioPrev
     playerctl previous
+
+# --------------------------------------------- Custom ---------------------------------------------
+
+# firefox into firejail
+super + shift + f
+    firejail firefox
+
