@@ -11,7 +11,7 @@ ENDCOLOR="\e[0m"
 DEPENDENCIES=./.deps
 BSPWM_CONFIG=~/.config/bspwm
 FONTS_DIR=${DEPENDENCIES}/fonts
-SIJI_DIR=${DEPENDENCIES}/siji
+TERMITE_CONFIG=~/.config/termite
 DEFAULT_BG=./wallpapers/mountain.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
 
@@ -27,7 +27,6 @@ if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
         sudo unzip Hack.zip
         sudo rm Hack.zip
     popd
-
     fc-cache -v
 fi
 
@@ -57,10 +56,9 @@ if ! command -v feh &> /dev/null; then
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
 fi
 
-# siji
-if [[ ! -d ${SIJI_DIR} ]]; then
-    git clone https://github.com/stark/siji ${SIJI_DIR}
-    pushd ${SIJI_DIR}
-        ./install.sh
-    popd
+# termite
+if [[ ! -d ${TERMITE_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
+    mkdir -p ${TERMITE_CONFIG}
+    cp ./termite/* ${TERMITE_CONFIG}
 fi
