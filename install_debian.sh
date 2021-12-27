@@ -16,6 +16,9 @@ TERMITE_DIR=${DEPENDENCIES}/termite
 BSPWM_CONFIG=~/.config/bspwm
 SXHKD_CONFIG=~/.config/sxhkd
 
+# os
+sudo apt update
+
 # bspwm
 echo -e "${BOLDGREEN}installing dependencies...${ENDCOLOR}"
 sudo apt install build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
@@ -76,7 +79,7 @@ sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb
     libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto \
     libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev \
     libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev \
-    libcurl4-openssl-dev libnl-genl-3-dev
+    libcurl4-openssl-dev libnl-genl-3-dev libuv1-dev
 
 if [[ ! -d ${POLYBAR_DIR} ]]; then
     echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
@@ -86,7 +89,8 @@ fi
 if ! command -v polybar &> /dev/null; then
     echo -e "${BOLDGREEN}installing polybar...${ENDCOLOR}"
     pushd ${POLYBAR_DIR}
-        mkdir build
+        rm -rf build/
+        mkdir build/
         pushd build/
             cmake ..
             make -j$(nproc)
