@@ -16,7 +16,7 @@ $HOME/.config/polybar/launch.sh &
 xsetroot -cursor_name left_ptr
 
 
-bspc monitor VGA1 -d I II III IV V
+bspc monitor -d I II III IV V VI VII VIII IX X
 
 #### Windows conf ####
 bspc config border_width                  0

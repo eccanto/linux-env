@@ -11,6 +11,7 @@ ENDCOLOR="\e[0m"
 DEPENDENCIES=./.deps
 BSPWM_CONFIG=~/.config/bspwm
 FONTS_DIR=${DEPENDENCIES}/fonts
+SIJI_DIR=${DEPENDENCIES}/siji
 DEFAULT_BG=./wallpapers/mountain.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
 
@@ -54,4 +55,12 @@ if ! command -v feh &> /dev/null; then
     sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
+fi
+
+# siji
+if [[ ! -d ${SIJI_DIR} ]]; then
+    git clone https://github.com/stark/siji ${SIJI_DIR}
+    pushd ${SIJI_DIR}
+        ./install.sh
+    popd
 fi
