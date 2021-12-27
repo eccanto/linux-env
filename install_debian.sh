@@ -17,6 +17,7 @@ TERMITE_DIR=${DEPENDENCIES}/termite
 BSPWM_CONFIG=~/.config/bspwm
 SXHKD_CONFIG=~/.config/sxhkd
 POLYBAR_CONFIG=~/.config/polybar
+PICOM_CONFIG=~/.config/picom
 
 # os
 sudo apt update
@@ -132,6 +133,12 @@ if ! command -v picom &> /dev/null; then
         ninja -C build
         sudo ninja -C build install
     popd
+fi
+
+if [[ ! -d ${PICOM_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
+    mkdir -p ${PICOM_CONFIG}
+    cp ./picom/* ${PICOM_CONFIG}
 fi
 
 # rofi
