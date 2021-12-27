@@ -11,14 +11,16 @@ ENDCOLOR="\e[0m"
 DEPENDENCIES=./.deps
 BSPWM_DIR=${DEPENDENCIES}/bspwm
 SXHKD_DIR=${DEPENDENCIES}/sxhkd
+POLYBAR_DIR=${DEPENDENCIES}/polybar
 TERMITE_DIR=${DEPENDENCIES}/termite
 BSPWM_CONFIG=~/.config/bspwm
 SXHKD_CONFIG=~/.config/sxhkd
 
-
+# bspwm
 echo -e "${BOLDGREEN}installing dependencies...${ENDCOLOR}"
-sudo apt-get install git gcc make xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
-    libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libxcb-ewmh2 libxcb-shape0-dev
+sudo apt install build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
+    libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev \
+    libxcb-shape0-dev libxcb-ewmh2 make gcc
 
 mkdir -p ${DEPENDENCIES}
 
@@ -37,6 +39,7 @@ if ! command -v bspwm &> /dev/null; then
     pushd ${BSPWM_DIR}
         make
         sudo make install
+        sudo apt install bspwm
     popd
 fi
 
@@ -51,7 +54,7 @@ fi
 if [[ ! -d ${BSPWM_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
     mkdir -p ${BSPWM_CONFIG}
-    cp ./bspwm/bspwmrc ${BSPWM_CONFIG}
+    cp -r ./bspwm/* ${BSPWM_CONFIG}
 fi
 
 if [[ ! -d ${SXHKD_CONFIG} ]]; then
@@ -65,5 +68,29 @@ if ! command -v termite &> /dev/null; then
     git clone https://github.com/ls4154/termite-ubuntu.git ${TERMITE_DIR}
     pushd ${TERMITE_DIR}
         bash build.sh
+    popd
+fi
+
+# polybar
+sudo apt install cmake cmake-data pkg-config python3-sphinx libcairo2-dev libxcb1-dev \
+    libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto \
+    libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev \
+    libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev \
+    libcurl4-openssl-dev libnl-genl-3-dev
+
+if [[ ! -d ${POLYBAR_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
+    git clone --recursive https://github.com/polybar/polybar ${POLYBAR_DIR}
+fi
+
+if ! command -v polybar &> /dev/null; then
+    echo -e "${BOLDGREEN}installing polybar...${ENDCOLOR}"
+    pushd ${POLYBAR_DIR}
+        mkdir build
+        pushd build/
+            cmake ..
+            make -j$(nproc)
+            sudo make install
+        popd
     popd
 fi
