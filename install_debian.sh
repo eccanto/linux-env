@@ -112,10 +112,10 @@ if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
     echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
 
     echo -e "${BOLDGREEN}configuring polybar fonts...${ENDCOLOR}"
-    cp -r ${BLUE_SKY_DIR}/polybar/fonts/* /usr/share/fonts/truetype/
+    sudo cp -r ${BLUE_SKY_DIR}/polybar/fonts/* /usr/share/fonts/truetype/
 
     fc-cache -v
-    pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd || true
 fi
 
 # Picom

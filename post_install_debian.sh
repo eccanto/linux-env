@@ -55,7 +55,7 @@ if ! command -v feh &> /dev/null; then
     sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
-    pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd || true
 fi
 
 # termite
