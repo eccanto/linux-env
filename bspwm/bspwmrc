@@ -80,4 +80,8 @@ bspc rule -a mpv state=floating rectangle=925x519+0+0 center=on
 
 # --------------------------------------------- custom ---------------------------------------------
 
+# focus
 bspc config focus_follows_pointer true
+
+# fix mouse
+xsetroot -cursor_name left_ptr &

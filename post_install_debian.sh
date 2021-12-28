@@ -14,6 +14,7 @@ FONTS_DIR=${DEPENDENCIES}/fonts
 SLIMLOCK_DIR=${DEPENDENCIES}/slimlock
 
 BSPWM_CONFIG=$(realpath ~/.config/bspwm)
+SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
 
 DEFAULT_BG=./wallpapers/mountain.jpg
@@ -89,6 +90,8 @@ if ! command -v slimlock &> /dev/null; then
         sudo cp slimlock.conf /etc/
         sudo cp -r default /usr/share/slim/themes/
     popd
+
+    echo -e "\n# Slimlock\nsuper + l\n    slimlock" >> ${SXHKD_CONFIG}/sxhkdrc
 fi
 
 # end
