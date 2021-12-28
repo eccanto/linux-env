@@ -14,6 +14,8 @@ FONTS_DIR=${DEPENDENCIES}/fonts
 DEFAULT_BG=./wallpapers/mountain.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
 
+ROFI_CONFIG=$(realpath ~/.config/rofi)
+
 # Hack Nerd Fonts
 if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
     echo -e "${BOLDGREEN}installing Hack Nerd Fonts...${ENDCOLOR}"
@@ -54,4 +56,16 @@ if ! command -v feh &> /dev/null; then
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
     pkill -USR1 -x sxhkd || true
+fi
+
+# rofi
+if ! command -v rofi &> /dev/null; then
+    sudo apt install rofi
+fi
+
+if [[ ! -d ${ROFI_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring rofi...${ENDCOLOR}"
+
+    mkdir -p ${ROFI_CONFIG}/themes
+    cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
 fi

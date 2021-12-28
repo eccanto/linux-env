@@ -148,7 +148,7 @@ if [[ ! -d ${PICOM_CONFIG} ]]; then
     mkdir -p ${PICOM_CONFIG}
     cp ./picom/* ${PICOM_CONFIG}
 
-    echo 'picom --experimental-backends &' >> ${BSPWM_CONFIG}/bspwmrc
+    echo 'picom --experimental-backends -b' >> ${BSPWM_CONFIG}/bspwmrc
     echo 'bspc config border_width 0' >> ${BSPWM_CONFIG}/bspwmrc
 fi
 
@@ -166,11 +166,6 @@ if [[ ! -d ${TERMITE_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
     mkdir -p ${TERMITE_CONFIG}
     cp ./termite/* ${TERMITE_CONFIG}
-fi
-
-# rofi
-if ! command -v rofi &> /dev/null; then
-    sudo apt install rofi
 fi
 
 # end

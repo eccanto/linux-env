@@ -43,12 +43,9 @@ cursor_shape = underline
 [colors]
 foreground          = #E0E0E0
 foreground_bold     = #E0E0E0
-cursor              = #D20075
+cursor              = #FFFFFF
 cursor_foreground   = #282936
-background          = rgba(30, 23, 44, 0.95)
-#background          = rgba(7, 2, 25, 0.90)
-#background          = rgba(28, 23, 45, 0.90)
-#background          = rgba(30, 31, 41, 1.00)
+background          = rgba(0, 0, 0, 0.85)
 
 # 16 color space
 
@@ -76,9 +73,9 @@ color12 = #58AFC2
 color5  = #522b87
 color13 = #472575
 
-# Cyan
-color6  = #926BCA
-color14 = #926BCA
+# light blue
+color6  = #61B3DB
+color14 = #61B3DB
 
 # White
 color7 = #d9d9d9
