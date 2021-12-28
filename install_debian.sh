@@ -50,8 +50,6 @@ if [[ ! -d ${BSPWM_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
     mkdir -p ${BSPWM_CONFIG}
     cp -r ${BSPWM_DIR}/* ${BSPWM_CONFIG}
-
-    echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
 fi
 
 # sxhkd
@@ -73,6 +71,8 @@ if [[ ! -d ${SXHKD_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring sxhkd...${ENDCOLOR}"
     mkdir -p ${SXHKD_CONFIG}
     cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
+
+    echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
 fi
 
 # polybar
