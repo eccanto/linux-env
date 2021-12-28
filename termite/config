@@ -6,7 +6,7 @@ cell_height_scale = 1.0
 cell_width_scale = 1.0
 clickable_url = true
 dynamic_title = true
-font = JetBrainsMono Nerd Font Medium 10
+#font = monofur Regular 12px
 fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -41,9 +41,6 @@ cursor_shape = underline
 #scrollbar = off
 
 [colors]
-# Base16 Dracula
-# Author: Mike Barkmin (http://github.com/mikebarkmin) based on Dracula Theme (http://github.com/dracula)
-
 foreground          = #E0E0E0
 foreground_bold     = #E0E0E0
 cursor              = #D20075

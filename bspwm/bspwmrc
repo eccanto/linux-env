@@ -79,3 +79,5 @@ bspc rule -a Viewnior state=floating center=on
 bspc rule -a mpv state=floating rectangle=925x519+0+0 center=on
 
 # --------------------------------------------- custom ---------------------------------------------
+
+bspc config focus_follows_pointer true

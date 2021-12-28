@@ -13,7 +13,6 @@ BSPWM_DIR=${DEPENDENCIES}/bspwm
 SXHKD_DIR=${DEPENDENCIES}/sxhkd
 POLYBAR_DIR=${DEPENDENCIES}/polybar
 TERMITE_DIR=${DEPENDENCIES}/termite
-BLUE_SKY_DIR=${DEPENDENCIES}/blue-sky
 
 PICOM_DIR=${DEPENDENCIES}/picom
 BSPWM_CONFIG=$(realpath ~/.config/bspwm)
@@ -105,16 +104,14 @@ fi
 if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
     echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
 
-    git clone https://github.com/VaughnValle/blue-sky.git ${BLUE_SKY_DIR}
-
     mkdir -p ${POLYBAR_CONFIG}
 
     echo -e "${BOLDGREEN}configuring polybar settings...${ENDCOLOR}"
-    cp -r ${BLUE_SKY_DIR}/polybar/* ${POLYBAR_CONFIG}
+    cp -r ./polybar/* ${POLYBAR_CONFIG}
     echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
 
     echo -e "${BOLDGREEN}configuring polybar fonts...${ENDCOLOR}"
-    sudo cp -r ${BLUE_SKY_DIR}/polybar/fonts/* /usr/share/fonts/truetype/
+    sudo cp -r ./polybar/fonts/* /usr/share/fonts/truetype/
 
     fc-cache -v
     pkill -USR1 -x sxhkd || true
@@ -149,6 +146,9 @@ if [[ ! -d ${PICOM_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
     mkdir -p ${PICOM_CONFIG}
     cp ./picom/* ${PICOM_CONFIG}
+
+    echo 'picom --experimental-backends &' >> ${BSPWM_CONFIG}/bspwmrc
+    echo 'bspc config border_width 0' >> ${BSPWM_CONFIG}/bspwmrc
 fi
 
 # termite
