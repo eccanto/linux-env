@@ -11,7 +11,6 @@ ENDCOLOR="\e[0m"
 DEPENDENCIES=./.deps
 BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 FONTS_DIR=${DEPENDENCIES}/fonts
-TERMITE_CONFIG=$(realpath ~/.config/termite)
 DEFAULT_BG=./wallpapers/mountain.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
 

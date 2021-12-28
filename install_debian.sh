@@ -20,6 +20,7 @@ BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
 POLYBAR_CONFIG=$(realpath ~/.config/polybar)
 PICOM_CONFIG=$(realpath ~/.config/picom)
+TERMITE_CONFIG=$(realpath ~/.config/termite)
 
 # os
 sudo apt update
