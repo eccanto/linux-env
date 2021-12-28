@@ -50,6 +50,7 @@ if [[ ! -d ${BSPWM_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
     mkdir -p ${BSPWM_CONFIG}
     cp -r ${BSPWM_DIR}/* ${BSPWM_CONFIG}
+    cp -r ./bspwm/* ${BSPWM_CONFIG}
 fi
 
 # sxhkd
