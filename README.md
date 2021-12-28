@@ -14,3 +14,4 @@ rofi-theme-selector
 
 selecte theme:
 
+then press "Alt + a" to save changes

@@ -9,12 +9,15 @@ BOLDGREEN="\e[1;${GREEN}m"
 ENDCOLOR="\e[0m"
 
 DEPENDENCIES=./.deps
-BSPWM_CONFIG=$(realpath ~/.config/bspwm)
+
 FONTS_DIR=${DEPENDENCIES}/fonts
+SLIMLOCK_DIR=${DEPENDENCIES}/slimlock
+
+BSPWM_CONFIG=$(realpath ~/.config/bspwm)
+ROFI_CONFIG=$(realpath ~/.config/rofi)
+
 DEFAULT_BG=./wallpapers/mountain.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
-
-ROFI_CONFIG=$(realpath ~/.config/rofi)
 
 # Hack Nerd Fonts
 if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
@@ -69,3 +72,25 @@ if [[ ! -d ${ROFI_CONFIG} ]]; then
     mkdir -p ${ROFI_CONFIG}/themes
     cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
 fi
+
+# slim and slimlock
+if ! command -v slimlock &> /dev/null; then
+    sudo apt update
+    sudo apt install slim libpam0g-dev libxrandr-dev libfreetype6-dev libimlib2-dev libxft-dev
+
+    git clone https://github.com/joelburget/slimlock.git ${SLIMLOCK_DIR}
+    pushd ${SLIMLOCK_DIR}
+        sudo make
+        sudo make install
+    popd
+
+    pushd ./slim/
+        sudo cp slim.conf /etc/
+        sudo cp slimlock.conf /etc/
+        sudo cp -r default /usr/share/slim/themes/
+    popd
+fi
+
+# end
+echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
+echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash last_install_debian.sh\"${ENDCOLOR} command to complete the installation."
