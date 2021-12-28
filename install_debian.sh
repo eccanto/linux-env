@@ -149,8 +149,26 @@ if [[ ! -d ${PICOM_CONFIG} ]]; then
     cp ./picom/* ${PICOM_CONFIG}
 fi
 
+# termite
+if ! command -v termite &> /dev/null; then
+    echo -e "${BOLDGREEN}installing termite...${ENDCOLOR}"
+
+    git clone https://github.com/ls4154/termite-ubuntu.git ${TERMITE_DIR}
+    pushd ${TERMITE_DIR}
+        bash build.sh
+    popd
+fi
+
+if [[ ! -d ${TERMITE_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
+    mkdir -p ${TERMITE_CONFIG}
+    cp ./termite/* ${TERMITE_CONFIG}
+fi
+
 # rofi
-sudo apt install rofi
+if ! command -v rofi &> /dev/null; then
+    sudo apt install rofi
+fi
 
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
