@@ -32,13 +32,13 @@ fi
 # firejail
 if ! command -v firejail &> /dev/null; then
     echo -e "${BOLDGREEN}installing firejail...${ENDCOLOR}"
-    sudo apt install firejail
+    sudo apt install -y firejail
 fi
 
 # feh
 if ! command -v feh &> /dev/null; then
     echo -e "${BOLDGREEN}installing wallpapers...${ENDCOLOR}"
-    sudo apt install feh
+    sudo apt install -y feh
     sudo mkdir -p ${WALLPAPERS_STORAGE}
     sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
@@ -48,7 +48,7 @@ fi
 
 # rofi
 if ! command -v rofi &> /dev/null; then
-    sudo apt install rofi
+    sudo apt install -y rofi
 fi
 
 if [[ ! -d ${ROFI_CONFIG} ]]; then
@@ -64,8 +64,8 @@ rofi-theme-selector
 
 # slim and slimlock
 if ! command -v slimlock &> /dev/null; then
-    sudo apt update
-    sudo apt install slim libpam0g-dev libxrandr-dev libfreetype6-dev libimlib2-dev libxft-dev
+    sudo apt update -y
+    sudo apt install -y slim libpam0g-dev libxrandr-dev libfreetype6-dev libimlib2-dev libxft-dev
 
     git clone https://github.com/joelburget/slimlock.git ${SLIMLOCK_DIR}
     pushd ${SLIMLOCK_DIR}

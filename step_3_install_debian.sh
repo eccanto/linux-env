@@ -8,8 +8,8 @@ source common.sh
 if ! command -v zsh &> /dev/null; then
     echo -e "${BOLDGREEN}installing zsh...${ENDCOLOR}"
 
-    sudo apt update
-    sudo apt install zsh
+    sudo apt update -y
+    sudo apt install -y zsh
 fi
 
 if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
@@ -72,7 +72,7 @@ fi
 if ! command -v ranger &> /dev/null; then
     echo -e "${BOLDGREEN}installing ranger...${ENDCOLOR}"
 
-    sudo apt install ranger
+    sudo apt install -y ranger
 fi
 
 # zsh pluggins
