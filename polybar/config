@@ -21,7 +21,7 @@ screenchange-reload = true
 
 [global/wm]
 margin-top = 0
-margin-bottom = 0
+margin-bottom = 2
 
 [bar/top]
 enable-ipc = true
