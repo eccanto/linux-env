@@ -93,13 +93,12 @@ if ! command -v nvim &> /dev/null; then
     sudo ln -s /usr/local/bin/nvim /usr/bin/vim
 fi
 
-if [[ ! -f ${NVIM_CONFIG}/init.vim ]]; then
-    echo -e "${BOLDGREEN}installing neovim style...${ENDCOLOR}"
+rm ${NVIM_CONFIG}/init.vim
+echo -e "${BOLDGREEN}installing neovim style...${ENDCOLOR}"
 
-    mkdir -p ${NVIM_CONFIG}
+mkdir -p ${NVIM_CONFIG}
 
-    pushd ${NVIM_CONFIG}
-        cat > init.vim << EOC
+cat > ${NVIM_CONFIG}/init.vim << EOC
 set number
 
 set expandtab
@@ -123,8 +122,6 @@ set whichwrap+=<,>,[,]
 
 syntax on
 EOC
-    popd
-fi
 
 # system
 echo -e "${BOLDGREEN}updating system files...${ENDCOLOR}"
