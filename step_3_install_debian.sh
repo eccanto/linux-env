@@ -126,3 +126,6 @@ EOC
 # system
 echo -e "${BOLDGREEN}updating system files...${ENDCOLOR}"
 sudo updatedb
+
+# end
+echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
