@@ -2,17 +2,12 @@
 
 set -euo pipefail
 
-RED="31"
-GREEN="32"
-BOLDRED="\e[1;${RED}m"
-BOLDGREEN="\e[1;${GREEN}m"
-ENDCOLOR="\e[0m"
-
-DEPENDENCIES=./.deps
-POWERLEVEL10K_DIR=${DEPENDENCIES}/powerlevel10k
+source common.sh
 
 # powerlevel10k
 if ! command -v zsh &> /dev/null; then
+    echo -e "${BOLDGREEN}installing zsh...${ENDCOLOR}"
+
     sudo apt update
     sudo apt install zsh
 fi
@@ -33,4 +28,104 @@ if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
 
     sudo usermod --shell /usr/bin/zsh $(whoami)
     sudo usermod --shell /usr/bin/zsh root
+
+    chown $(whoami):$(whoami) /root
+    chown $(whoami):$(whoami) /root/.cache -R
+    chown $(whoami):$(whoami) /root/.local -R
 fi
+
+# bat
+if ! command -v bat &> /dev/null; then
+    echo -e "${BOLDGREEN}installing bat...${ENDCOLOR}"
+
+    wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb -P ${DEPENDENCIES}
+    sudo dpkg -i ${DEPENDENCIES}/bat_0.18.3_amd64.deb
+
+    echo "alias cat='/bin/bat'" >> ~/.zshrc
+    echo "alias catn='/bin/cat'" >> ~/.zshrc
+    echo "alias catnl='/bin/bat --paging=never'" >> ~/.zshrc
+fi
+
+# lsd
+if ! command -v lsd &> /dev/null; then
+    echo -e "${BOLDGREEN}installing lsd...${ENDCOLOR}"
+
+    wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P ${DEPENDENCIES}
+    sudo dpkg -i ${DEPENDENCIES}/lsd_0.20.1_amd64.deb
+
+    echo "alias ll='lsd -lh --group-dirs=first'" >> ~/.zshrc
+    echo "alias la='lsd -a --group-dirs=first'" >> ~/.zshrc
+    echo "alias l='lsd --group-dirs=first'" >> ~/.zshrc
+    echo "alias lla='lsd -lha --group-dirs=first'" >> ~/.zshrc
+    echo "alias ls='lsd --group-dirs=first'" >> ~/.zshrc
+fi
+
+# fzf
+if ! command -v fzf &> /dev/null; then
+    echo -e "${BOLDGREEN}installing fzf...${ENDCOLOR}"
+
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+fi
+
+# ranger
+if ! command -v ranger &> /dev/null; then
+    echo -e "${BOLDGREEN}installing ranger...${ENDCOLOR}"
+
+    sudo apt install ranger
+fi
+
+# zsh pluggins
+echo -e "${BOLDGREEN}installing zsh plugin: sudo.plugin.zsh...${ENDCOLOR}"
+
+sudo mkdir -p /usr/share/zsh-plugins/
+sudo chown $(whoami):$(whoami) /usr/share/zsh-plugins/
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P /usr/share/zsh-plugins/
+
+echo "source /usr/share/zsh-plugins/sudo.plugin.zsh" >> ~/.zshrc
+
+# nvim
+if ! command -v nvim &> /dev/null; then
+    echo -e "${BOLDGREEN}installing neovim...${ENDCOLOR}"
+    wget https://github.com/neovim/neovim/releases/download/v0.6.0/nvim-linux64.tar.gz -O- | sudo tar zxvf - -C /usr/local --strip=1
+
+    sudo mv /usr/bin/vim /usr/bin/vim_backup
+    sudo ln -s /usr/local/bin/nvim /usr/bin/vim
+fi
+
+if [[ ! -f ${NVIM_CONFIG}/init.vim ]]; then
+    echo -e "${BOLDGREEN}installing neovim style...${ENDCOLOR}"
+
+    mkdir -p ${NVIM_CONFIG}
+
+    pushd ${NVIM_CONFIG}
+        cat > init.vim << EOC
+set number
+
+set expandtab
+set autoindent
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+
+"Enable mouse click for nvim
+set mouse=a
+"Fix cursor replacement after closing nvim
+set guicursor=
+"Shift + Tab does inverse tab
+inoremap <S-Tab> <C-d>
+
+"See invisible characters
+set list listchars=tab:>\ ,trail:.
+
+"wrap to next line when end of line is reached
+set whichwrap+=<,>,[,]
+
+syntax on
+EOC
+    popd
+fi
+
+# system
+echo -e "${BOLDGREEN}updating system files...${ENDCOLOR}"
+updatedb

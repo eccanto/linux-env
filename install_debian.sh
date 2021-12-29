@@ -2,24 +2,7 @@
 
 set -euo pipefail
 
-RED="31"
-GREEN="32"
-BOLDRED="\e[1;${RED}m"
-BOLDGREEN="\e[1;${GREEN}m"
-ENDCOLOR="\e[0m"
-
-DEPENDENCIES=./.deps
-BSPWM_DIR=${DEPENDENCIES}/bspwm
-SXHKD_DIR=${DEPENDENCIES}/sxhkd
-POLYBAR_DIR=${DEPENDENCIES}/polybar
-TERMITE_DIR=${DEPENDENCIES}/termite
-
-PICOM_DIR=${DEPENDENCIES}/picom
-BSPWM_CONFIG=$(realpath ~/.config/bspwm)
-SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
-POLYBAR_CONFIG=$(realpath ~/.config/polybar)
-PICOM_CONFIG=$(realpath ~/.config/picom)
-TERMITE_CONFIG=$(realpath ~/.config/termite)
+source common.sh
 
 # os
 sudo apt update

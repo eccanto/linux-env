@@ -2,23 +2,7 @@
 
 set -euo pipefail
 
-RED="31"
-GREEN="32"
-BOLDRED="\e[1;${RED}m"
-BOLDGREEN="\e[1;${GREEN}m"
-ENDCOLOR="\e[0m"
-
-DEPENDENCIES=./.deps
-
-FONTS_DIR=${DEPENDENCIES}/fonts
-SLIMLOCK_DIR=${DEPENDENCIES}/slimlock
-
-BSPWM_CONFIG=$(realpath ~/.config/bspwm)
-SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
-ROFI_CONFIG=$(realpath ~/.config/rofi)
-
-DEFAULT_BG=./wallpapers/mountain.jpg
-WALLPAPERS_STORAGE=/usr/local/share/wallpapers
+source common.sh
 
 # Hack Nerd Fonts
 if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
@@ -73,6 +57,10 @@ if [[ ! -d ${ROFI_CONFIG} ]]; then
     mkdir -p ${ROFI_CONFIG}/themes
     cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
 fi
+
+echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
+
+rofi-theme-selector
 
 # slim and slimlock
 if ! command -v slimlock &> /dev/null; then
