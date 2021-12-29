@@ -41,9 +41,9 @@ if ! command -v bat &> /dev/null; then
     wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb -P ${DEPENDENCIES}
     sudo dpkg -i ${DEPENDENCIES}/bat_0.18.3_amd64.deb
 
-    echo "alias cat='/bin/bat'" >> ~/.zshrc
+    echo "alias catl='/bin/bat'" >> ~/.zshrc
     echo "alias catn='/bin/cat'" >> ~/.zshrc
-    echo "alias catnl='/bin/bat --paging=never'" >> ~/.zshrc
+    echo "alias cat='/bin/bat --paging=never'" >> ~/.zshrc
 fi
 
 # lsd

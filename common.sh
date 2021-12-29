@@ -27,5 +27,5 @@ TERMITE_CONFIG=$(realpath ~/.config/termite)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
 NVIM_CONFIG=$(realpath ~/.config/nvim)
 
-DEFAULT_BG=./wallpapers/art.jpg
+DEFAULT_BG=./wallpapers/bg_1.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
