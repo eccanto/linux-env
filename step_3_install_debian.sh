@@ -23,8 +23,8 @@ if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
     zsh
 fi
 
-if sudo grep -qE '^echo "Welcome to Parrot OS.*' /root/.zshrc; then
-    echo -e "${BOLDGREEN}configuring '/root/.zshrc' file...${ENDCOLOR}"
+if sudo test -f /root/.zshrc; then
+    echo -e "${BOLDGREEN}configuring powerlevel10k [root]...${ENDCOLOR}"
 
     sudo su -c 'zsh'  # configure powerlevel10k in the root user.
 fi
