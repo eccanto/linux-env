@@ -21,7 +21,16 @@ if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
     echo "source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
 
     zsh
+fi
+
+if sudo grep -qE '^echo "Welcome to Parrot OS.*' /root/.zshrc; then
+    echo -e "${BOLDGREEN}configuring '/root/.zshrc' file...${ENDCOLOR}"
+
     sudo su -c 'zsh'  # configure powerlevel10k in the root user.
+fi
+
+if grep -qE '^echo "Welcome to Parrot OS.*' ~/.zshrc; then
+    echo -e "${BOLDGREEN}configuring '~/.zshrc' file...${ENDCOLOR}"
 
     sed -i 's/^echo "Welcome to Parrot OS"$/#echo "Welcome to Parrot OS"/g' ~/.zshrc
     sudo ln -s -f $(realpath ~/.zshrc) /root/.zshrc
