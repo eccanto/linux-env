@@ -1,3 +1,12 @@
+window:
+  opacity: 0.85
+
+scrolling:
+  history: 250000
+
+font:
+  size: 8.75
+
 # Colors (Hyper)
 colors:
   # Default colors

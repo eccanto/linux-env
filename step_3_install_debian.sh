@@ -77,11 +77,24 @@ if ! command -v fzf &> /dev/null; then
     ~/.fzf/install
 fi
 
+# ueberzug
+if ! command -v ueberzug &> /dev/null; then
+    echo -e "${BOLDGREEN}installing ueberzug...${ENDCOLOR}"
+    pip install -U ueberzug
+fi
+
 # ranger
 if ! command -v ranger &> /dev/null; then
     echo -e "${BOLDGREEN}installing ranger...${ENDCOLOR}"
 
     sudo apt install -y ranger
+fi
+
+if [[ ! -d ${RANGER_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring ranger...${ENDCOLOR}"
+
+    ranger --copy-config all
+    cp ./ranger/* ${RANGER_CONFIG}/
 fi
 
 # zsh pluggins

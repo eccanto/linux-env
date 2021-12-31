@@ -26,6 +26,7 @@ PICOM_CONFIG=$(realpath ~/.config/picom)
 ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
 NVIM_CONFIG=$(realpath ~/.config/nvim)
+RANGER_CONFIG=$(realpath ~/.config/ranger)
 
 DEFAULT_BG=./wallpapers/bg_1.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
