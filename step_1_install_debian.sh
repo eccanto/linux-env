@@ -154,7 +154,12 @@ if ! command -v alacritty &> /dev/null; then
     sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev \
         libxcb-xfixes0-dev libxkbcommon-dev python3 cargo
 
-    git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
+    if [[ ! -d ${ALACRITTY_DIR} ]]; then
+        echo -e "${BOLDGREEN}downloading alacritty...${ENDCOLOR}"
+
+        git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
+    fi
+
     pushd ${ALACRITTY_DIR}
         cargo build --release
         infocmp alacritty &> /dev/null
