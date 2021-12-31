@@ -35,5 +35,5 @@ input_pass_y            282
 input_font              Sans:size=14:dpi=75
 input_color             #b1e3ff
 
-username_msg            
-password_msg            
+username_msg
+password_msg

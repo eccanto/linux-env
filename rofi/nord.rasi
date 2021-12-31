@@ -10,11 +10,11 @@ configuration {
 
 * {
   background-color: #000000;
-  bg-alt: #3B4252;
+  bg-alt: #2E0000;
   fg: #ECEFF4;
 
-  nord-blue-light: #88C0D0;
-  nord-yellow: #A8D7FE;
+  nord-blue-light: #E0E0E0;
+  nord-yellow: #E24545;
 
   border: 0;
   lines: 12;
