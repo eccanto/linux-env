@@ -12,7 +12,7 @@ DEPENDENCIES=./.deps
 BSPWM_DIR=${DEPENDENCIES}/bspwm
 SXHKD_DIR=${DEPENDENCIES}/sxhkd
 POLYBAR_DIR=${DEPENDENCIES}/polybar
-TERMITE_DIR=${DEPENDENCIES}/termite
+ALACRITTY_DIR=${DEPENDENCIES}/alacritty
 POWERLEVEL10K_DIR=${DEPENDENCIES}/powerlevel10k
 NEOVIM_DIR=${DEPENDENCIES}/neovim
 FONTS_DIR=${DEPENDENCIES}/fonts
@@ -23,7 +23,7 @@ BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
 POLYBAR_CONFIG=$(realpath ~/.config/polybar)
 PICOM_CONFIG=$(realpath ~/.config/picom)
-TERMITE_CONFIG=$(realpath ~/.config/termite)
+ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
 NVIM_CONFIG=$(realpath ~/.config/nvim)
 

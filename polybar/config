@@ -409,8 +409,8 @@ label-close = 
 
 menu-0-0 = Vimperator
 menu-0-0-exec = web
-menu-0-1 = Termite
-menu-0-1-exec = termite
+menu-0-1 = Alacritty
+menu-0-1-exec = alacritty
 menu-0-2 = Pcmanfm
 menu-0-2-exec = pcmanfm
 

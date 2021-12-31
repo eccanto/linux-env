@@ -135,20 +135,40 @@ if [[ ! -d ${PICOM_CONFIG} ]]; then
     echo 'bspc config border_width 0' >> ${BSPWM_CONFIG}/bspwmrc
 fi
 
-# termite
-if ! command -v termite &> /dev/null; then
-    echo -e "${BOLDGREEN}installing termite...${ENDCOLOR}"
+# rustup
+if ! command -v rustup; then
+    echo -e "${BOLDGREEN}installing rustup...${ENDCOLOR}"
 
-    git clone https://github.com/ls4154/termite-ubuntu.git ${TERMITE_DIR}
-    pushd ${TERMITE_DIR}
-        bash build.sh
-    popd
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source ${HOME}/.cargo/env
 fi
 
-if [[ ! -d ${TERMITE_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring termite...${ENDCOLOR}"
-    mkdir -p ${TERMITE_CONFIG}
-    cp ./termite/* ${TERMITE_CONFIG}
+# update rust
+echo -e "${BOLDGREEN}updating rust...${ENDCOLOR}"
+rustup default nightly && rustup update
+
+# alacritty
+if ! command -v alacritty &> /dev/null; then
+    echo -e "${BOLDGREEN}installing alacritty...${ENDCOLOR}"
+
+    sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev \
+        libxcb-xfixes0-dev libxkbcommon-dev python3 cargo
+
+    git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
+    pushd ${ALACRITTY_DIR}
+        cargo build --release
+    popd
+
+    infocmp alacritty &> /dev/null
+    sudo cp target/release/alacritty /usr/local/bin
+
+    cp ./alacritty/* ${ALACRITTY_CONFIG}
+fi
+
+if [[ ! -d ${ALACRITTY_CONFIG} ]]; then
+    echo -e "${BOLDGREEN}configuring alacritty...${ENDCOLOR}"
+    mkdir -p ${ALACRITTY_CONFIG}
+    cp ./alacritty/* ${ALACRITTY_CONFIG}
 fi
 
 # end

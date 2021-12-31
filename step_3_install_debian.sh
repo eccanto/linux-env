@@ -23,7 +23,7 @@ if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
     zsh
 fi
 
-if sudo test -f /root/.zshrc; then
+if ! sudo test -f /root/.zshrc; then
     echo -e "${BOLDGREEN}configuring powerlevel10k [root]...${ENDCOLOR}"
 
     sudo su -c 'zsh'  # configure powerlevel10k in the root user.
