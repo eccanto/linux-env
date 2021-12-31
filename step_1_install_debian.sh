@@ -157,10 +157,9 @@ if ! command -v alacritty &> /dev/null; then
     git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
     pushd ${ALACRITTY_DIR}
         cargo build --release
+        infocmp alacritty &> /dev/null
+        sudo cp target/release/alacritty /usr/local/bin
     popd
-
-    infocmp alacritty &> /dev/null
-    sudo cp target/release/alacritty /usr/local/bin
 
     cp ./alacritty/* ${ALACRITTY_CONFIG}
 fi
