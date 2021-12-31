@@ -136,6 +136,10 @@ if [[ ! -d ${PICOM_CONFIG} ]]; then
 fi
 
 # rustup
+if [[ -f ${HOME}/.cargo/env ]]; then
+    source ${HOME}/.cargo/env
+fi
+
 if ! command -v rustup; then
     echo -e "${BOLDGREEN}installing rustup...${ENDCOLOR}"
 
@@ -172,7 +176,7 @@ fi
 if [[ ! -d ${ALACRITTY_CONFIG} ]]; then
     echo -e "${BOLDGREEN}configuring alacritty...${ENDCOLOR}"
     mkdir -p ${ALACRITTY_CONFIG}
-    cp ./alacritty/* ${ALACRITTY_CONFIG}
+    cp ./alacritty/* ${ALACRITTY_CONFIG}/
 fi
 
 # end
