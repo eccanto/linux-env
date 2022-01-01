@@ -57,6 +57,7 @@ if [[ ! -d ${SXHKD_CONFIG} ]]; then
     cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
 
     echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
+    echo -e "\n# Polybar menu\nsuper + q\n    bash ${POLYBAR_CONFIG}/scripts/powermenu_alt" >> ${SXHKD_CONFIG}/sxhkdrc
 fi
 
 # polybar

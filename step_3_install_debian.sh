@@ -95,6 +95,7 @@ if [[ ! -d ${RANGER_CONFIG} ]]; then
 
     ranger --copy-config all
     cp ./ranger/* ${RANGER_CONFIG}/
+    sudo ln -s -f $(realpath ${RANGER_CONFIG}) /root/.config/ranger
 fi
 
 # zsh pluggins
