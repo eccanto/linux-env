@@ -180,6 +180,44 @@ if [[ ! -d ${ALACRITTY_CONFIG} ]]; then
     cp ./alacritty/* ${ALACRITTY_CONFIG}/
 fi
 
+# nvlc (command line VLC media player)
+if ! command -v nvlc &> /dev/null; then
+    echo -e "${BOLDGREEN}installing nvlc (vlc)...${ENDCOLOR}"
+
+    sudo apt install -y vlc
+fi
+
+# btop
+if ! command -v btop &> /dev/null; then
+    echo -e "${BOLDGREEN}installing btop...${ENDCOLOR}"
+
+    mkdir -p ${BTOP_DIR}
+    wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz -P ${BTOP_DIR}
+    pushd ${BTOP_DIR}
+        tar -xvjf btop-x86_64-linux-musl.tbz .
+        bash install.sh
+    popd
+fi
+
+# speedtest-cli
+if ! command -v speedtest &> /dev/null; then
+    echo -e "${BOLDGREEN}installing speedtest...${ENDCOLOR}"
+
+    pip install speedtest-cli
+fi
+
+# dockly
+if ! command -v dockly &> /dev/null; then
+    echo -e "${BOLDGREEN}installing dockly...${ENDCOLOR}"
+
+    if ! command -v npm &> /dev/null; then
+        curl -o- https://deb.nodesource.com/setup_17.x -o nodesource_setup.sh | sudo bash
+        sudo apt-get install -y nodejs
+    fi
+
+    sudo npm install -g dockly
+fi
+
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
 echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash post_install_debian.sh\"${ENDCOLOR} command to complete the installation."

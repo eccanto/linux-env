@@ -109,42 +109,14 @@ echo "source /usr/share/zsh-plugins/sudo.plugin.zsh" >> ~/.zshrc
 
 # nvim
 if ! command -v nvim &> /dev/null; then
-    echo -e "${BOLDGREEN}installing neovim...${ENDCOLOR}"
-    wget https://github.com/neovim/neovim/releases/download/v0.6.0/nvim-linux64.tar.gz -O- | sudo tar zxvf - -C /usr/local --strip=1
+    echo -e "${BOLDGREEN}configuring neovim...${ENDCOLOR}"
 
-    sudo mv /usr/bin/vim /usr/bin/vim_backup
-    sudo ln -s /usr/local/bin/nvim /usr/bin/vim
+    git clone https://github.com/eccanto/nvim-config.git ${NVIM_DIR}
+
+    pushd ${NVIM_DIR}
+        bash install.sh
+    popd
 fi
-
-rm ${NVIM_CONFIG}/init.vim
-echo -e "${BOLDGREEN}installing neovim style...${ENDCOLOR}"
-
-mkdir -p ${NVIM_CONFIG}
-
-cat > ${NVIM_CONFIG}/init.vim << EOC
-set number
-
-set expandtab
-set autoindent
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
-
-"Enable mouse click for nvim
-set mouse=a
-"Fix cursor replacement after closing nvim
-set guicursor=
-"Shift + Tab does inverse tab
-inoremap <S-Tab> <C-d>
-
-"See invisible characters
-set list listchars=tab:>\ ,trail:.
-
-"wrap to next line when end of line is reached
-set whichwrap+=<,>,[,]
-
-syntax on
-EOC
 
 # system
 echo -e "${BOLDGREEN}updating system files...${ENDCOLOR}"

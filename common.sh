@@ -18,6 +18,8 @@ NEOVIM_DIR=${DEPENDENCIES}/neovim
 FONTS_DIR=${DEPENDENCIES}/fonts
 SLIMLOCK_DIR=${DEPENDENCIES}/slimlock
 PICOM_DIR=${DEPENDENCIES}/picom
+BTOP_DIR=${DEPENDENCIES}/btop
+NVIM_DIR=${DEPENDENCIES}/nvim
 
 BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
@@ -25,7 +27,6 @@ POLYBAR_CONFIG=$(realpath ~/.config/polybar)
 PICOM_CONFIG=$(realpath ~/.config/picom)
 ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
-NVIM_CONFIG=$(realpath ~/.config/nvim)
 RANGER_CONFIG=$(realpath ~/.config/ranger)
 
 DEFAULT_BG=./wallpapers/bg_1.jpg
