@@ -108,15 +108,17 @@ wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.
 echo "source /usr/share/zsh-plugins/sudo.plugin.zsh" >> ~/.zshrc
 
 # nvim
-if ! command -v nvim &> /dev/null; then
-    echo -e "${BOLDGREEN}configuring neovim...${ENDCOLOR}"
-
+if [[ ! -d ${NVIM_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading neovim configurations...${ENDCOLOR}"
     git clone https://github.com/eccanto/nvim-config.git ${NVIM_DIR}
-
-    pushd ${NVIM_DIR}
-        bash install.sh
-    popd
+else
+    echo -e "${BOLDGREEN}updating neovim configurations...${ENDCOLOR}"
+    git -C ${NVIM_DIR} pull
 fi
+
+pushd ${NVIM_DIR}
+    bash install.sh
+popd
 
 # system
 echo -e "${BOLDGREEN}updating system files...${ENDCOLOR}"
