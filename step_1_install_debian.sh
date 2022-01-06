@@ -194,7 +194,7 @@ if ! command -v btop &> /dev/null; then
     mkdir -p ${BTOP_DIR}
     wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz -P ${BTOP_DIR}
     pushd ${BTOP_DIR}
-        tar -xvjf btop-x86_64-linux-musl.tbz .
+        tar -xvjf btop-x86_64-linux-musl.tbz
         bash install.sh
     popd
 fi
