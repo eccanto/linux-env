@@ -81,6 +81,7 @@ fi
 if ! command -v ueberzug &> /dev/null; then
     echo -e "${BOLDGREEN}installing ueberzug...${ENDCOLOR}"
     pip install -U ueberzug
+    sudo pip install -U ueberzug
 fi
 
 # ranger
