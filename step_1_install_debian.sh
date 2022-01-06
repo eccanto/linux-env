@@ -212,7 +212,7 @@ if ! command -v dockly &> /dev/null; then
 
     if ! command -v npm &> /dev/null; then
         curl -o- https://deb.nodesource.com/setup_17.x -o nodesource_setup.sh | sudo bash
-        sudo apt-get install -y nodejs
+        sudo apt-get install -y nodejs npm
     fi
 
     sudo npm install -g dockly

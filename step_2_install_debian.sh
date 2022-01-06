@@ -4,7 +4,7 @@ set -euo pipefail
 
 source common.sh
 
-sudo apt-update -y
+sudo apt update -y
 
 # Hack Nerd Fonts
 if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
