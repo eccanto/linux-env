@@ -31,3 +31,17 @@ RANGER_CONFIG=$(realpath ~/.config/ranger)
 
 DEFAULT_BG=./wallpapers/bg_1.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
+
+function gen_backup() {
+    local path=$1
+
+    if [[ -d "${path}" ]]; then
+        echo -e "${BOLDGREEN}generating backup "${path}"...${ENDCOLOR}"}
+
+        local dirname=$(dirname ${path})
+        local basename=$(basename ${path})
+        local index=$(find ${dirname} -maxdepth 1 -iname "${basename}*" | wc -l)
+        cp -r ${path} ${path}.bak.${index}
+    fi
+}
+

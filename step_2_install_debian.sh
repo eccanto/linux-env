@@ -38,11 +38,12 @@ if ! command -v firejail &> /dev/null; then
 fi
 
 # feh
+sudo mkdir -p ${WALLPAPERS_STORAGE}
+sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
+
 if ! command -v feh &> /dev/null; then
     echo -e "${BOLDGREEN}installing wallpapers...${ENDCOLOR}"
     sudo apt install -y feh
-    sudo mkdir -p ${WALLPAPERS_STORAGE}
-    sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
     pkill -USR1 -x sxhkd || true
@@ -53,12 +54,12 @@ if ! command -v rofi &> /dev/null; then
     sudo apt install -y rofi
 fi
 
-if [[ ! -d ${ROFI_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring rofi...${ENDCOLOR}"
+gen_backup ${ROFI_CONFIG}
 
-    mkdir -p ${ROFI_CONFIG}/themes
-    cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
-fi
+echo -e "${BOLDGREEN}configuring rofi...${ENDCOLOR}"
+
+mkdir -p ${ROFI_CONFIG}/themes
+cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
 
 echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
 
@@ -86,4 +87,4 @@ fi
 
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
-echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash last_install_debian.sh\"${ENDCOLOR} command to complete the installation."
+echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash step_3_install_debian.sh\"${ENDCOLOR} command to complete the installation."

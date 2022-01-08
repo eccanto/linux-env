@@ -16,12 +16,14 @@ if ! command -v bspwm &> /dev/null; then
     sudo apt install -y build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
         libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev \
         libxcb-shape0-dev libxcb-ewmh2 make gcc
+fi
 
-    if [[ ! -d ${BSPWM_DIR} ]]; then
-        echo -e "${BOLDGREEN}downloading bspwn...${ENDCOLOR}"
-        git clone https://github.com/baskerville/bspwm.git ${BSPWM_DIR}
-    fi
+if [[ ! -d ${BSPWM_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading bspwm...${ENDCOLOR}"
+    git clone https://github.com/baskerville/bspwm.git ${BSPWM_DIR}
+fi
 
+if ! command -v bspwm &> /dev/null; then
     pushd ${BSPWM_DIR}
         make
         sudo make install
@@ -29,36 +31,35 @@ if ! command -v bspwm &> /dev/null; then
     popd
 fi
 
-if [[ ! -d ${BSPWM_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
-    mkdir -p ${BSPWM_CONFIG}
-    cp -r ${BSPWM_DIR}/* ${BSPWM_CONFIG}
-    cp -r ./bspwm/* ${BSPWM_CONFIG}
-fi
+gen_backup ${BSPWM_CONFIG}
+
+echo -e "${BOLDGREEN}configuring bspwm...${ENDCOLOR}"
+mkdir -p ${BSPWM_CONFIG}
+cp -r ${BSPWM_DIR}/* ${BSPWM_CONFIG}
+cp -r ./bspwm/* ${BSPWM_CONFIG}
 
 # sxhkd
+if [[ ! -d ${SXHKD_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading sxhkd...${ENDCOLOR}"
+    git clone https://github.com/baskerville/sxhkd.git ${SXHKD_DIR}
+fi
+
 if ! command -v sxhkd &> /dev/null; then
     echo -e "${BOLDGREEN}installing sxhkd...${ENDCOLOR}"
-
-    if [[ ! -d ${SXHKD_DIR} ]]; then
-        echo -e "${BOLDGREEN}downloading sxhkd...${ENDCOLOR}"
-        git clone https://github.com/baskerville/sxhkd.git ${SXHKD_DIR}
-    fi
-
     pushd ${SXHKD_DIR}
         make
         sudo make install
     popd
 fi
 
-if [[ ! -d ${SXHKD_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring sxhkd...${ENDCOLOR}"
-    mkdir -p ${SXHKD_CONFIG}
-    cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
+gen_backup ${SXHKD_CONFIG}
 
-    echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
-    echo -e "\n# Polybar menu\nsuper + q\n    bash ${POLYBAR_CONFIG}/scripts/powermenu_alt" >> ${SXHKD_CONFIG}/sxhkdrc
-fi
+echo -e "${BOLDGREEN}configuring sxhkd...${ENDCOLOR}"
+mkdir -p ${SXHKD_CONFIG}
+cp ./sxhkd/sxhkdrc ${SXHKD_CONFIG}
+
+echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM_CONFIG}/scripts/bspwm_resize {west,south,north,east}" >> ${SXHKD_CONFIG}/sxhkdrc
+echo -e "\n# Polybar menu\nsuper + q\n    bash ${POLYBAR_CONFIG}/scripts/powermenu_alt" >> ${SXHKD_CONFIG}/sxhkdrc
 
 # polybar
 if ! command -v polybar &> /dev/null; then
@@ -68,13 +69,15 @@ if ! command -v polybar &> /dev/null; then
         libxcb-util0-dev libxcb-randr0-dev libxcb-composite0-dev python3-xcbgen xcb-proto \
         libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev \
         libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev \
-        libcurl4-openssl-dev libnl-genl-3-dev libuv1-dev
+        libcurl4-openssl-dev libnl-genl-3-dev libuv1-dev python3-xcbgen puredata-core
+fi
 
-    if [[ ! -d ${POLYBAR_DIR} ]]; then
-        echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
-        git clone --recursive https://github.com/polybar/polybar ${POLYBAR_DIR}
-    fi
+if [[ ! -d ${POLYBAR_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
+    git clone --recursive https://github.com/polybar/polybar ${POLYBAR_DIR}
+fi
 
+if ! command -v polybar &> /dev/null; then
     pushd ${POLYBAR_DIR}
         rm -rf build/
         mkdir build/
@@ -86,21 +89,19 @@ if ! command -v polybar &> /dev/null; then
     popd
 fi
 
-if [[ ! -d ${POLYBAR_CONFIG}/scripts ]]; then
-    echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
+gen_backup ${POLYBAR_CONFIG}
 
-    mkdir -p ${POLYBAR_CONFIG}
+echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
+mkdir -p ${POLYBAR_CONFIG}
 
-    echo -e "${BOLDGREEN}configuring polybar settings...${ENDCOLOR}"
-    cp -r ./polybar/* ${POLYBAR_CONFIG}
-    echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
+cp -r ./polybar/* ${POLYBAR_CONFIG}
+echo "${POLYBAR_CONFIG}/launch.sh" >> ${BSPWM_CONFIG}/bspwmrc
 
-    echo -e "${BOLDGREEN}configuring polybar fonts...${ENDCOLOR}"
-    sudo cp -r ./polybar/fonts/* /usr/share/fonts/truetype/
+echo -e "${BOLDGREEN}configuring polybar fonts...${ENDCOLOR}"
+sudo cp -r ./polybar/fonts/* /usr/share/fonts/truetype/
 
-    fc-cache -v
-    pkill -USR1 -x sxhkd || true
-fi
+fc-cache -v
+pkill -USR1 -x sxhkd || true
 
 # Picom
 if ! command -v picom &> /dev/null; then
@@ -111,15 +112,17 @@ if ! command -v picom &> /dev/null; then
         libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev \
         libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev \
         uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
+fi
 
-    if [[ ! -d ${PICOM_DIR} ]]; then
-        echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
-        git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
-        pushd ${PICOM_DIR}
-            git submodule update --init --recursive
-        popd
-    fi
+if [[ ! -d ${PICOM_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
+    git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
+    pushd ${PICOM_DIR}
+        git submodule update --init --recursive
+    popd
+fi
 
+if ! command -v picom &> /dev/null; then
     pushd ${PICOM_DIR}
         meson --buildtype=release . build
         ninja -C build
@@ -127,14 +130,33 @@ if ! command -v picom &> /dev/null; then
     popd
 fi
 
-if [[ ! -d ${PICOM_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
-    mkdir -p ${PICOM_CONFIG}
-    cp ./picom/* ${PICOM_CONFIG}
+gen_backup ${PICOM_CONFIG}
 
-    echo 'picom --experimental-backends -b' >> ${BSPWM_CONFIG}/bspwmrc
-    echo 'bspc config border_width 0' >> ${BSPWM_CONFIG}/bspwmrc
-fi
+echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
+mkdir -p ${PICOM_CONFIG}
+cp ./picom/* ${PICOM_CONFIG}
+
+echo 'picom --experimental-backends -b' >> ${BSPWM_CONFIG}/bspwmrc
+echo 'bspc config border_width 0' >> ${BSPWM_CONFIG}/bspwmrc
+
+MONITOR_CNF='
+# monitor
+monitors=( "HDMI-1" "HDMI-0" "DVI-D-1" "DVI-0" "DVI-1" "VGA1" "LVDS1" "LVDS-1" )
+# (Order is important. More important monitors first. (Like if VGA1 is attached to
+#  laptop, it should be the main monitor, not LVDS1, so VGA1 is before LVDS1.))
+i=1
+for m in ${monitors[@]}; do
+    if bspc query -M | grep "$m"; then
+        bspc monitor $m -d $i-{1..9}
+        if [[ "$i" -eq 1 ]]; then
+            xrandr --output $m --primary
+        fi
+        let i++
+    fi
+done
+'
+
+echo "${MONITOR_CNF}" >> ${BSPWM_CONFIG}/bspwmrc
 
 # rustup
 if [[ -f ${HOME}/.cargo/env ]]; then
@@ -158,27 +180,26 @@ if ! command -v alacritty &> /dev/null; then
 
     sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev \
         libxcb-xfixes0-dev libxkbcommon-dev python3 cargo
+fi
 
-    if [[ ! -d ${ALACRITTY_DIR} ]]; then
-        echo -e "${BOLDGREEN}downloading alacritty...${ENDCOLOR}"
+if [[ ! -d ${ALACRITTY_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading alacritty...${ENDCOLOR}"
+    git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
+fi
 
-        git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
-    fi
-
+if ! command -v alacritty &> /dev/null; then
     pushd ${ALACRITTY_DIR}
         cargo build --release
         infocmp alacritty &> /dev/null
         sudo cp target/release/alacritty /usr/local/bin
     popd
-
-    cp ./alacritty/* ${ALACRITTY_CONFIG}
 fi
 
-if [[ ! -d ${ALACRITTY_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring alacritty...${ENDCOLOR}"
-    mkdir -p ${ALACRITTY_CONFIG}
-    cp ./alacritty/* ${ALACRITTY_CONFIG}/
-fi
+gen_backup ${ALACRITTY_CONFIG}
+
+echo -e "${BOLDGREEN}configuring alacritty...${ENDCOLOR}"
+mkdir -p ${ALACRITTY_CONFIG}
+cp ./alacritty/* ${ALACRITTY_CONFIG}/
 
 # nvlc (command line VLC media player)
 if ! command -v nvlc &> /dev/null; then
@@ -220,4 +241,4 @@ fi
 
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
-echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash post_install_debian.sh\"${ENDCOLOR} command to complete the installation."
+echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash step_2_install_debian.sh\"${ENDCOLOR} command to complete the installation."

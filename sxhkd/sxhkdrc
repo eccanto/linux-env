@@ -125,6 +125,14 @@ super + ctrl + {Left,Down,Up,Right}
 
 # --------------------------------------------- Custom ---------------------------------------------
 
+# volume control
+XF86AudioRaiseVolume
+    pactl -- set-sink-volume 0 +5%
+XF86AudioLowerVolume
+    pactl -- set-sink-volume 0 -5%
+XF86AudioMute
+    pactl -- set-sink-mute 0 toggle
+
 # firefox into firejail
 super + shift + f
     firejail firefox

@@ -29,19 +29,22 @@ if ! sudo test -f /root/.zshrc; then
     sudo su -c 'zsh'  # configure powerlevel10k in the root user.
 fi
 
-if grep -qE '^echo "Welcome to Parrot OS.*' ~/.zshrc; then
+if ! grep -qE '^echo "Welcome to.*' ~/.zshrc; then
     echo -e "${BOLDGREEN}configuring '~/.zshrc' file...${ENDCOLOR}"
 
-    sed -i 's/^echo "Welcome to Parrot OS"$/#echo "Welcome to Parrot OS"/g' ~/.zshrc
-    sudo ln -s -f $(realpath ~/.zshrc) /root/.zshrc
-
-    sudo usermod --shell /usr/bin/zsh $(whoami)
-    sudo usermod --shell /usr/bin/zsh root
-
-    chown $(whoami):$(whoami) /root
-    chown $(whoami):$(whoami) /root/.cache -R
-    chown $(whoami):$(whoami) /root/.local -R
+    sed -i -E 's/^echo "Welcome to(.+)"$/#echo "Welcome to\1"/g' ~/.zshrc
 fi
+
+sudo ln -s -f $(realpath ~/.zshrc) /root/.zshrc
+
+user=$(whoami)
+
+sudo usermod --shell /usr/bin/zsh ${user}
+sudo usermod --shell /usr/bin/zsh root
+
+sudo chown ${user}:${user} /root
+sudo chown ${user}:${user} /root/.cache -R
+sudo chown ${user}:${user} /root/.local -R
 
 # bat
 if ! command -v bat &> /dev/null; then
@@ -91,13 +94,13 @@ if ! command -v ranger &> /dev/null; then
     sudo apt install -y ranger
 fi
 
-if [[ ! -d ${RANGER_CONFIG} ]]; then
-    echo -e "${BOLDGREEN}configuring ranger...${ENDCOLOR}"
+gen_backup ${RANGER_CONFIG}
 
-    ranger --copy-config all
-    cp ./ranger/* ${RANGER_CONFIG}/
-    sudo ln -s -f $(realpath ${RANGER_CONFIG}) /root/.config/ranger
-fi
+echo -e "${BOLDGREEN}configuring ranger...${ENDCOLOR}"
+
+ranger --copy-config all
+cp ./ranger/* ${RANGER_CONFIG}/
+sudo ln -s -f $(realpath ${RANGER_CONFIG}) /root/.config/ranger
 
 # zsh pluggins
 echo -e "${BOLDGREEN}installing zsh plugin: sudo.plugin.zsh...${ENDCOLOR}"
