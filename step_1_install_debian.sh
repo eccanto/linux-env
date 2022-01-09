@@ -239,6 +239,13 @@ if ! command -v dockly &> /dev/null; then
     sudo npm install -g dockly
 fi
 
+# lazygit
+if ! command -v lazygit &> /dev/null; then
+    sudo add-apt-repository -y ppa:lazygit-team/release
+    sudo apt-get update -y
+    sudo apt-get install -y lazygit
+fi
+
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
 echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash step_2_install_debian.sh\"${ENDCOLOR} command to complete the installation."
