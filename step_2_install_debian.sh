@@ -41,12 +41,16 @@ fi
 sudo mkdir -p ${WALLPAPERS_STORAGE}
 sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
 
-if ! command -v feh &> /dev/null; then
-    echo -e "${BOLDGREEN}installing wallpapers...${ENDCOLOR}"
-    sudo apt install -y feh
+if ! grep "${WALLPAPERS_STORAGE}" ${BSPWM_CONFIG}/bspwmrc; then
+    echo -e "${BOLDGREEN}setting wallpaper...${ENDCOLOR}"
 
     echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
     pkill -USR1 -x sxhkd || true
+fi
+
+if ! command -v feh &> /dev/null; then
+    echo -e "${BOLDGREEN}installing wallpaper manager...${ENDCOLOR}"
+    sudo apt install -y feh
 fi
 
 # rofi
