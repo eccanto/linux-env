@@ -4,7 +4,7 @@ set -euo pipefail
 
 source common.sh
 
-# powerlevel10k
+# zsh
 if ! command -v zsh &> /dev/null; then
     echo -e "${BOLDGREEN}installing zsh...${ENDCOLOR}"
 
@@ -12,6 +12,7 @@ if ! command -v zsh &> /dev/null; then
     sudo apt install -y zsh
 fi
 
+# powerlevel10k
 if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
     echo -e "${BOLDGREEN}installing powerlevel10k...${ENDCOLOR}"
 
@@ -33,6 +34,20 @@ if ! grep -qE '^echo "Welcome to.*' ~/.zshrc; then
     echo -e "${BOLDGREEN}configuring '~/.zshrc' file...${ENDCOLOR}"
 
     sed -i -E 's/^echo "Welcome to(.+)"$/#echo "Welcome to\1"/g' ~/.zshrc
+fi
+
+# alias
+if ! grep 'git' ~/.zshrc; then
+    echo -e "${BOLDGREEN}configuring '~/.zshrc' file (git)...${ENDCOLOR}"
+
+    echo "alias gs='/usr/bin/git status'" >> ~/.zshrc
+    echo "alias ga='/usr/bin/git add'" >> ~/.zshrc
+    echo "alias gr='/usr/bin/git rm'" >> ~/.zshrc
+    echo "alias gal='/usr/bin/git add *'" >> ~/.zshrc
+    echo "alias gc='/usr/bin/git commit'" >> ~/.zshrc
+    echo "alias gl='/usr/bin/git pull'" >> ~/.zshrc
+    echo "alias gp='/usr/bin/git push'" >> ~/.zshrc
+    echo "alias gd='/usr/bin/git diff'" >> ~/.zshrc
 fi
 
 sudo ln -s -f $(realpath ~/.zshrc) /root/.zshrc

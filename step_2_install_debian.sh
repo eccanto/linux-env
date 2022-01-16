@@ -22,7 +22,7 @@ if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
 fi
 
 # firefox latest
-if ! command -v firefox &> /dev/null; then  # TODO -> verify version!!!
+if ! command -v firefox &> /dev/null; then
     echo -e "${BOLDGREEN}installing firefox...${ENDCOLOR}"
     wget -O ~/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
     sudo tar xjf ~/FirefoxSetup.tar.bz2 -C /opt/

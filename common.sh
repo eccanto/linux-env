@@ -20,6 +20,7 @@ SLIMLOCK_DIR=${DEPENDENCIES}/slimlock
 PICOM_DIR=${DEPENDENCIES}/picom
 BTOP_DIR=${DEPENDENCIES}/btop
 NVIM_DIR=${DEPENDENCIES}/nvim
+TMUX_DIR=${DEPENDENCIES}/tmux
 
 BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 SXHKD_CONFIG=$(realpath ~/.config/sxhkd)
@@ -28,6 +29,7 @@ PICOM_CONFIG=$(realpath ~/.config/picom)
 ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
 RANGER_CONFIG=$(realpath ~/.config/ranger)
+TMUX_CONFIG=$(realpath ~/.tmux.conf)
 
 DEFAULT_BG=./wallpapers/bg_1.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers

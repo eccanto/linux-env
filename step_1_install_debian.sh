@@ -10,20 +10,18 @@ sudo apt update -y
 mkdir -p ${DEPENDENCIES}
 
 # bspwm
-if ! command -v bspwm &> /dev/null; then
-    echo -e "${BOLDGREEN}installing bspwm...${ENDCOLOR}"
-
-    sudo apt install -y build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
-        libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev \
-        libxcb-shape0-dev libxcb-ewmh2 make gcc
-fi
-
 if [[ ! -d ${BSPWM_DIR} ]]; then
     echo -e "${BOLDGREEN}downloading bspwm...${ENDCOLOR}"
     git clone https://github.com/baskerville/bspwm.git ${BSPWM_DIR}
 fi
 
 if ! command -v bspwm &> /dev/null; then
+    echo -e "${BOLDGREEN}installing bspwm...${ENDCOLOR}"
+
+    sudo apt install -y build-essential git vim xcb libxcb-util0-dev libxcb-ewmh-dev libxcb-randr0-dev \
+        libxcb-icccm4-dev libxcb-keysyms1-dev libxcb-xinerama0-dev libasound2-dev libxcb-xtest0-dev \
+        libxcb-shape0-dev libxcb-ewmh2 make gcc
+
     pushd ${BSPWM_DIR}
         make
         sudo make install
@@ -46,6 +44,7 @@ fi
 
 if ! command -v sxhkd &> /dev/null; then
     echo -e "${BOLDGREEN}installing sxhkd...${ENDCOLOR}"
+
     pushd ${SXHKD_DIR}
         make
         sudo make install
@@ -62,6 +61,12 @@ echo -e "\n# Custom move/resize\nalt + super + {Left,Down,Up,Right}\n    ${BSPWM
 echo -e "\n# Polybar menu\nsuper + q\n    bash ${POLYBAR_CONFIG}/scripts/powermenu_alt" >> ${SXHKD_CONFIG}/sxhkdrc
 
 # polybar
+if [[ ! -d ${POLYBAR_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
+
+    git clone --recursive https://github.com/polybar/polybar ${POLYBAR_DIR}
+fi
+
 if ! command -v polybar &> /dev/null; then
     echo -e "${BOLDGREEN}installing polybar...${ENDCOLOR}"
 
@@ -70,14 +75,7 @@ if ! command -v polybar &> /dev/null; then
         libxcb-image0-dev libxcb-ewmh-dev libxcb-icccm4-dev libxcb-xkb-dev libxcb-xrm-dev \
         libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev \
         libcurl4-openssl-dev libnl-genl-3-dev libuv1-dev python3-xcbgen puredata-core
-fi
 
-if [[ ! -d ${POLYBAR_DIR} ]]; then
-    echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
-    git clone --recursive https://github.com/polybar/polybar ${POLYBAR_DIR}
-fi
-
-if ! command -v polybar &> /dev/null; then
     pushd ${POLYBAR_DIR}
         rm -rf build/
         mkdir build/
@@ -104,6 +102,15 @@ fc-cache -v
 pkill -USR1 -x sxhkd || true
 
 # Picom
+if [[ ! -d ${PICOM_DIR} ]]; then
+    echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
+
+    git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
+    pushd ${PICOM_DIR}
+        git submodule update --init --recursive
+    popd
+fi
+
 if ! command -v picom &> /dev/null; then
     echo -e "${BOLDGREEN}installing picom...${ENDCOLOR}"
 
@@ -112,17 +119,7 @@ if ! command -v picom &> /dev/null; then
         libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev \
         libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev \
         uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
-fi
 
-if [[ ! -d ${PICOM_DIR} ]]; then
-    echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
-    git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
-    pushd ${PICOM_DIR}
-        git submodule update --init --recursive
-    popd
-fi
-
-if ! command -v picom &> /dev/null; then
     pushd ${PICOM_DIR}
         meson --buildtype=release . build
         ninja -C build
@@ -158,6 +155,11 @@ done
 
 echo "${MONITOR_CNF}" >> ${BSPWM_CONFIG}/bspwmrc
 
+# cargo
+if ! command -v cargo; then
+    sudo apt-get install -y cargo
+fi
+
 # rustup
 if [[ -f ${HOME}/.cargo/env ]]; then
     source ${HOME}/.cargo/env
@@ -184,6 +186,7 @@ fi
 
 if [[ ! -d ${ALACRITTY_DIR} ]]; then
     echo -e "${BOLDGREEN}downloading alacritty...${ENDCOLOR}"
+
     git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
 fi
 
@@ -241,9 +244,39 @@ fi
 
 # lazygit
 if ! command -v lazygit &> /dev/null; then
+    echo -e "${BOLDGREEN}installing lazygit...${ENDCOLOR}"
+
     sudo add-apt-repository -y ppa:lazygit-team/release
     sudo apt-get update -y
     sudo apt-get install -y lazygit
+fi
+
+# tmux
+if ! command -v tmux &> /dev/null; then
+    echo -e "${BOLDGREEN}installing tmux...${ENDCOLOR}"
+
+    sudo apt install -y libevent-dev bison byacc
+
+    if [[ ! -d ${TMUX_DIR} ]]; then
+        git clone https://github.com/tmux/tmux.git ${TMUX_DIR}
+    fi
+
+    pushd ${TMUX_DIR}
+        git checkout 3.2
+
+        sh autogen.sh
+        ./configure
+        make
+
+        sudo mv tmux /usr/bin
+    popd
+fi
+
+if [[ ! -f "${TMUX_CONFIG}" ]]; then
+    echo -e "${BOLDGREEN}configuring tmux...${ENDCOLOR}"
+
+    cp ./tmux/tmux.conf "${TMUX_CONFIG}"
+    sudo ln -s -f "${TMUX_CONFIG}" /root/.tmux.conf
 fi
 
 # end
