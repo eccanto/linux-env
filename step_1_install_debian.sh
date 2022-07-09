@@ -6,7 +6,7 @@ source common.sh
 
 # os
 sudo apt update -y
-sudo apt install -y python3-pip curl
+sudo apt install -y python3-pip curl autotools-dev automake libncurses-dev
 
 mkdir -p ${DEPENDENCIES}
 
@@ -194,7 +194,7 @@ fi
 if ! command -v alacritty &> /dev/null; then
     pushd ${ALACRITTY_DIR}
         cargo build --release
-        infocmp alacritty &> /dev/null
+        #infocmp alacritty &> /dev/null
         sudo cp target/release/alacritty /usr/local/bin
     popd
 fi
@@ -236,8 +236,8 @@ if ! command -v dockly &> /dev/null; then
     echo -e "${BOLDGREEN}installing dockly...${ENDCOLOR}"
 
     if ! command -v npm &> /dev/null; then
-        curl -o- https://deb.nodesource.com/setup_17.x -o nodesource_setup.sh | sudo bash
-        sudo apt-get install -y nodejs npm
+        curl -o- https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh | sudo bash
+        sudo apt-get install -y nodejs
     fi
 
     sudo npm install -g dockly
