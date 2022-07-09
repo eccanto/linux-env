@@ -69,26 +69,6 @@ echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
 
 rofi-theme-selector
 
-# slim and slimlock
-if ! command -v slimlock &> /dev/null; then
-    sudo apt update -y
-    sudo apt install -y slim libpam0g-dev libxrandr-dev libfreetype6-dev libimlib2-dev libxft-dev
-
-    git clone https://github.com/joelburget/slimlock.git ${SLIMLOCK_DIR}
-    pushd ${SLIMLOCK_DIR}
-        sudo make
-        sudo make install
-    popd
-
-    pushd ./slim/
-        sudo cp slim.conf /etc/
-        sudo cp slimlock.conf /etc/
-        sudo cp -r default /usr/share/slim/themes/
-    popd
-
-    echo -e "\n# Slimlock\nsuper + l\n    slimlock" >> ${SXHKD_CONFIG}/sxhkdrc
-fi
-
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
 echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash step_3_install_debian.sh\"${ENDCOLOR} command to complete the installation."

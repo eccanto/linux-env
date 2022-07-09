@@ -21,6 +21,7 @@ PICOM_DIR=${DEPENDENCIES}/picom
 BTOP_DIR=${DEPENDENCIES}/btop
 NVIM_DIR=${DEPENDENCIES}/nvim
 TMUX_DIR=${DEPENDENCIES}/tmux
+LAZYGIT_DIR=${DEPENDENCIES}/lazygit
 
 BSPWM_CONFIG=$(realpath ~/.config/bspwm)
 SXHKD_CONFIG=$(realpath ~/.config/sxhkd)

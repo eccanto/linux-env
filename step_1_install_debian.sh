@@ -6,6 +6,7 @@ source common.sh
 
 # os
 sudo apt update -y
+sudo apt install -y python3-pip curl
 
 mkdir -p ${DEPENDENCIES}
 
@@ -246,9 +247,12 @@ fi
 if ! command -v lazygit &> /dev/null; then
     echo -e "${BOLDGREEN}installing lazygit...${ENDCOLOR}"
 
-    sudo add-apt-repository -y ppa:lazygit-team/release
-    sudo apt-get update -y
-    sudo apt-get install -y lazygit
+    mkdir -p ${LAZYGIT_DIR}
+    wget https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz -P ${LAZYGIT_DIR}
+    pushd ${LAZYGIT_DIR}
+        tar -xf lazygit_0.34_Linux_x86_64.tar.gz
+        sudo cp lazygit /usr/local/bin
+    popd
 fi
 
 # tmux
