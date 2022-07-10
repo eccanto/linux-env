@@ -187,7 +187,7 @@ cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
 
 echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
 
-rofi-theme-selector
+# rofi-theme-selector
 
 # zsh
 if ! command -v zsh &> /dev/null; then

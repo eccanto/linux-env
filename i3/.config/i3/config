@@ -8,7 +8,7 @@ font pango: Noto Sans 8
 # Use Mouse+$super to drag floating windows to their wanted position
 floating_modifier $super
 
-#autostart
+# autostart
 exec --no-startup-id hsetroot -center ~/.wallpaper.png
 exec --no-startup-id xsettingsd &
 exec --no-startup-id compton -b
@@ -27,7 +27,7 @@ bindsym $super+Shift+w exec firefox
 bindsym $super+Shift+f exec thunar;workspace 3;focus
 bindsym $super+Shift+g exec geany
 
-#change volume
+# change volume
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 bindsym XF86AudioMute exec amixer set Master toggle
@@ -135,9 +135,9 @@ for_window [class=URxvt|Firefox|Geany|Evince|Soffice|libreoffice*|mpv|Ghb|Xfburn
 for_window [class=Xfburn|GParted|System-config-printer.py|Lxtask|Pavucontrol|Exo-helper*|Lxrandr|Arandr] focus
 
 # colour of border, background, text, indicator, and child_border
-client.focused              #bf616a #2f343f #d8dee8 #bf616a #d8dee8
-client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.urgent               #2f343f #2f343f #d8dee8 #2f343f #2f343f
-client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #2f343f
+client.focused              #bf616a #2f343f #d8dee8 #bf616a #00000000
+client.focused_inactive     #2f343f #2f343f #d8dee8 #2f343f #00000000
+client.unfocused            #2f343f #2f343f #d8dee8 #2f343f #00000000
+client.urgent               #2f343f #2f343f #d8dee8 #2f343f #00000000
+client.placeholder          #2f343f #2f343f #d8dee8 #2f343f #00000000
 client.background           #2f343f

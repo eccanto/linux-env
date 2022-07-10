@@ -5,7 +5,7 @@ scrolling:
   history: 100000
 
 font:
-  size: 8.75
+  size: 10
 
 # Colors (Hyper)
 colors:
