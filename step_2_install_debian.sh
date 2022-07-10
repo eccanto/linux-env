@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+source common.sh
+
+sudo apt update -y
+
+# Hack Nerd Fonts
+if ! ls /usr/local/share/fonts/Hack*.ttf &> /dev/null; then
+    echo -e "${BOLDGREEN}installing Hack Nerd Fonts...${ENDCOLOR}"
+
+    mkdir -p ${FONTS_DIR}
+    pushd ${FONTS_DIR}
+        wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+        sudo mv Hack.zip /usr/local/share/fonts/
+        cd /usr/local/share/fonts/
+        sudo unzip Hack.zip
+        sudo rm Hack.zip
+    popd
+    fc-cache -v
+fi
+
+# firefox latest
+if ! command -v firefox &> /dev/null; then
+    echo -e "${BOLDGREEN}installing firefox...${ENDCOLOR}"
+    wget -O ~/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
+    sudo tar xjf ~/FirefoxSetup.tar.bz2 -C /opt/
+    rm ~/FirefoxSetup.tar.bz2
+    sudo mv /usr/bin/firefox /usr/bin/firefox_backup
+    sudo ln -s /opt/firefox/firefox /usr/bin/firefox
+fi
+
+# firejail
+if ! command -v firejail &> /dev/null; then
+    echo -e "${BOLDGREEN}installing firejail...${ENDCOLOR}"
+    sudo apt install -y firejail
+fi
+
+# feh
+sudo mkdir -p ${WALLPAPERS_STORAGE}
+sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
+
+if ! grep "${WALLPAPERS_STORAGE}" ${BSPWM_CONFIG}/bspwmrc; then
+    echo -e "${BOLDGREEN}setting wallpaper...${ENDCOLOR}"
+
+    echo -e "\n# background\nfeh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})" >> ${BSPWM_CONFIG}/bspwmrc
+    pkill -USR1 -x sxhkd || true
+fi
+
+if ! command -v feh &> /dev/null; then
+    echo -e "${BOLDGREEN}installing wallpaper manager...${ENDCOLOR}"
+    sudo apt install -y feh
+fi
+
+# rofi
+if ! command -v rofi &> /dev/null; then
+    sudo apt install -y rofi
+fi
+
+gen_backup ${ROFI_CONFIG}
+
+echo -e "${BOLDGREEN}configuring rofi...${ENDCOLOR}"
+
+mkdir -p ${ROFI_CONFIG}/themes
+cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
+
+echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
+
+rofi-theme-selector
+
+# end
+echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
+echo -e "you must reboot the machine and then run the ${BOLDGREEN}\"bash step_3_install_debian.sh\"${ENDCOLOR} command to complete the installation."
