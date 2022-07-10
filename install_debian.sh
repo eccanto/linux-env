@@ -7,11 +7,11 @@ source common.sh
 # os
 sudo apt update -y
 sudo apt install -y python3 python3-pip curl
-    
+
 
 mkdir -p ${DEPENDENCIES}
 
-# i3 
+# i3
 if ! command -v i3; then
     sudo apt-get install -y i3 i3-wm dunst i3lock i3status suckless-tools \
         compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus    \
@@ -276,14 +276,17 @@ fi
 if ! command -v fzf &> /dev/null; then
     echo -e "${BOLDGREEN}installing fzf...${ENDCOLOR}"
 
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    if [[ ! -d ~/.fzf ]]; then
+        git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    fi
+
     ~/.fzf/install
 fi
 
 # ueberzug
 if ! command -v ueberzug &> /dev/null; then
     echo -e "${BOLDGREEN}installing ueberzug...${ENDCOLOR}"
-    pip install -U ueberzug
+    pip install -U ueberzug libx11-dev
     sudo pip install -U ueberzug
 fi
 
