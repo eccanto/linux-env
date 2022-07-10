@@ -286,7 +286,10 @@ fi
 # ueberzug
 if ! command -v ueberzug &> /dev/null; then
     echo -e "${BOLDGREEN}installing ueberzug...${ENDCOLOR}"
-    pip install -U ueberzug libx11-dev
+
+    sudo apt install -y libxext-dev
+
+    pip install -U ueberzug
     sudo pip install -U ueberzug
 fi
 
@@ -303,6 +306,7 @@ echo -e "${BOLDGREEN}configuring ranger...${ENDCOLOR}"
 
 ranger --copy-config all
 cp ./ranger/* ${RANGER_CONFIG}/
+sudo mkdir -p /root/.config
 sudo ln -s -f $(realpath ${RANGER_CONFIG}) /root/.config/ranger
 
 # zsh pluggins
@@ -326,10 +330,6 @@ fi
 pushd ${NVIM_DIR}
     bash install.sh
 popd
-
-# system
-echo -e "${BOLDGREEN}updating system files...${ENDCOLOR}"
-sudo updatedb
 
 # end
 echo -e "${BOLDGREEN}\nfinished.${ENDCOLOR}\n"
