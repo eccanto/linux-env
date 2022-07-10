@@ -5,24 +5,27 @@ set -euo pipefail
 source common.sh
 
 # os
-sudo apt update -y
-sudo apt install -y python3 python3-pip curl
-
+install_required_packages
 
 mkdir -p ${DEPENDENCIES}
 
-# i3
+# i3-gaps
 if ! command -v i3; then
-    sudo apt-get install -y i3 i3-wm dunst i3lock i3status suckless-tools \
-        compton hsetroot rxvt-unicode xsel rofi fonts-noto fonts-mplus    \
-        xsettingsd lxappearance scrot viewnior
+    install_i3_gaps
+fi
 
+if [[ ! -d "${I3_CONFIG}" ]]; then
     cp -a i3/. ~
+fi
+
+# polybar
+if ! command -v polybar &> /dev/null; then
+    install_polybar
 fi
 
 # cargo
 if ! command -v cargo; then
-    sudo apt-get install -y cargo
+    install_package cargo
 fi
 
 # rustup
@@ -31,36 +34,12 @@ if [[ -f ${HOME}/.cargo/env ]]; then
 fi
 
 if ! command -v rustup; then
-    echo -e "${BOLDGREEN}installing rustup...${ENDCOLOR}"
-
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    source ${HOME}/.cargo/env
+    install_rust
 fi
-
-# update rust
-echo -e "${BOLDGREEN}updating rust...${ENDCOLOR}"
-rustup default nightly && rustup update
 
 # alacritty
 if ! command -v alacritty &> /dev/null; then
-    echo -e "${BOLDGREEN}installing alacritty...${ENDCOLOR}"
-
-    sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev \
-        libxcb-xfixes0-dev libxkbcommon-dev autotools-dev automake libncurses-dev
-fi
-
-if [[ ! -d ${ALACRITTY_DIR} ]]; then
-    echo -e "${BOLDGREEN}downloading alacritty...${ENDCOLOR}"
-
-    git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
-fi
-
-if ! command -v alacritty &> /dev/null; then
-    pushd ${ALACRITTY_DIR}
-        cargo build --release
-        #infocmp alacritty &> /dev/null
-        sudo cp target/release/alacritty /usr/local/bin
-    popd
+    install_alacritty
 fi
 
 generate_backup ${ALACRITTY_CONFIG}
@@ -71,73 +50,32 @@ cp ./alacritty/* ${ALACRITTY_CONFIG}/
 
 # nvlc (command line VLC media player)
 if ! command -v nvlc &> /dev/null; then
-    echo -e "${BOLDGREEN}installing nvlc (vlc)...${ENDCOLOR}"
-
-    sudo apt install -y vlc
+    install_package vlc
 fi
 
 # btop
 if ! command -v btop &> /dev/null; then
-    echo -e "${BOLDGREEN}installing btop...${ENDCOLOR}"
-
-    mkdir -p ${BTOP_DIR}
-    wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz -P ${BTOP_DIR}
-    pushd ${BTOP_DIR}
-        tar -xvjf btop-x86_64-linux-musl.tbz
-        bash install.sh
-    popd
+    install_btop
 fi
 
 # speedtest-cli
 if ! command -v speedtest &> /dev/null; then
-    echo -e "${BOLDGREEN}installing speedtest...${ENDCOLOR}"
-
-    pip install speedtest-cli
+    install_pip_package speedtest-cli
 fi
 
 # dockly
 if ! command -v dockly &> /dev/null; then
-    echo -e "${BOLDGREEN}installing dockly...${ENDCOLOR}"
-
-    if ! command -v npm &> /dev/null; then
-        curl -o- https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh | sudo bash
-        sudo apt-get install -y nodejs
-    fi
-
-    sudo npm install -g dockly
+    install_dockly
 fi
 
 # lazygit
 if ! command -v lazygit &> /dev/null; then
-    echo -e "${BOLDGREEN}installing lazygit...${ENDCOLOR}"
-
-    mkdir -p ${LAZYGIT_DIR}
-    wget https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz -P ${LAZYGIT_DIR}
-    pushd ${LAZYGIT_DIR}
-        tar -xf lazygit_0.34_Linux_x86_64.tar.gz
-        sudo cp lazygit /usr/local/bin
-    popd
+    install_lazygit
 fi
 
 # tmux
 if ! command -v tmux &> /dev/null; then
-    echo -e "${BOLDGREEN}installing tmux...${ENDCOLOR}"
-
-    sudo apt install -y libevent-dev bison byacc
-
-    if [[ ! -d ${TMUX_DIR} ]]; then
-        git clone https://github.com/tmux/tmux.git ${TMUX_DIR}
-    fi
-
-    pushd ${TMUX_DIR}
-        git checkout 3.2
-
-        sh autogen.sh
-        ./configure
-        make
-
-        sudo mv tmux /usr/bin
-    popd
+    install_tmux
 fi
 
 if [[ ! -f "${TMUX_CONFIG}" ]]; then
@@ -149,35 +87,15 @@ fi
 
 # firefox latest
 if ! command -v firefox &> /dev/null; then
-    echo -e "${BOLDGREEN}installing firefox...${ENDCOLOR}"
-    wget -O ~/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
-    sudo tar xjf ~/FirefoxSetup.tar.bz2 -C /opt/
-    rm ~/FirefoxSetup.tar.bz2
-    sudo mv /usr/bin/firefox /usr/bin/firefox_backup
-    sudo ln -s /opt/firefox/firefox /usr/bin/firefox
+    install_firefox
 fi
 
 # firejail
 if ! command -v firejail &> /dev/null; then
-    echo -e "${BOLDGREEN}installing firejail...${ENDCOLOR}"
-    sudo apt install -y firejail
-fi
-
-# feh
-sudo mkdir -p ${WALLPAPERS_STORAGE}
-sudo cp ${DEFAULT_BG} ${WALLPAPERS_STORAGE}
-
-if ! command -v feh &> /dev/null; then
-    echo -e "${BOLDGREEN}installing wallpaper manager...${ENDCOLOR}"
-    sudo apt install -y feh
-    feh --bg-fill ${WALLPAPERS_STORAGE}/$(basename ${DEFAULT_BG})
+    install_package firejail
 fi
 
 # rofi
-if ! command -v rofi &> /dev/null; then
-    sudo apt install -y rofi
-fi
-
 generate_backup ${ROFI_CONFIG}
 
 echo -e "${BOLDGREEN}configuring rofi...${ENDCOLOR}"
@@ -191,21 +109,12 @@ echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
 
 # zsh
 if ! command -v zsh &> /dev/null; then
-    echo -e "${BOLDGREEN}installing zsh...${ENDCOLOR}"
-
-    sudo apt update -y
-    sudo apt install -y zsh
+    install_package zsh
 fi
 
 # powerlevel10k
 if [[ ! -d ${POWERLEVEL10K_DIR} ]]; then
-    echo -e "${BOLDGREEN}installing powerlevel10k...${ENDCOLOR}"
-
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${POWERLEVEL10K_DIR}
-    sudo rm -rf /usr/local/share/powerlevel10k/
-    sudo cp -r ${POWERLEVEL10K_DIR} /usr/local/share/powerlevel10k
-    echo "source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
-
+    install_powerlevel10k
     zsh
 fi
 
@@ -248,10 +157,7 @@ sudo chown ${user}:${user} /root/.local -R
 
 # bat
 if ! command -v bat &> /dev/null; then
-    echo -e "${BOLDGREEN}installing bat...${ENDCOLOR}"
-
-    wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb -P ${DEPENDENCIES}
-    sudo dpkg -i ${DEPENDENCIES}/bat_0.18.3_amd64.deb
+    install_bat
 
     echo "alias catl='/bin/bat'" >> ~/.zshrc
     echo "alias catn='/bin/cat'" >> ~/.zshrc
@@ -260,10 +166,7 @@ fi
 
 # lsd
 if ! command -v lsd &> /dev/null; then
-    echo -e "${BOLDGREEN}installing lsd...${ENDCOLOR}"
-
-    wget https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb -P ${DEPENDENCIES}
-    sudo dpkg -i ${DEPENDENCIES}/lsd_0.20.1_amd64.deb
+    install_lsd
 
     echo "alias ll='lsd -lh --group-dirs=first'" >> ~/.zshrc
     echo "alias la='lsd -a --group-dirs=first'" >> ~/.zshrc
@@ -285,19 +188,12 @@ fi
 
 # ueberzug
 if ! command -v ueberzug &> /dev/null; then
-    echo -e "${BOLDGREEN}installing ueberzug...${ENDCOLOR}"
-
-    sudo apt install -y libxext-dev
-
-    pip install -U ueberzug
-    sudo pip install -U ueberzug
+    install_ueberzug
 fi
 
 # ranger
 if ! command -v ranger &> /dev/null; then
-    echo -e "${BOLDGREEN}installing ranger...${ENDCOLOR}"
-
-    sudo apt install -y ranger
+    install_package ranger
 fi
 
 generate_backup ${RANGER_CONFIG}
