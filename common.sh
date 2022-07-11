@@ -20,6 +20,7 @@ TMUX_DIR=${DEPENDENCIES}/tmux
 LAZYGIT_DIR=${DEPENDENCIES}/lazygit
 I3_GAPS=${DEPENDENCIES}/i3-gaps
 XCB_DIR=${DEPENDENCIES}/xcb
+PICOM_DIR=${DEPENDENCIES}/picom
 
 ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
@@ -28,6 +29,7 @@ TMUX_CONFIG=$(realpath ~/.tmux.conf)
 I3_CONFIG=$(realpath ~/.config/i3)
 NITROGEN_CONFIG=$(realpath ~/.config/nitrogen)
 POLYBAR_CONFIG=$(realpath ~/.config/polybar)
+PICOM_CONFIG=$(realpath ~/.config/picom)
 
 DEFAULT_BG=./wallpapers/bg_1.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers
@@ -115,6 +117,33 @@ function install_polybar() {
             sudo make install
         popd
     popd
+}
+
+function install_picom() {
+    if [[ ! -d ${PICOM_DIR} ]]; then
+        echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
+
+        git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
+        pushd ${PICOM_DIR}
+            git submodule update --init --recursive
+        popd
+    fi
+
+    if ! command -v picom &> /dev/null; then
+        echo -e "${BOLDGREEN}installing picom...${ENDCOLOR}"
+
+        sudo apt install -y meson libxext-dev libxcb1-dev libxcb-damage0-dev libxcb-xfixes0-dev \
+            libxcb-shape0-dev libxcb-render-util0-dev libxcb-render0-dev libxcb-randr0-dev \
+            libxcb-composite0-dev libxcb-image0-dev libxcb-present-dev libxcb-xinerama0-dev \
+            libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev \
+            uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
+
+        pushd ${PICOM_DIR}
+            meson --buildtype=release . build
+            ninja -C build
+            sudo ninja -C build install
+        popd
+    fi
 }
 
 function install_rust() {

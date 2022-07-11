@@ -30,6 +30,17 @@ if [[ ! -d "${POLYBAR_CONFIG}" ]]; then
     cp ./polybar/* ${POLYBAR_CONFIG}/
 fi
 
+# picom
+if ! command -v polybar &> /dev/null; then
+    install_picom
+fi
+
+gen_backup ${PICOM_CONFIG}
+
+echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
+mkdir -p ${PICOM_CONFIG}
+cp ./picom/* ${PICOM_CONFIG}
+
 # nitrogen
 if [[ ! -d "${NITROGEN_CONFIG}" ]]; then
     echo -e "${BOLDGREEN}configuring nitrogen...${ENDCOLOR}"
