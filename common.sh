@@ -241,7 +241,7 @@ function install_ueberzug() {
 }
 
 function install_xcb_util_xrm() {
-    echo -e "${BOLDGREEN}installing xcb...${ENDCOLOR}"
+    echo -e "${BOLDGREEN}installing xcb-util-xrm...${ENDCOLOR}"
 
     git clone --recursive https://github.com/Airblader/xcb-util-xrm.git "${XCB_DIR}"
     pushd "${XCB_DIR}"

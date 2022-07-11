@@ -54,6 +54,11 @@ if [[ ! -d "/usr/share/fonts/opentype/scp" ]]; then
     install_fonts_awesome
 fi
 
+# dunst
+if ! command -v dunst; then
+    install_package dunst
+fi
+
 # cargo
 if ! command -v cargo; then
     install_package cargo
