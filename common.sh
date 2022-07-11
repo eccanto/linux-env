@@ -25,6 +25,7 @@ ROFI_CONFIG=$(realpath ~/.config/rofi)
 RANGER_CONFIG=$(realpath ~/.config/ranger)
 TMUX_CONFIG=$(realpath ~/.tmux.conf)
 I3_CONFIG=$(realpath ~/.config/i3)
+NITROGEN_CONFIG=$(realpath ~/.config/nitrogen)
 
 DEFAULT_BG=./wallpapers/bg_1.jpg
 WALLPAPERS_STORAGE=/usr/local/share/wallpapers

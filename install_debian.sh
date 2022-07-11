@@ -23,6 +23,18 @@ if ! command -v polybar &> /dev/null; then
     install_polybar
 fi
 
+# nitrogen
+if [[ ! -d "${NITROGEN_CONFIG}" ]]; then
+    mkdir -p "${NITROGEN_CONFIG}"
+
+    cat > "${NITROGEN_CONFIG}"/bg-saved.cfg << EOC
+[xin_-1]
+file=${HOME}/.wallpaper.png
+mode=5
+bgcolor=#000000
+EOC
+fi
+
 # cargo
 if ! command -v cargo; then
     install_package cargo
