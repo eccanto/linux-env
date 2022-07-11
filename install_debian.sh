@@ -35,11 +35,15 @@ if ! command -v polybar &> /dev/null; then
     install_picom
 fi
 
-gen_backup ${PICOM_CONFIG}
+generate_backup ${PICOM_CONFIG}
 
 echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
 mkdir -p ${PICOM_CONFIG}
 cp ./picom/* ${PICOM_CONFIG}
+
+if ! grep 'picom' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
+    echo "picom --experimental-backends -b" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
+fi
 
 # nitrogen
 if [[ ! -d "${NITROGEN_CONFIG}" ]]; then
@@ -68,6 +72,11 @@ fi
 # dunst
 if ! command -v dunst; then
     install_package dunst
+fi
+
+# arandr
+if ! command -v arandr; then
+    install_package arandr
 fi
 
 # cargo
