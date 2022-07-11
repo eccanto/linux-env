@@ -44,9 +44,24 @@ bgcolor=#000000
 EOC
 fi
 
+# xcb
+if ! command -v xcb; then
+    install_xcb
+fi
+
+# fonts awesome
+if [[ ! -d "/usr/share/fonts/opentype/scp" ]]; then
+    install_fonts_awesome
+fi
+
 # cargo
 if ! command -v cargo; then
     install_package cargo
+fi
+
+# htop
+if ! command -v htop; then
+    install_package htop
 fi
 
 # rustup

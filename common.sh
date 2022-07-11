@@ -19,6 +19,7 @@ NVIM_DIR=${DEPENDENCIES}/nvim
 TMUX_DIR=${DEPENDENCIES}/tmux
 LAZYGIT_DIR=${DEPENDENCIES}/lazygit
 I3_GAPS=${DEPENDENCIES}/i3-gaps
+XCB_DIR=${DEPENDENCIES}/xcb
 
 ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
 ROFI_CONFIG=$(realpath ~/.config/rofi)
@@ -237,4 +238,32 @@ function install_ueberzug() {
 
     pip install -U ueberzug
     sudo pip install -U ueberzug
+}
+
+function install_xcb() {
+    echo -e "${BOLDGREEN}installing xcb...${ENDCOLOR}"
+
+    git clone --recursive https://github.com/Airblader/xcb-util-xrm.git "${XCB_DIR}"
+    pushd "${XCB_DIR}"
+        ./autogen.sh
+        make
+        sudo make install
+    popd
+}
+
+function install_fonts_awesome() {
+    echo -e "${BOLDGREEN}installing fonts awesome...${ENDCOLOR}"
+
+    sudo mkdir -p /usr/share/fonts/opentype
+    sudo git clone https://github.com/adobe-fonts/source-code-pro.git /usr/share/fonts/opentype/scp
+
+    mkdir -p "${FONTS_DIR}"
+    pushd "${FONTS_DIR}"
+        wget https://use.fontawesome.com/releases/v5.0.13/fontawesome-free-5.0.13.zip
+        unzip fontawesome-free-5.0.13.zip
+        pushd fontawesome-free-5.0.13
+            sudo cp use-on-desktop/* /usr/share/fonts
+            sudo fc-cache -f -v
+        popd
+    popd
 }
