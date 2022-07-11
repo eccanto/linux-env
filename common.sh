@@ -56,7 +56,7 @@ function install_required_packages() {
 }
 
 function install_package() {
-    readonly package_name=$1
+    local readonly package_name=$1
 
     echo -e "${BOLDGREEN}installing ${package_name}...${ENDCOLOR}"
 
@@ -64,7 +64,7 @@ function install_package() {
 }
 
 function install_pip_package() {
-    readonly package_name=$1
+    local readonly package_name=$1
 
     echo -e "${BOLDGREEN}installing ${package_name}...${ENDCOLOR}"
 
