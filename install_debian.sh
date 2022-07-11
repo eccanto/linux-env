@@ -45,18 +45,13 @@ if ! grep 'picom' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
     echo "picom --experimental-backends -b" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
 fi
 
-# nitrogen
-if [[ ! -d "${NITROGEN_CONFIG}" ]]; then
-    echo -e "${BOLDGREEN}configuring nitrogen...${ENDCOLOR}"
+# feh
+if ! command -v feh; then
+    install_package feh
+fi
 
-    mkdir -p "${NITROGEN_CONFIG}"
-
-    cat > "${NITROGEN_CONFIG}"/bg-saved.cfg << EOC
-[xin_-1]
-file=${HOME}/.wallpaper.png
-mode=5
-bgcolor=#000000
-EOC
+if ! grep 'feh --bg-fill' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
+    echo "feh --bg-fill ${HOME}/.wallpaper.png" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
 fi
 
 # xcb-util-xrm
