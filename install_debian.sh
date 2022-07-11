@@ -23,8 +23,17 @@ if ! command -v polybar &> /dev/null; then
     install_polybar
 fi
 
+if [[ ! -d "${POLYBAR_CONFIG}" ]]; then
+    echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
+
+    mkdir -p "${POLYBAR_CONFIG}"
+    cp ./polybar/* ${POLYBAR_CONFIG}/
+fi
+
 # nitrogen
 if [[ ! -d "${NITROGEN_CONFIG}" ]]; then
+    echo -e "${BOLDGREEN}configuring nitrogen...${ENDCOLOR}"
+
     mkdir -p "${NITROGEN_CONFIG}"
 
     cat > "${NITROGEN_CONFIG}"/bg-saved.cfg << EOC
