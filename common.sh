@@ -240,7 +240,7 @@ function install_ueberzug() {
     sudo pip install -U ueberzug
 }
 
-function install_xcb() {
+function install_xcb_util_xrm() {
     echo -e "${BOLDGREEN}installing xcb...${ENDCOLOR}"
 
     git clone --recursive https://github.com/Airblader/xcb-util-xrm.git "${XCB_DIR}"

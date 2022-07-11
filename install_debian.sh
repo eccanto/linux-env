@@ -44,9 +44,9 @@ bgcolor=#000000
 EOC
 fi
 
-# xcb
-if ! command -v xcb; then
-    install_xcb
+# xcb-util-xrm
+if [[ ! -d "${XCB_DIR}" ]]; then
+    install_xcb_util_xrm
 fi
 
 # fonts awesome
