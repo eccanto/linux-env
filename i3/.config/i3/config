@@ -122,6 +122,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
+for_window [class=".*"] border pixel 2
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
@@ -149,7 +150,6 @@ for_window [class="Thus"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
-
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
@@ -223,7 +223,7 @@ client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B
 client.background #1E272B
 
 # Gaps
-gaps inner 10
+gaps inner 12
 gaps outer -4
 
 smart_gaps on
