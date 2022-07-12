@@ -50,6 +50,21 @@ if ! command -v feh; then
     install_package feh
 fi
 
+# i3lock
+if ! command -v i3lock; then
+    install_package i3lock
+fi
+
+# i3lock-color
+if [[ ! -d "${I3LOCK_COLOR_CONFIG}" ]]; then
+    install_i3lock_color
+
+    mkdir -p "${I3LOCK_COLOR_CONFIG}"
+    cp i3lock_color/* "${I3LOCK_COLOR_CONFIG}"/
+
+    sudo ln -s "${I3LOCK_COLOR_CONFIG}"/lock.sh /usr/bin/lock
+fi
+
 # tty-clock
 if ! command -v tty-clock; then
     install_package tty-clock

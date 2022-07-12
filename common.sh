@@ -19,6 +19,7 @@ NVIM_DIR=${DEPENDENCIES}/nvim
 TMUX_DIR=${DEPENDENCIES}/tmux
 LAZYGIT_DIR=${DEPENDENCIES}/lazygit
 I3_GAPS=${DEPENDENCIES}/i3-gaps
+I3LOCK_COLOR=${DEPENDENCIES}/i3lock-color
 XCB_DIR=${DEPENDENCIES}/xcb
 PICOM_DIR=${DEPENDENCIES}/picom
 
@@ -27,6 +28,7 @@ ROFI_CONFIG=$(realpath ~/.config/rofi)
 RANGER_CONFIG=$(realpath ~/.config/ranger)
 TMUX_CONFIG=$(realpath ~/.tmux.conf)
 I3_CONFIG=$(realpath ~/.config/i3)
+I3LOCK_COLOR_CONFIG=$(realpath ~/.config/i3lock_color)
 NITROGEN_CONFIG=$(realpath ~/.config/nitrogen)
 POLYBAR_CONFIG=$(realpath ~/.config/polybar)
 PICOM_CONFIG=$(realpath ~/.config/picom)
@@ -91,6 +93,24 @@ function install_i3_gaps() {
             ninja
             sudo ninja install
         popd
+    popd
+}
+
+function install_i3lock_color() {
+    echo -e "${BOLDGREEN}installing i3lock-color...${ENDCOLOR}"
+
+    sudo apt install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev \
+        libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev         \
+        libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev libxkbcommon-dev       \
+        libxkbcommon-x11-dev libjpeg-dev
+
+    if [[ ! -d "${I3LOCK_COLOR}" ]]; then
+        git clone https://github.com/Raymo111/i3lock-color.git ${I3LOCK_COLOR}
+    fi
+
+    pushd "${I3LOCK_COLOR}"
+        ./build.sh
+        ./install-i3lock-color.sh
     popd
 }
 

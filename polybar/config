@@ -1,6 +1,6 @@
 [bar/i3wmthemer_bar]
 width = 100%
-height = 27
+height = 24
 radius = 0
 fixed-center = false
 
@@ -10,30 +10,64 @@ foreground = #EAD49B
 line-size = 3
 line-color =
 
-border-size = 0
-border-color =
+border-size = 6
+border-color = #000000ff
 
 padding-left = 0
 padding-right = 2
 
-module-margin-left = 1
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 1
 
-font-0 = "Source Code Pro Semibold:size=10;1"
-font-1 = "Font Awesome 5 Free:style=Solid:size=10;1"
-font-2 = "Font Awesome 5 Brands:size=10;1"
+font-0 = "Source Code Pro Semibold:size=9;1"
+font-1 = "Font Awesome 5 Free:style=Solid:size=9;1"
+font-2 = "Font Awesome 5 Brands:size=9;1"
 
 modules-left = i3
-modules-center = date
-modules-right = wlan eth powermenu
+modules-right = memory swap cpu wlan eth date powermenu
 
 tray-position =
 ;tray-padding =
 wm-restack = i3
-override-redirect = true
+override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/memory]
+type = internal/memory
+
+format = <label>
+
+label = " RAM %gb_used%/%gb_total%"
+label-foreground = #1E272B
+label-background = #f1fa8c
+label-padding-left = 2
+label-padding-right = 2
+
+[module/swap]
+type = internal/memory
+
+format = <label>
+
+label = " SWAP %swap_used%/%swap_total%"
+label-foreground = #1E272B
+label-background = #bd93f9
+label-padding-left = 2
+label-padding-right = 2
+
+[module/cpu]
+type = internal/cpu
+
+interval = 1
+
+format = <label>
+
+label = " CPU %percentage:3%%"
+label-foreground = #1E272B
+label-background = #50fa7b
+label-padding-left = 2
+label-padding-right = 2
 
 [module/i3]
 type = internal/i3
@@ -46,34 +80,35 @@ label-mode-foreground = #1E272B
 label-mode-background = #78824b
 
 label-focused = %index%
-label-focused-background = #78824b
-label-focused-foreground = #6b7443
+label-focused-background = #FF8000
+label-focused-foreground = #F2F2F2
 label-focused-padding = 2
 
 label-unfocused = %index%
-label-unfocused-background = #78824b
-label-unfocused-foreground = #1E272B
+label-unfocused-background = #1E272B
+label-unfocused-foreground = #E5E5E5
 label-unfocused-padding = 2
 
 label-visible = %index%
-label-visible-background = #78824b
-label-visible-foreground = #1E272B
+label-visible-background = #1E272B
+label-visible-foreground = #E5E5E5
 label-visible-padding = 2
 
 label-urgent = %index%
-label-urgent-background = #BA2922
+label-urgent-background = #FF3333
 label-urgent-padding = 2
 
 [module/wlan]
 type = internal/network
-interface = net1
+interface = wlp0s20f3
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-foreground = #1E272B
-format-connected-background = #9d6a47
+format-connected-background = #ff79c6
 format-connected-padding = 2
 label-connected = %essid%
+label-connected-foreground = #1E272B
 
 format-disconnected =
 
@@ -86,12 +121,12 @@ ramp-signal-foreground = #1E272B
 
 [module/eth]
 type = internal/network
-interface = enp0s3
+interface = enxa02919af44ca
 interval = 3.0
 
 format-connected-padding = 2
 format-connected-foreground = #1E272B
-format-connected-background = #9d6a47
+format-connected-background = #8be9fd
 format-connected-prefix = " "
 format-connected-prefix-foreground = #1E272B
 label-connected = %local_ip%
@@ -110,7 +145,7 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-foreground = #1E272B
-format-background = #d99f57
+format-background = #F5983C
 format-padding = 2
 
 label = %date% %time%
@@ -123,7 +158,8 @@ expand-right = true
 format-spacing = 1
 
 label-open = 
-label-open-foreground = #9d6a47
+label-open-padding-left = 1
+lel-open-foreground = #9d6a47
 label-close =  cancel
 label-close-foreground = #9d6a47
 label-separator = |
@@ -135,6 +171,10 @@ menu-0-1 = power off
 menu-0-1-exec = menu-open-2
 menu-0-2 = log off
 menu-0-2-exec = menu-open-3
+menu-0-3 = suspend
+menu-0-3-exec = menu-open-4
+menu-0-4 = lock
+menu-0-4-exec = menu-open-5
 
 menu-1-0 = cancel
 menu-1-0-exec = menu-open-0
@@ -151,9 +191,20 @@ menu-3-0-exec = i3 exit logout
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
+menu-4-0 = suspend
+menu-4-0-exec = systemctl suspend
+menu-4-1 = cancel
+menu-4-1-exec = menu-open-0
+
+menu-5-0 = lock
+menu-5-0-exec = lock
+menu-5-1 = cancel
+menu-5-1-exec = menu-open-0
+
 [settings]
 screenchange-reload = true
 
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
