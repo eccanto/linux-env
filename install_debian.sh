@@ -50,6 +50,11 @@ if ! command -v feh; then
     install_package feh
 fi
 
+# flameshot
+if ! command -v flameshot; then
+    install_package flameshot;
+fi
+
 # i3lock
 if ! command -v i3lock; then
     install_package i3lock
