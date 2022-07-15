@@ -76,7 +76,7 @@ if ! command -v tty-clock; then
 fi
 
 if ! grep 'feh --bg-fill' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
-    echo "feh --bg-fill ${HOME}/.wallpaper.png" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
+    echo "feh --bg-fill ${WALLPAPERS_STORAGE}" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
 fi
 
 # xcb-util-xrm

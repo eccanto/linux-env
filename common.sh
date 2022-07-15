@@ -33,8 +33,8 @@ I3LOCK_COLOR_CONFIG=$(realpath ~/.config/i3lock_color)
 POLYBAR_CONFIG=$(realpath ~/.config/polybar)
 PICOM_CONFIG=$(realpath ~/.config/picom)
 
-DEFAULT_BG=./wallpapers/bg_1.jpg
-WALLPAPERS_STORAGE=/usr/local/share/wallpapers
+DEFAULT_BG=./wallpapers/bg_001.jpg
+WALLPAPERS_STORAGE=$(realpath ~/.wallpaper.jpg)
 
 function generate_backup() {
     local path=$1
