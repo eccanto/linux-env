@@ -14,7 +14,7 @@ border-size = 6
 border-color = #000000ff
 
 padding-left = 0
-padding-right = 2
+padding-right = 0
 
 module-margin-left = 0
 module-margin-right = 1
@@ -24,7 +24,7 @@ font-1 = "Font Awesome 5 Free:style=Solid:size=9;1"
 font-2 = "Font Awesome 5 Brands:size=9;1"
 
 modules-left = i3
-modules-right = memory swap cpu wlan eth date battery powermenu
+modules-right = memory swap cpu wlan eth date battery sysmenu
 
 tray-position =
 ;tray-padding =
@@ -33,6 +33,13 @@ override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/sysmenu]
+type = custom/text
+content = 
+content-padding = 2
+;content-foreground = ${color.white}
+click-left = ~/.config/polybar/scripts/powermenu_alt
 
 [module/battery]
 type = internal/battery
@@ -209,57 +216,6 @@ format-background = #F5983C
 format-padding = 2
 
 label = %date% %time%
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-padding-left = 1
-lel-open-foreground = #9d6a47
-label-close =  cancel
-label-close-foreground = #9d6a47
-label-separator = |
-label-separator-foreground = #9d6a47
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-menu-0-2 = log off
-menu-0-2-exec = menu-open-3
-menu-0-3 = suspend
-menu-0-3-exec = menu-open-4
-menu-0-4 = lock
-menu-0-4-exec = menu-open-5
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = reboot
-
-menu-2-0 = power off
-menu-2-0-exec = poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
-menu-3-0 = log off
-menu-3-0-exec = i3 exit logout
-menu-3-1 = cancel
-menu-3-1-exec = menu-open-0
-
-menu-4-0 = suspend
-menu-4-0-exec = systemctl suspend
-menu-4-1 = cancel
-menu-4-1-exec = menu-open-0
-
-menu-5-0 = lock
-menu-5-0-exec = lock
-menu-5-1 = cancel
-menu-5-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
