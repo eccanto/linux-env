@@ -20,11 +20,12 @@ module-margin-left = 0
 module-margin-right = 1
 
 font-0 = "Source Code Pro Semibold:size=9;1"
-font-1 = "Font Awesome 5 Free:style=Solid:size=9;1"
-font-2 = "Font Awesome 5 Brands:size=9;1"
+font-1 = "Iosevka:size=9;1"
+font-2 = "Font Awesome 5 Free:style=Solid:size=9;1"
+font-3 = "Font Awesome 5 Brands:size=9;1"
 
 modules-left = i3
-modules-right = memory swap cpu wlan eth date battery sysmenu
+modules-right = memory swap cpu wlan eth backlight pulseaudio date battery sysmenu
 
 tray-position =
 ;tray-padding =
@@ -33,6 +34,64 @@ override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+use-ui-max = true
+
+interval = 4
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = #1E272B
+format-volume-background = #FFFFDC
+format-volume-padding = 2
+
+label-volume = %percentage:3%%
+
+label-muted =  muted
+label-muted-foreground = #666
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+click-right = pavucontrol
+
+[module/backlight]
+; run "sudo chmod a+rw /sys/class/backlight/intel_backlight/brightness" if permission denied
+type = internal/backlight
+
+card = intel_backlight
+
+use-actual-brightness = true
+
+enable-scroll = true
+
+format = <ramp> <label>
+format-foreground = #1E272B
+format-background = #D7D7D7
+ramp-padding-left = 2
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage:3%%
+label-padding-right = 2
+
+; Only applies if <ramp> is used
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+
+; Only applies if <bar> is used
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
 
 [module/sysmenu]
 type = custom/text
@@ -60,8 +119,9 @@ format-discharging = <ramp-capacity> <label-discharging>
 ;format-full = <ramp-capacity> <label-full>
 ;format-low = <label-low> <animation-low>
 
-label-charging = Charging %percentage%%
-label-discharging = Discharging %percentage%%
+label-charging = %percentage:3%%
+label-discharging = %percentage:3%%
+
 label-low = BATTERY LOW
 
 label-full =  100%
