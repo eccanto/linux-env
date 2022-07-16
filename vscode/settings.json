@@ -1,0 +1,46 @@
+{
+    "workbench.iconTheme": "vscode-great-icons",
+    "editor.fontSize": 13,
+    "editor.renderWhitespace": "all",
+    "autoDocstring.docstringFormat": "sphinx",
+    "workbench.colorCustomizations": {
+        "editorWhitespace.foreground": "#444444"
+    },
+    "terminal.integrated.fontSize": 13,
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/__pycache__": true,
+        ".vscode": true
+    },
+    "editor.rulers": [
+        120
+    ],
+    "terminal.integrated.tabs.enabled": false,
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "GitHub Dark Default",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "meta.scope.if-block.shell",
+                    "source.shell",
+                 ],
+                 "settings": {
+                 "foreground": "#B6B6B6",
+                 }
+            },
+            {
+                "scope": [
+                    "variable.other.bracket.shell"
+                 ],
+                 "settings": {
+                 "foreground": "#C3C3C3",
+                 }
+            },
+        ]
+    },
+    "window.menuBarVisibility": "toggle",
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "terminal.integrated.gpuAcceleration": "on",
+    "workbench.activityBar.visible": false
+}
