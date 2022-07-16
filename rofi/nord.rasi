@@ -1,6 +1,6 @@
 configuration {
   show-icons: true;
-  font: "SauceCodePro Nerd Font Medium 10";
+  font: "SauceCodePro Nerd Font Medium 11";
   drun-display-format: "{icon} {name}";
   display-run: " ";
   display-drun: " ";
@@ -10,13 +10,13 @@ configuration {
 
 * {
   background-color: #000000;
-  bg-alt: #2E0000;
+  bg-alt: #FF8000;
   fg: #ECEFF4;
 
-  nord-blue-light: #E0E0E0;
-  nord-yellow: #E24545;
+  nord-blue-light: #000000;
+  nord-yellow: #FF8000;
 
-  border: 0;
+  border: 2;
   lines: 12;
   padding: 0;
   margin: 0;
@@ -24,7 +24,7 @@ configuration {
 }
 
 window {
-  width: 30%;
+  width: 60%;
   transparency: "real";
 }
 
@@ -33,7 +33,7 @@ mainbox {
 }
 
 listview {
-  columns: 1;
+  columns: 3;
 }
 
 element {
@@ -54,12 +54,16 @@ inputbar {
 
 prompt {
   enabled: true;
-  font: "SauceCodePro Nerd Font 12";
+  font: "SauceCodePro Nerd Font 22";
   padding: 12 0 0 12;
   text-color: @nord-yellow;
 }
 
 entry {
   padding: 12;
-  text-color: @nord-yellow;
+  text-color: @fg;
+  border: 1;
+  border-radius: 4;
+  border-color: @bg-alt;
+  margin: 8 8 8 0;
 }
