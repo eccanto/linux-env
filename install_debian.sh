@@ -45,6 +45,11 @@ if ! grep 'picom' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
     echo "picom --experimental-backends -b" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
 fi
 
+# vscode
+if ! command -v code; then
+    install_vscode
+fi
+
 # feh
 if ! command -v feh; then
     install_package feh

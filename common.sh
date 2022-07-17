@@ -22,19 +22,21 @@ I3_GAPS=${DEPENDENCIES}/i3-gaps
 I3LOCK_COLOR=${DEPENDENCIES}/i3lock-color
 XCB_DIR=${DEPENDENCIES}/xcb
 PICOM_DIR=${DEPENDENCIES}/picom
+VSCODE_DEPS=${DEPENDENCIES}/vscode-latest.deb
 
-ALACRITTY_CONFIG=$(realpath ~/.config/alacritty)
-ROFI_CONFIG=$(realpath ~/.config/rofi)
-RANGER_CONFIG=$(realpath ~/.config/ranger)
-TMUX_CONFIG=$(realpath ~/.tmux.conf)
-I3_CONFIG=$(realpath ~/.config/i3)
-I3LOCK_COLOR_CONFIG=$(realpath ~/.config/i3lock_color)
+ALACRITTY_CONFIG=$(realpath -m ~/.config/alacritty)
+ROFI_CONFIG=$(realpath -m ~/.config/rofi)
+RANGER_CONFIG=$(realpath -m ~/.config/ranger)
+TMUX_CONFIG=$(realpath -m ~/.tmux.conf)
+I3_CONFIG=$(realpath -m ~/.config/i3)
+I3LOCK_COLOR_CONFIG=$(realpath -m ~/.config/i3lock_color)
+VSCODE_CONFIG=$(realpath -m ~/.config/Code/User)
 
-POLYBAR_CONFIG=$(realpath ~/.config/polybar)
-PICOM_CONFIG=$(realpath ~/.config/picom)
+POLYBAR_CONFIG=$(realpath -m ~/.config/polybar)
+PICOM_CONFIG=$(realpath -m ~/.config/picom)
 
 DEFAULT_BG=./wallpapers/bg_001.jpg
-WALLPAPERS_STORAGE=$(realpath ~/.wallpaper.jpg)
+WALLPAPERS_STORAGE=$(realpath -m ~/.wallpaper.jpg)
 
 function generate_backup() {
     local path=$1
@@ -164,6 +166,21 @@ function install_picom() {
             sudo ninja -C build install
         popd
     fi
+}
+
+function install_vscode() {
+    echo -e "${BOLDGREEN}installing vscode...${ENDCOLOR}"
+
+    wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O "${VSCODE_DEPS}"
+    sudo dpkg -i "${VSCODE_DEPS}"
+
+    echo -e "${BOLDGREEN}configuring vscode...${ENDCOLOR}"
+
+    pushd ./vscode/
+        mkdir -p "${VSCODE_CONFIG}"
+        cp settings.json keybindings.json "${VSCODE_CONFIG}"
+        cat extensions.txt | xargs -n 1 code --install-extension
+    popd
 }
 
 function install_rust() {
