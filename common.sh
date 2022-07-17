@@ -59,7 +59,7 @@ function install_required_packages() {
         libxcb-xrm-dev x11-xserver-utils compton rofi binutils gcc make cmake pkg-config fakeroot python3            \
         python3-xcbgen xcb-proto libxcb-ewmh-dev wireless-tools libiw-dev libasound2-dev libpulse-dev libxcb-shape0  \
         libxcb-shape0-dev libcurl4-openssl-dev libmpdclient-dev pavucontrol python3-pip rxvt-unicode compton         \
-        ninja-build meson python3 curl
+        ninja-build meson python3 curl playerctl
 }
 
 function install_package() {
