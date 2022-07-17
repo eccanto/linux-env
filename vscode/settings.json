@@ -18,25 +18,60 @@
     "terminal.integrated.tabs.enabled": false,
     "window.zoomLevel": 0,
     "workbench.colorTheme": "GitHub Dark Default",
+    "editor.semanticTokenColorCustomizations": {
+        "enabled": true,
+        "rules": {
+            "*.declaration": {
+                "foreground": "#B6B6B6"
+            },
+            "class.declaration": {
+                "foreground": "#C6C600",
+                "bold": true
+            },
+            "parameter.declaration": {
+                "foreground": "#ffa657"
+            },
+            "function.declaration": {
+                "foreground": "#d2a8ff"
+            },
+            "method.declaration": {
+                "foreground": "#d2a8ff"
+            },
+            "variable.builtin": {
+                "foreground": "#66B2FF"
+            }
+        },
+    },
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
                 "scope": [
-                    "meta.scope.if-block.shell",
-                    "source.shell",
-                 ],
-                 "settings": {
-                 "foreground": "#B6B6B6",
-                 }
+                    "string.quoted.single",
+                    "string.quoted.double",
+                    "string.quoted.triple",
+                    "string.quoted.multi.python",
+                    "string.quoted.docstring.multi.python",
+                ],
+                "settings": {
+                    "foreground": "#D0C139"
+                }
             },
             {
                 "scope": [
-                    "variable.other.bracket.shell"
-                 ],
-                 "settings": {
-                 "foreground": "#C3C3C3",
-                 }
+                    "source.shell",
+                ],
+                "settings": {
+                    "foreground": "#B6B6B6"
+                }
             },
+            {
+                "scope": [
+                    "variable.other.bracket.shell",
+                ],
+                "settings": {
+                    "foreground": "#66B2FF"
+                }
+            }
         ]
     },
     "window.menuBarVisibility": "toggle",
