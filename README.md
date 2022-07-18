@@ -10,7 +10,7 @@ configuration of my Linux environment
 Open digital clock in terminal
 
 ```bash
-tty-clock -sct -f "%a, %d %b %Y"
+tty-clock -ct -f "%H:%M, %d %b %Y"
 ```
 
 # VSCode
