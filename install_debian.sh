@@ -18,7 +18,7 @@ if [[ ! -d "${I3_CONFIG}" ]]; then
     echo -e "${BOLDGREEN}configuring i3-gaps...${ENDCOLOR}"
 
     mkdir -p "${I3_CONFIG}"
-    cp i3/* "${I3_CONFIG}"/
+    cp "${I3_SETTINGS_DIR}"/* "${I3_CONFIG}"/
 fi
 
 # polybar
@@ -30,7 +30,7 @@ if [[ ! -d "${POLYBAR_CONFIG}" ]]; then
     echo -e "${BOLDGREEN}configuring polybar...${ENDCOLOR}"
 
     mkdir -p "${POLYBAR_CONFIG}"
-    cp ./polybar/* ${POLYBAR_CONFIG}/
+    cp "${POLYBAR_SETTINGS_DIR}"/* ${POLYBAR_CONFIG}/
 fi
 
 # picom
@@ -42,7 +42,7 @@ generate_backup ${PICOM_CONFIG}
 
 echo -e "${BOLDGREEN}configuring picom...${ENDCOLOR}"
 mkdir -p ${PICOM_CONFIG}
-cp ./picom/* ${PICOM_CONFIG}
+cp "${PICOM_SETTINGS_DIR}"/* ${PICOM_CONFIG}
 
 if ! grep 'picom' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
     echo "picom --experimental-backends -b" >> "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh
@@ -73,7 +73,7 @@ if [[ ! -d "${I3LOCK_COLOR_CONFIG}" ]]; then
     install_i3lock_color
 
     mkdir -p "${I3LOCK_COLOR_CONFIG}"
-    cp i3lock_color/* "${I3LOCK_COLOR_CONFIG}"/
+    cp "${I3LOCK_COLOR_SETTINGS_DIR}"/* "${I3LOCK_COLOR_CONFIG}"/
 
     sudo ln -s "${I3LOCK_COLOR_CONFIG}"/lock.sh /usr/bin/lock
 fi
@@ -88,7 +88,7 @@ if ! grep 'feh --bg-fill' "${POLYBAR_CONFIG}"/i3wmthemer_bar_launch.sh; then
 fi
 
 # xcb-util-xrm
-if [[ ! -d "${XCB_DIR}" ]]; then
+if [[ ! -d "${XCB_DEPENDENCIES_DIR}" ]]; then
     install_xcb_util_xrm
 fi
 
@@ -106,7 +106,7 @@ if [[ ! -d "${DUNST_CONFIG}" ]]; then
     echo -e "${BOLDGREEN}configuring dunst...${ENDCOLOR}"
 
     mkdir -p "${DUNST_CONFIG}"
-    cp dunst/* "${DUNST_CONFIG}"/
+    cp "${DUNST_SETTINGS_DIR}"/* "${DUNST_CONFIG}"/
 fi
 
 # arandr
@@ -142,7 +142,7 @@ generate_backup ${ALACRITTY_CONFIG}
 
 echo -e "${BOLDGREEN}configuring alacritty...${ENDCOLOR}"
 mkdir -p ${ALACRITTY_CONFIG}
-cp ./alacritty/* ${ALACRITTY_CONFIG}/
+cp "${ALACRITTY_SETTINGS_DIR}"/* ${ALACRITTY_CONFIG}/
 
 # nvlc (command line VLC media player)
 if ! command -v nvlc &> /dev/null; then
@@ -174,11 +174,11 @@ if ! command -v tmux &> /dev/null; then
     install_tmux
 fi
 
-if [[ ! -f "${TMUX_CONFIG}" ]]; then
+if [[ ! -f "${TMUX_CONFIG_FILE}" ]]; then
     echo -e "${BOLDGREEN}configuring tmux...${ENDCOLOR}"
 
-    cp ./tmux/tmux.conf "${TMUX_CONFIG}"
-    sudo ln -s -f "${TMUX_CONFIG}" /root/.tmux.conf
+    cp "${TMUX_SETTINGS_FILE}" "${TMUX_CONFIG_FILE}"
+    sudo ln -s -f "${TMUX_CONFIG_FILE}" /root/.tmux.conf
 fi
 
 # firefox latest
@@ -197,7 +197,7 @@ generate_backup ${ROFI_CONFIG}
 echo -e "${BOLDGREEN}configuring rofi...${ENDCOLOR}"
 
 mkdir -p ${ROFI_CONFIG}/themes
-cp ./rofi/nord.rasi ${ROFI_CONFIG}/themes
+cp "${ROFI_THEME_FILE}" ${ROFI_CONFIG}/themes
 
 echo -e "select nord theme and press ${BOLDGREEN}'Alt + a'${ENDCOLOR}"
 
@@ -297,7 +297,7 @@ generate_backup ${RANGER_CONFIG}
 echo -e "${BOLDGREEN}configuring ranger...${ENDCOLOR}"
 
 ranger --copy-config all
-cp ./ranger/* ${RANGER_CONFIG}/
+cp "${RANGER_SETTINGS_DIR}"/* ${RANGER_CONFIG}/
 sudo mkdir -p /root/.config
 sudo ln -s -f $(realpath ${RANGER_CONFIG}) /root/.config/ranger
 

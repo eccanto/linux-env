@@ -9,25 +9,34 @@ BOLDGREEN="\e[1;${GREEN}m"
 ENDCOLOR="\e[0m"
 
 DEPENDENCIES=./.deps
-ALACRITTY_DIR=${DEPENDENCIES}/alacritty
-POLYBAR_DIR=${DEPENDENCIES}/polybar
-POWERLEVEL10K_DIR=${DEPENDENCIES}/powerlevel10k
-NEOVIM_DIR=${DEPENDENCIES}/neovim
-FONTS_DIR=${DEPENDENCIES}/fonts
-BTOP_DIR=${DEPENDENCIES}/btop
-NVIM_DIR=${DEPENDENCIES}/nvim
-TMUX_DIR=${DEPENDENCIES}/tmux
-LAZYGIT_DIR=${DEPENDENCIES}/lazygit
-I3_GAPS=${DEPENDENCIES}/i3-gaps
-I3LOCK_COLOR=${DEPENDENCIES}/i3lock-color
-XCB_DIR=${DEPENDENCIES}/xcb
-PICOM_DIR=${DEPENDENCIES}/picom
-VSCODE_DEPS=${DEPENDENCIES}/vscode-latest.deb
+ALACRITTY_DEPENDENCIES_DIR=${DEPENDENCIES}/alacritty
+POLYBAR_DEPENDENCIES_DIR=${DEPENDENCIES}/polybar
+POWERLEVEL10K_DEPENDENCIES_DIR=${DEPENDENCIES}/powerlevel10k
+FONTS_DEPENDENCIES_DIR=${DEPENDENCIES}/fonts
+BTOP_DEPENDENCIES_DIR=${DEPENDENCIES}/btop
+TMUX_DEPENDENCIES_DIR=${DEPENDENCIES}/tmux
+LAZYGIT_DEPENDENCIES_DIR=${DEPENDENCIES}/lazygit
+I3_GAPS_DEPENDENCIES_DIR=${DEPENDENCIES}/i3-gaps
+I3LOCK_COLOR_DEPENDENCIES_DIR=${DEPENDENCIES}/i3lock-color
+XCB_DEPENDENCIES_DIR=${DEPENDENCIES}/xcb
+PICOM_DEPENDENCIES_DIR=${DEPENDENCIES}/picom
+VSCODE_DEPENDENCIES_DIR=${DEPENDENCIES}/vscode-latest.deb
+
+SETTINGS=./settings/
+I3_SETTINGS_DIR=${SETTINGS}/i3
+POLYBAR_SETTINGS_DIR=${SETTINGS}/polybar
+I3LOCK_COLOR_SETTINGS_DIR=${SETTINGS}/i3lock_color
+DUNST_SETTINGS_DIR=${SETTINGS}/dunst
+TMUX_SETTINGS_FILE=${SETTINGS}/tmux/tmux.conf
+ALACRITTY_SETTINGS_DIR=${SETTINGS}/alacritty
+RANGER_SETTINGS_DIR=${SETTINGS}/ranger
+PICOM_SETTINGS_DIR=${SETTINGS}/picom
+ROFI_THEME_FILE=${SETTINGS}/rofi/nord.rasi
 
 ALACRITTY_CONFIG=$(realpath -m ~/.config/alacritty)
 ROFI_CONFIG=$(realpath -m ~/.config/rofi)
 RANGER_CONFIG=$(realpath -m ~/.config/ranger)
-TMUX_CONFIG=$(realpath -m ~/.tmux.conf)
+TMUX_CONFIG_FILE=$(realpath -m ~/.tmux.conf)
 I3_CONFIG=$(realpath -m ~/.config/i3)
 I3LOCK_COLOR_CONFIG=$(realpath -m ~/.config/i3lock_color)
 VSCODE_CONFIG=$(realpath -m ~/.config/Code/User)
@@ -83,11 +92,11 @@ function install_pip_package() {
 function install_i3_gaps() {
     echo -e "${BOLDGREEN}installing i3 gaps...${ENDCOLOR}"
 
-    if [[ ! -d "${I3_GAPS}" ]]; then
-        git clone https://github.com/Airblader/i3 ${I3_GAPS}
+    if [[ ! -d "${I3_GAPS_DEPENDENCIES_DIR}" ]]; then
+        git clone https://github.com/Airblader/i3 ${I3_GAPS_DEPENDENCIES_DIR}
     fi
 
-    pushd "${I3_GAPS}"
+    pushd "${I3_GAPS_DEPENDENCIES_DIR}"
         rm -rf build/
         mkdir -p build
         pushd build
@@ -106,11 +115,11 @@ function install_i3lock_color() {
         libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev libxkbcommon-dev       \
         libxkbcommon-x11-dev libjpeg-dev
 
-    if [[ ! -d "${I3LOCK_COLOR}" ]]; then
-        git clone https://github.com/Raymo111/i3lock-color.git ${I3LOCK_COLOR}
+    if [[ ! -d "${I3LOCK_COLOR_DEPENDENCIES_DIR}" ]]; then
+        git clone https://github.com/Raymo111/i3lock-color.git ${I3LOCK_COLOR_DEPENDENCIES_DIR}
     fi
 
-    pushd "${I3LOCK_COLOR}"
+    pushd "${I3LOCK_COLOR_DEPENDENCIES_DIR}"
         ./build.sh
         ./install-i3lock-color.sh
     popd
@@ -125,12 +134,12 @@ function install_polybar() {
         libxcb-cursor-dev libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev \
         libcurl4-openssl-dev libnl-genl-3-dev libuv1-dev
 
-    if [[ ! -d "${POLYBAR_DIR}" ]]; then
+    if [[ ! -d "${POLYBAR_DEPENDENCIES_DIR}" ]]; then
         echo -e "${BOLDGREEN}downloading polybar...${ENDCOLOR}"
-        git clone --recursive https://github.com/polybar/polybar "${POLYBAR_DIR}"
+        git clone --recursive https://github.com/polybar/polybar "${POLYBAR_DEPENDENCIES_DIR}"
     fi
 
-    pushd "${POLYBAR_DIR}"
+    pushd "${POLYBAR_DEPENDENCIES_DIR}"
         rm -rf build/
         mkdir build/
         pushd build/
@@ -142,11 +151,11 @@ function install_polybar() {
 }
 
 function install_picom() {
-    if [[ ! -d ${PICOM_DIR} ]]; then
+    if [[ ! -d ${PICOM_DEPENDENCIES_DIR} ]]; then
         echo -e "${BOLDGREEN}downloading picom...${ENDCOLOR}"
 
-        git clone https://github.com/ibhagwan/picom.git ${PICOM_DIR}
-        pushd ${PICOM_DIR}
+        git clone https://github.com/ibhagwan/picom.git ${PICOM_DEPENDENCIES_DIR}
+        pushd ${PICOM_DEPENDENCIES_DIR}
             git submodule update --init --recursive
         popd
     fi
@@ -160,7 +169,7 @@ function install_picom() {
             libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev libevdev-dev \
             uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
 
-        pushd ${PICOM_DIR}
+        pushd ${PICOM_DEPENDENCIES_DIR}
             meson --buildtype=release . build
             ninja -C build
             sudo ninja -C build install
@@ -171,8 +180,8 @@ function install_picom() {
 function install_vscode() {
     echo -e "${BOLDGREEN}installing vscode...${ENDCOLOR}"
 
-    wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O "${VSCODE_DEPS}"
-    sudo dpkg -i "${VSCODE_DEPS}"
+    wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O "${VSCODE_DEPENDENCIES_DIR}"
+    sudo dpkg -i "${VSCODE_DEPENDENCIES_DIR}"
 
     echo -e "${BOLDGREEN}configuring vscode...${ENDCOLOR}"
 
@@ -199,13 +208,13 @@ function install_alacritty() {
     sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev \
         autotools-dev automake libncurses-dev
 
-    if [[ ! -d ${ALACRITTY_DIR} ]]; then
+    if [[ ! -d ${ALACRITTY_DEPENDENCIES_DIR} ]]; then
         echo -e "${BOLDGREEN}downloading alacritty...${ENDCOLOR}"
 
-        git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DIR}
+        git clone https://github.com/alacritty/alacritty.git ${ALACRITTY_DEPENDENCIES_DIR}
     fi
 
-    pushd ${ALACRITTY_DIR}
+    pushd ${ALACRITTY_DEPENDENCIES_DIR}
         cargo build --release
         #infocmp alacritty &> /dev/null
         sudo cp target/release/alacritty /usr/local/bin
@@ -215,9 +224,9 @@ function install_alacritty() {
 function install_btop() {
     echo -e "${BOLDGREEN}installing btop...${ENDCOLOR}"
 
-    mkdir -p "${BTOP_DIR}"
-    wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz -P "${BTOP_DIR}"
-    pushd "${BTOP_DIR}"
+    mkdir -p "${BTOP_DEPENDENCIES_DIR}"
+    wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz -P "${BTOP_DEPENDENCIES_DIR}"
+    pushd "${BTOP_DEPENDENCIES_DIR}"
         tar -xvjf btop-x86_64-linux-musl.tbz
         bash install.sh
     popd
@@ -237,9 +246,9 @@ function install_dockly() {
 function install_lazygit() {
     echo -e "${BOLDGREEN}installing lazygit...${ENDCOLOR}"
 
-    mkdir -p "${LAZYGIT_DIR}"
-    wget https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz -P "${LAZYGIT_DIR}"
-    pushd "${LAZYGIT_DIR}"
+    mkdir -p "${LAZYGIT_DEPENDENCIES_DIR}"
+    wget https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz -P "${LAZYGIT_DEPENDENCIES_DIR}"
+    pushd "${LAZYGIT_DEPENDENCIES_DIR}"
         tar -xf lazygit_0.34_Linux_x86_64.tar.gz
         sudo cp lazygit /usr/local/bin
     popd
@@ -250,11 +259,11 @@ function install_tmux() {
 
     sudo apt install -y libevent-dev bison byacc
 
-    if [[ ! -d "${TMUX_DIR}" ]]; then
-        git clone https://github.com/tmux/tmux.git "${TMUX_DIR}"
+    if [[ ! -d "${TMUX_DEPENDENCIES_DIR}" ]]; then
+        git clone https://github.com/tmux/tmux.git "${TMUX_DEPENDENCIES_DIR}"
     fi
 
-    pushd "${TMUX_DIR}"
+    pushd "${TMUX_DEPENDENCIES_DIR}"
         git checkout 3.2
 
         sh autogen.sh
@@ -277,9 +286,9 @@ function install_firefox() {
 function install_powerlevel10k() {
     echo -e "${BOLDGREEN}installing powerlevel10k...${ENDCOLOR}"
 
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${POWERLEVEL10K_DIR}"
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${POWERLEVEL10K_DEPENDENCIES_DIR}"
     sudo rm -rf /usr/local/share/powerlevel10k/
-    sudo cp -r "${POWERLEVEL10K_DIR}" /usr/local/share/powerlevel10k
+    sudo cp -r "${POWERLEVEL10K_DEPENDENCIES_DIR}" /usr/local/share/powerlevel10k
     echo "source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme" >> ~/.zshrc
 }
 
@@ -309,8 +318,8 @@ function install_ueberzug() {
 function install_xcb_util_xrm() {
     echo -e "${BOLDGREEN}installing xcb-util-xrm...${ENDCOLOR}"
 
-    git clone --recursive https://github.com/Airblader/xcb-util-xrm.git "${XCB_DIR}"
-    pushd "${XCB_DIR}"
+    git clone --recursive https://github.com/Airblader/xcb-util-xrm.git "${XCB_DEPENDENCIES_DIR}"
+    pushd "${XCB_DEPENDENCIES_DIR}"
         ./autogen.sh
         make
         sudo make install
@@ -323,8 +332,8 @@ function install_fonts_awesome() {
     sudo mkdir -p /usr/share/fonts/opentype
     sudo git clone https://github.com/adobe-fonts/source-code-pro.git /usr/share/fonts/opentype/scp
 
-    mkdir -p "${FONTS_DIR}"
-    pushd "${FONTS_DIR}"
+    mkdir -p "${FONTS_DEPENDENCIES_DIR}"
+    pushd "${FONTS_DEPENDENCIES_DIR}"
         wget https://use.fontawesome.com/releases/v5.0.13/fontawesome-free-5.0.13.zip
         unzip fontawesome-free-5.0.13.zip
         pushd fontawesome-free-5.0.13
