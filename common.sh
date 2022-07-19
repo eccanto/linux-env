@@ -31,7 +31,7 @@ TMUX_CONFIG=$(realpath -m ~/.tmux.conf)
 I3_CONFIG=$(realpath -m ~/.config/i3)
 I3LOCK_COLOR_CONFIG=$(realpath -m ~/.config/i3lock_color)
 VSCODE_CONFIG=$(realpath -m ~/.config/Code/User)
-
+DUNST_CONFIG=$(realpath -m ~/.config/dunst)
 POLYBAR_CONFIG=$(realpath -m ~/.config/polybar)
 PICOM_CONFIG=$(realpath -m ~/.config/picom)
 

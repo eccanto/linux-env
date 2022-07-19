@@ -15,7 +15,10 @@ if ! command -v i3; then
 fi
 
 if [[ ! -d "${I3_CONFIG}" ]]; then
-    cp -a i3/. ~
+    echo -e "${BOLDGREEN}configuring i3-gaps...${ENDCOLOR}"
+
+    mkdir -p "${I3_CONFIG}"
+    cp i3/* "${I3_CONFIG}"/
 fi
 
 # polybar
@@ -97,6 +100,13 @@ fi
 # dunst
 if ! command -v dunst; then
     install_package dunst
+fi
+
+if [[ ! -d "${DUNST_CONFIG}" ]]; then
+    echo -e "${BOLDGREEN}configuring dunst...${ENDCOLOR}"
+
+    mkdir -p "${DUNST_CONFIG}"
+    cp dunst/* "${DUNST_CONFIG}"/
 fi
 
 # arandr

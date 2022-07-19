@@ -7,7 +7,7 @@ shrink = no
 separator_height = 0
 padding = 16
 horizontal_padding = 24
-frame_width = 2
+frame_width = 0
 sort = no
 idle_threshold = 120
 font = Noto Sans 8
@@ -28,6 +28,7 @@ browser = /usr/bin/firefox -new-tab
 always_run_script = true
 title = Dunst
 class = Dunst
+transparency = 30
 
 [shortcuts]
 close = ctrl+space
@@ -36,17 +37,17 @@ history = ctrl+grave
 context = ctrl+shift+period
 
 [urgency_low]
-background = "#2f343f"
-foreground = "#d8dee8"
+background = "#000000"
+foreground = "#C0C0C0"
 timeout = 2
 
 [urgency_normal]
-background = "#2f343f"
-foreground = "#d8dee8"
+background = "#000000"
+foreground = "#C0C0C0"
 timeout = 4
 
 [urgency_critical]
-background = "#2f343f"
-foreground = "#d8dee8"
+background = "#000000"
+foreground = "#C0C0C0"
 frame_color = "#bf616a"
 timeout = 0
