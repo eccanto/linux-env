@@ -34,6 +34,7 @@ peterfh.linesinfostatusbar
 PKief.material-icon-theme
 redhat.vscode-xml
 robocorp.robotframework-lsp
+ryuta46.multi-command
 sukumo28.wav-preview
 TomiTurtiainen.rf-intellisense
 tomoki1207.pdf

@@ -36,6 +36,16 @@
         "command": "workbench.action.focusRightGroup"
     },
     {
+        "key": "alt+right",
+        "command": "workbench.action.focusFirstEditorGroup",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.explorer.fileView.focus",
+        "when": "editorFocus && !activeEditorIsFirstInGroup"
+    },
+    {
         "key": "alt+[Comma]",
         "command": "workbench.action.navigateBack",
         "when": "canNavigateBack"
@@ -64,5 +74,21 @@
         "key": "f12",
         "command": "-editor.action.revealDefinition",
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
-    }
+    },
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "!sideBarVisible"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.multiCommand.execute",
+        "when": "sideBarVisible",
+        "args": {
+            "sequence": [
+                "workbench.explorer.fileView.focus",
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        }
+    },
 ]
