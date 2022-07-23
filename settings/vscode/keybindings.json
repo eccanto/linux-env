@@ -91,4 +91,9 @@
             ]
         }
     },
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.focusFirstEditorGroup",
+        "when": "terminalFocus"
+    }
 ]
