@@ -83,11 +83,20 @@
     {
         "key": "ctrl+b",
         "command": "extension.multiCommand.execute",
-        "when": "sideBarVisible",
+        "when": "sideBarVisible && view.workbench.explorer.fileView.visible",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        }
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.multiCommand.execute",
+        "when": "sideBarVisible && !view.workbench.explorer.fileView.visible",
         "args": {
             "sequence": [
                 "workbench.explorer.fileView.focus",
-                "workbench.action.toggleSidebarVisibility"
             ]
         }
     },
