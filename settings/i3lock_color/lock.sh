@@ -33,4 +33,3 @@ i3lock \
     --indicator                  \
     --time-str="%H:%M:%S"        \
     --date-str="%A, %Y-%m-%d"
-
