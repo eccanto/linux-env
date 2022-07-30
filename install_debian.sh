@@ -70,12 +70,12 @@ fi
 
 # i3lock-color
 if [[ ! -d "${I3LOCK_COLOR_CONFIG}" ]]; then
-    install_i3lock_color
+    install_i3lock
 
     mkdir -p "${I3LOCK_COLOR_CONFIG}"
     cp "${I3LOCK_COLOR_SETTINGS_DIR}"/* "${I3LOCK_COLOR_CONFIG}"/
 
-    sudo ln -s "${I3LOCK_COLOR_CONFIG}"/lock.sh /usr/bin/lock
+    sudo cp "${I3LOCK_COLOR_CONFIG}"/lock.sh /usr/bin/lock
 fi
 
 # tty-clock

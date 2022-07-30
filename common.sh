@@ -25,7 +25,7 @@ VSCODE_DEPENDENCIES_DIR=${DEPENDENCIES}/vscode-latest.deb
 SETTINGS=./settings/
 I3_SETTINGS_DIR=${SETTINGS}/i3
 POLYBAR_SETTINGS_DIR=${SETTINGS}/polybar
-I3LOCK_COLOR_SETTINGS_DIR=${SETTINGS}/i3lock_color
+I3LOCK_COLOR_SETTINGS_DIR=${SETTINGS}/i3lock
 DUNST_SETTINGS_DIR=${SETTINGS}/dunst
 TMUX_SETTINGS_FILE=${SETTINGS}/tmux/tmux.conf
 ALACRITTY_SETTINGS_DIR=${SETTINGS}/alacritty
@@ -38,7 +38,7 @@ ROFI_CONFIG=$(realpath -m ~/.config/rofi)
 RANGER_CONFIG=$(realpath -m ~/.config/ranger)
 TMUX_CONFIG_FILE=$(realpath -m ~/.tmux.conf)
 I3_CONFIG=$(realpath -m ~/.config/i3)
-I3LOCK_COLOR_CONFIG=$(realpath -m ~/.config/i3lock_color)
+I3LOCK_COLOR_CONFIG=$(realpath -m ~/.config/i3lock)
 VSCODE_CONFIG=$(realpath -m ~/.config/Code/User)
 DUNST_CONFIG=$(realpath -m ~/.config/dunst)
 POLYBAR_CONFIG=$(realpath -m ~/.config/polybar)
@@ -107,7 +107,7 @@ function install_i3_gaps() {
     popd
 }
 
-function install_i3lock_color() {
+function install_i3lock() {
     echo -e "${BOLDGREEN}installing i3lock-color...${ENDCOLOR}"
 
     sudo apt install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev \
