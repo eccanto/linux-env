@@ -143,4 +143,3 @@ element selected.active {
     background-color:               @background-alt;
     color:                          @foreground;
 }
-

@@ -28,3 +28,14 @@ tty-clock -ct -f "%H:%M, %d %b %Y"
 | Alt  + ,                 | go to back                              |
 | Alt  + .                 | go to forward                           |
 | Ctrl + Enter             | open file in split view [from explorer] |
+
+
+# Ranger
+
+## Shortcuts
+
+| shortcut | description            |
+| -        | -                      |
+| i        | display file (preview) |
+| Alt + j  | scroll preview down    |
+| Alt + k  | scroll preview up      |

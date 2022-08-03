@@ -231,10 +231,11 @@ client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B
 client.background #1E272B
 
 # Gaps
-gaps inner 8
-gaps outer 1
+gaps inner 14
+gaps outer 4
 
-smart_gaps on
+# remove it to disable borders when only one window is open
+# smart_gaps on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
