@@ -29,7 +29,7 @@ class PackagesInstaller:
     def run_command(self, command: str) -> None:
         subprocess.run(
             f'''
-            su - {pwd.getpwuid(os.getlogin()).pw_name}
+            su - {os.getlogin()}
             {command}
             ''',
             shell=True,
