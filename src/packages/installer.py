@@ -1,6 +1,5 @@
 import logging
 import os
-import pwd
 import shutil
 import subprocess
 from pathlib import Path
@@ -17,6 +16,7 @@ from src.configuration.configurations import (
     RofiConfiguration,
     RofiMenuConfiguration
 )
+from src.packages.permissions import PermissionManager
 
 
 class PackagesInstaller:
@@ -28,13 +28,8 @@ class PackagesInstaller:
 
     def run_command(self, command: str) -> None:
         subprocess.run(
-            f'''
-            su - {os.getlogin()}
-            {command}
-            ''',
-            shell=True,
-            check=True,
-            executable='/bin/bash',
+            command, shell=True, check=True, executable='/bin/bash',
+            preexec_fn=lambda: os.setgid(PermissionManager.User.NORMAL.value)
         )
 
     def is_installed(self, package_name: str) -> bool:
