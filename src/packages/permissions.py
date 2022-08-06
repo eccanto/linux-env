@@ -20,5 +20,6 @@ class PermissionManager:
     def __exit__(self, *_) -> None:
         os.seteuid(self.previous_user_euid)
 
+    @classmethod
     def is_root(cls):
         return os.geteuid() == cls.User.ROOT.value
