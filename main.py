@@ -23,7 +23,7 @@ LOCAL_CONFIG = Path('~/.config').expanduser()
 def main(style_path) -> None:
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
 
-    if os.geteuid != PermissionManager.User.ROOT.value:
+    if os.geteuid() != PermissionManager.User.ROOT.value:
         raise PermissionError('need to be root')
 
     with PermissionManager(user=PermissionManager.User.NORMAL):
