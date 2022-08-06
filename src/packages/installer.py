@@ -531,7 +531,7 @@ class PackagesInstaller:
             )
 
     def install_neovim(self) -> None:
-        if shutil('nvim') is None:
+        if not self.is_installed('nvim'):
             logging.info('installing neovim...')
 
             neovim_temp = self.temp.joinpath('neovim')
