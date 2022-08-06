@@ -10,7 +10,6 @@ from pathlib import Path
 import click
 from dotmap import DotMap
 from src.configuration.parser.base_parser import BaseParser
-from src.packages.permissions import PermissionManager
 
 
 class BaseConfiguration(ABC):
@@ -24,11 +23,12 @@ class BaseConfiguration(ABC):
         self.configuration.update(style)
         self.configuration.write(self.config_path)
 
-    @PermissionManager.run_as_root_if_failed()
     def install(self) -> None:
-        shutil.copy(self.config_path, self.installation_path)
+        try:
+            shutil.copy(self.config_path, self.installation_path)
+        except PermissionError:
+            subprocess.run(f'sudo cp {self.config_path} {self.installation_path}', shell=True, check=True)
 
-    @PermissionManager.run_as_root_if_failed()
     def backup(self) -> None:
         if self.installation_path.exists():
             backup_zip = f'{self.installation_path}_backup_{time.time()}'
@@ -38,8 +38,11 @@ class BaseConfiguration(ABC):
             if self.installation_path.is_dir():
                 shutil.make_archive(backup_zip, 'zip', self.installation_path)
             else:
-                with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
-                    zip_file.write(self.installation_path, self.installation_path.name)
+                try:
+                    with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
+                        zip_file.write(self.installation_path, self.installation_path.name)
+                except PermissionError:
+                    subprocess.run(f'zip {backup_zip}.zip {self.installation_path}', shell=True, check=True)
 
     @classmethod
     def reload(cls) -> None:

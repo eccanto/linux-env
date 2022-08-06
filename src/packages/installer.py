@@ -16,7 +16,6 @@ from src.configuration.configurations import (
     RofiConfiguration,
     RofiMenuConfiguration
 )
-from src.packages.permissions import PermissionManager
 
 
 class PackagesInstaller:
@@ -27,10 +26,7 @@ class PackagesInstaller:
         self.style = style
 
     def run_command(self, command: str) -> None:
-        subprocess.run(
-            command, shell=True, check=True, executable='/bin/bash',
-            preexec_fn=lambda: os.setgid(PermissionManager.User.NORMAL.value)
-        )
+        subprocess.run(command, shell=True, check=True, executable='/bin/bash')
 
     def is_installed(self, package_name: str) -> bool:
         return which(package_name) is not None
@@ -41,15 +37,15 @@ class PackagesInstaller:
         self.run_command(
             '''
             sudo apt update -y
-            sudo apt install -y                                                                                      \
-                libcanberra-gtk-module libcanberra-gtk3-module libjsoncpp-dev build-essential xcb                    \
-                libxcb-composite0-dev libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev               \
-                libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev               \
-                libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xrm0 libxcb-xkb-dev libxkbcommon-dev                   \
-                libxkbcommon-x11-dev autoconf xutils-dev dh-autoreconf unzip git libxcb-xrm-dev x11-xserver-utils    \
-                compton binutils gcc make cmake pkg-config fakeroot python3 python3-xcbgen xcb-proto                 \
-                libxcb-ewmh-dev wireless-tools libiw-dev libasound2-dev libpulse-dev libxcb-shape0 libxcb-shape0-dev \
-                libcurl4-openssl-dev libmpdclient-dev pavucontrol python3-pip rxvt-unicode compton ninja-build meson \
+            sudo apt install -y                                                                                       \
+                libcanberra-gtk-module libcanberra-gtk3-module libjsoncpp-dev build-essential xcb                     \
+                libxcb-composite0-dev libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev                \
+                libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev                \
+                libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xrm0 libxcb-xkb-dev libxkbcommon-dev                    \
+                libxkbcommon-x11-dev autoconf xutils-dev dh-autoreconf zip unzip git libxcb-xrm-dev x11-xserver-utils \
+                compton binutils gcc make cmake pkg-config fakeroot python3 python3-xcbgen xcb-proto                  \
+                libxcb-ewmh-dev wireless-tools libiw-dev libasound2-dev libpulse-dev libxcb-shape0 libxcb-shape0-dev  \
+                libcurl4-openssl-dev libmpdclient-dev pavucontrol python3-pip rxvt-unicode compton ninja-build meson  \
                 python3 curl playerctl feh flameshot tty-clock arandr cargo htop vlc firejail zsh
             '''
         )
