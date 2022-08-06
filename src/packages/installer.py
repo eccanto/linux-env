@@ -262,7 +262,7 @@ class PackagesInstaller:
             )
 
     def install_rust(self) -> None:
-        if not self.is_installed('rust'):
+        if not self.is_installed('rustc'):
             logging.info('installing rust...')
 
             self.run_command(
