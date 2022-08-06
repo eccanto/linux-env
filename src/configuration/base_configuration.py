@@ -28,15 +28,16 @@ class BaseConfiguration(ABC):
         shutil.copy(self.config_path, self.installation_path)
 
     def _backup(self) -> None:
-        backup_zip = f'{self.installation_path}_backup_{time.time()}'
+        if self.installation_path.exists():
+            backup_zip = f'{self.installation_path}_backup_{time.time()}'
 
-        logging.info('generating %s local configurations backup "%s.zip"...', self.get_name(), backup_zip)
+            logging.info('generating %s local configurations backup "%s.zip"...', self.get_name(), backup_zip)
 
-        if self.installation_path.is_dir():
-            shutil.make_archive(backup_zip, 'zip', self.installation_path)
-        else:
-            with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
-                zip_file.write(self.installation_path, self.installation_path.name)
+            if self.installation_path.is_dir():
+                shutil.make_archive(backup_zip, 'zip', self.installation_path)
+            else:
+                with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
+                    zip_file.write(self.installation_path, self.installation_path.name)
 
     def backup(self) -> None:
         try:
