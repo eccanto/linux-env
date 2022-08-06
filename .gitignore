@@ -1,4 +1,8 @@
-# project
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# Project
 .dependencies/
 .custom_settings/
 *.log
