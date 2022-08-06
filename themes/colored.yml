@@ -1,0 +1,198 @@
+general:
+  base:
+    color: &base_color "#FF8000"
+    wallpaper: settings/wallpapers/bg_001.jpg
+
+components:
+  alacritty:
+    font:
+      size: 10
+
+  dunst:
+    global:
+      transparency: 30
+
+    urgency_low:
+      background: '"#000000"'
+      foreground: '"#C0C0C0"'
+
+    urgency_normal:
+      background: '"#000000"'
+      foreground: '"#C0C0C0"'
+
+    urgency_critical:
+      background: '"#000000"'
+      foreground: '"#C0C0C0"'
+
+  polybar:
+    bar/i3wmthemer_bar:
+      height: 20
+
+      background: "#1E272B"
+      foreground: "#EAD49B"
+
+      border-color: "#000000ff"
+
+      font-0: "Source Code Pro Semibold:size=9;1"
+      font-1: "Iosevka:size=9;1"
+      font-2: "Font Awesome 5 Free:style=Solid:size=9;1"
+      font-3: "Font Awesome 5 Brands:size=9;1"
+
+      modules-left: i3
+      modules-right: memory swap cpu wlan eth backlight pulseaudio date battery sysmenu
+
+    module/pulseaudio:
+      format-volume-foreground: "#1E272B"
+      format-volume-background: "#FFFFDC"
+      label-muted-foreground: "#666"
+
+    module/backlight:
+      format-foreground: "#1E272B"
+      format-background: "#D7D7D7"
+
+    module/sysmenu:
+      content-foreground: "#FFFFFF"
+
+    module/battery:
+      label-full-foreground: "#73E87A"
+
+    module/memory:
+      label-foreground: "#1E272B"
+      label-background: "#f1fa8c"
+
+    module/swap:
+      label-foreground: "#1E272B"
+      label-background: "#bd93f9"
+
+    module/cpu:
+      label-foreground: "#1E272B"
+      label-background: "#50fa7b"
+
+    module/i3:
+      label-mode-foreground: "#1E272B"
+      label-mode-background: "#78824b"
+
+      label-focused-background: *base_color
+      label-focused-foreground: "#F2F2F2"
+
+      label-unfocused-background: "#1E272B"
+      label-unfocused-foreground: "#E5E5E5"
+
+      label-visible-background: "#1E272B"
+      label-visible-foreground: "#E5E5E5"
+
+      label-urgent-background: "#FF3333"
+
+    module/wlan:
+      format-connected-foreground: "#1E272B"
+      format-connected-background: "#ff79c6"
+
+      label-connected-foreground: "#1E272B"
+
+      ramp-signal-foreground: "#1E272B"
+
+    module/eth:
+      format-connected-foreground: "#1E272B"
+      format-connected-background: "#8be9fd"
+
+      format-connected-prefix-foreground: "#1E272B"
+
+    module/date:
+      format-foreground: "#1E272B"
+      format-background: "#F5983C"
+
+  i3:
+    - regex: for_window \[class="\.\*\"] border pixel \d+
+      value: for_window [class=".*"] border pixel 2
+
+    - regex: "client.focused .+"
+      value: !concat ["client.focused #EAD49B #1E272B #EAD49B", *base_color, *base_color]
+
+    - regex: "client.focused_inactive .+"
+      value: "client.focused_inactive #EAD49B #1E272B #EAD49B #78824B #2C2C2C"
+
+    - regex: "client.unfocused .+"
+      value: "client.unfocused #EAD49B #1E272B #EAD49B #78824B #2C2C2C"
+
+    - regex: "client.urgent .+"
+      value: "client.urgent #EAD49B #1E272B #EAD49B #78824B #78824B"
+
+    - regex: "client.placeholder .+"
+      value: "client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B"
+
+    - regex: "client.background .+"
+      value: "client.background #1E272B"
+
+  i3lock:
+    - regex: "BLANK=.+"
+      value: "BLANK='#000000ff'"
+    - regex: "CLEAR=.+"
+      value: "CLEAR='#000000ee'"
+    - regex: "DEFAULT=.+"
+      value: "DEFAULT='#1E272Bff'"
+    - regex: "TEXT=.+"
+      value: !format ["TEXT='{}'", *base_color]
+    - regex: "WRONG=.+"
+      value: "WRONG='#E90A0Aff'"
+    - regex: "VERIFYING=.+"
+      value: "VERIFYING='#1E272Bff'"
+
+  picom:
+    - regex: inactive-opacity = .+;
+      value: inactive-opacity = 0.94;
+
+    - regex: blur-strength = \d+;
+      value: blur-strength = 5;
+
+    - regex: "\\d+:class_g = 'Rofi'"
+      value:  "80:class_g = 'Rofi'"
+
+    - regex: "\\d+:class_g = 'Alacritty'"
+      value: "88:class_g = 'Alacritty'"
+
+    - regex: "\\d+:class_g = 'Code'"
+      value: "88:class_g = 'Code'"
+
+  rofi:
+    - refex: 'background-color: #\w+'
+      value: 'background-color: #000000'
+
+    - refex: 'bg-alt: #\w+'
+      value: !format ['bg-alt: {}', *base_color]
+
+    - refex: 'fg: #\w+'
+      value: 'fg: #ECEFF4'
+
+    - refex: 'nord-blue-light: #\w+'
+      value: 'nord-blue-light: #000000'
+
+    - refex: 'nord-yellow: #\w+'
+      value: !format ['nord-yellow: {}', *base_color]
+
+  rofi_menu:
+    - regex: 'background: \s*#\w+;'
+      value: 'background: #000000;'
+
+    - regex: 'background-alt: \s*#\w+;'
+      value: 'background-alt: #FFFFFF;'
+
+    - regex: 'foreground: \s*#\w+;'
+      value: 'foreground: #FFFFFF;'
+
+    - regex: 'border: \s*#\w+;'
+      value: 'border: #323232;'
+
+    - regex: 'selected: \s*#\w+;'
+      value: !format ['selected: {};', *base_color]
+
+    - regex: 'urgent: \s*#\w+;'
+      value: 'urgent: #EC407A;'
+
+    - regex: 'logo: \s*#\w+;'
+      value: !format ['logo: {};', *base_color]
+
+    - regex: 'on: \s*#\w+;'
+      value: 'on: #61C766;'
+
+    - regex: 'off: \s*#\w+;'
+      value: 'off: #EC7875;'

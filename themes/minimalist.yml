@@ -1,0 +1,214 @@
+general:
+  base:
+    color: &base_color "#C1C1C1"
+    wallpaper: settings/wallpapers/bg_001.jpg
+
+components:
+  alacritty:
+    font:
+      size: 10
+
+  dunst:
+    global:
+      transparency: 30
+
+    urgency_low:
+      background: '"#000000"'
+      foreground: '"#C0C0C0"'
+
+    urgency_normal:
+      background: '"#000000"'
+      foreground: '"#C0C0C0"'
+
+    urgency_critical:
+      background: '"#000000"'
+      foreground: '"#C0C0C0"'
+
+  polybar:
+    bar/i3wmthemer_bar:
+      height: 20
+
+      background: &polybar_background "#1E272B"
+      foreground: "#EAD49B"
+
+      border-color: "#000000ff"
+
+      font-0: "Source Code Pro Semibold:size=9;1"
+      font-1: "Iosevka:size=9;1"
+      font-2: "Font Awesome 5 Free:style=Solid:size=9;1"
+      font-3: "Font Awesome 5 Brands:size=9;1"
+
+      modules-left: i3
+      modules-right: memory cpu wlan eth backlight pulseaudio date battery sysmenu
+
+    module/pulseaudio:
+      format-volume-foreground: *base_color
+      format-volume-background: *polybar_background
+      label-muted-foreground: "#666"
+      format-volume-padding: &polybar_module_padding 1
+
+    module/backlight:
+      format-foreground: *base_color
+      format-background: *polybar_background
+      ramp-padding-left: *polybar_module_padding
+      label-padding-right: *polybar_module_padding
+
+    module/sysmenu:
+      content-foreground: *base_color
+      content-padding: *polybar_module_padding
+
+    module/battery:
+      label-full-foreground: "#73E87A"
+
+    module/memory:
+      label-foreground: *base_color
+      label-background: *polybar_background
+      label-padding-left: *polybar_module_padding
+      label-padding-right: *polybar_module_padding
+
+    module/swap:
+      label-foreground: *base_color
+      label-background: *polybar_background
+      label-padding-left: *polybar_module_padding
+      label-padding-right: *polybar_module_padding
+
+    module/cpu:
+      label-foreground: *base_color
+      label-background: *polybar_background
+      label-padding-left: *polybar_module_padding
+      label-padding-right: *polybar_module_padding
+
+    module/i3:
+      label-mode-foreground: "#1E272B"
+      label-mode-background: "#78824b"
+
+      label-focused-background: *base_color
+      label-focused-foreground: *polybar_background
+
+      label-unfocused-background: "#1E272B"
+      label-unfocused-foreground: "#E5E5E5"
+
+      label-visible-background: "#1E272B"
+      label-visible-foreground: "#E5E5E5"
+
+      label-urgent-background: "#FF3333"
+
+    module/wlan:
+      format-connected-foreground: *base_color
+      format-connected-background: *polybar_background
+
+      label-connected-foreground: *base_color
+
+      ramp-signal-foreground: *base_color
+
+      format-connected-padding: *polybar_module_padding
+
+    module/eth:
+      format-connected-foreground: *base_color
+      format-connected-background: *polybar_background
+
+      format-connected-prefix-foreground: *base_color
+
+      format-connected-padding: *polybar_module_padding
+
+    module/date:
+      format-foreground: *base_color
+      format-background: *polybar_background
+
+      format-padding: *polybar_module_padding
+
+  i3:
+    - regex: for_window \[class="\.\*\"] border pixel \d+
+      value: for_window [class=".*"] border pixel 2
+
+    - regex: "client.focused .+"
+      value: !concat ["client.focused #EAD49B #1E272B #EAD49B", *base_color, *base_color]
+
+    - regex: "client.focused_inactive .+"
+      value: "client.focused_inactive #EAD49B #1E272B #EAD49B #78824B #2C2C2C"
+
+    - regex: "client.unfocused .+"
+      value: "client.unfocused #EAD49B #1E272B #EAD49B #78824B #2C2C2C"
+
+    - regex: "client.urgent .+"
+      value: "client.urgent #EAD49B #1E272B #EAD49B #78824B #78824B"
+
+    - regex: "client.placeholder .+"
+      value: "client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B"
+
+    - regex: "client.background .+"
+      value: "client.background #1E272B"
+
+  i3lock:
+    - regex: "BLANK=.+"
+      value: "BLANK='#000000ff'"
+    - regex: "CLEAR=.+"
+      value: "CLEAR='#000000ee'"
+    - regex: "DEFAULT=.+"
+      value: "DEFAULT='#1E272Bff'"
+    - regex: "TEXT=.+"
+      value: !format ["TEXT='{}'", *base_color]
+    - regex: "WRONG=.+"
+      value: "WRONG='#E90A0Aff'"
+    - regex: "VERIFYING=.+"
+      value: "VERIFYING='#1E272Bff'"
+
+  picom:
+    - regex: inactive-opacity = .+;
+      value: inactive-opacity = 0.94;
+
+    - regex: blur-strength = \d+;
+      value: blur-strength = 5;
+
+    - regex: "\\d+:class_g = 'Rofi'"
+      value:  "80:class_g = 'Rofi'"
+
+    - regex: "\\d+:class_g = 'Alacritty'"
+      value: "92:class_g = 'Alacritty'"
+
+    - regex: "\\d+:class_g = 'Code'"
+      value: "92:class_g = 'Code'"
+
+  rofi:
+    - refex: 'background-color: #\w+'
+      value: 'background-color: #000000'
+
+    - refex: 'bg-alt: #\w+'
+      value: !format ['bg-alt: {}', *base_color]
+
+    - refex: 'fg: #\w+'
+      value: 'fg: #ECEFF4'
+
+    - refex: 'nord-blue-light: #\w+'
+      value: 'nord-blue-light: #000000'
+
+    - refex: 'nord-yellow: #\w+'
+      value: !format ['nord-yellow: {}', *base_color]
+
+  rofi_menu:
+    - regex: 'background: \s*#\w+;'
+      value: 'background: #000000;'
+
+    - regex: 'background-alt: \s*#\w+;'
+      value: 'background-alt: #FFFFFF;'
+
+    - regex: 'foreground: \s*#\w+;'
+      value: 'foreground: #FFFFFF;'
+
+    - regex: 'border: \s*#\w+;'
+      value: 'border: #323232;'
+
+    - regex: 'selected: \s*#\w+;'
+      value: !format ['selected: {};', *base_color]
+
+    - regex: 'urgent: \s*#\w+;'
+      value: 'urgent: #EC407A;'
+
+    - regex: 'logo: \s*#\w+;'
+      value: !format ['logo: {};', *base_color]
+
+    - regex: 'on: \s*#\w+;'
+      value: 'on: #61C766;'
+
+    - regex: 'off: \s*#\w+;'
+      value: 'off: #EC7875;'

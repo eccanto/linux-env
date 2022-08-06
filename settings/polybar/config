@@ -10,7 +10,9 @@ foreground = #EAD49B
 line-size = 3
 line-color =
 
-border-size = 6
+border-top-size = 4
+border-left-size = 4
+border-right-size = 4
 border-color = #000000ff
 
 padding-left = 0

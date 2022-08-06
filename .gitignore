@@ -1,3 +1,4 @@
 # project
-.deps/
+.dependencies/
 .custom_settings/
+*.log

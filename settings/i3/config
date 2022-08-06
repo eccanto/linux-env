@@ -213,6 +213,7 @@ mode "resize" {
 }
 
 # Autostart applications
+exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 exec --no-startup-id nm-applet
 # exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -231,7 +232,7 @@ client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B
 client.background #1E272B
 
 # Gaps
-gaps inner 14
+gaps inner 12
 gaps outer 4
 
 # remove it to disable borders when only one window is open

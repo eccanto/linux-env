@@ -3,6 +3,20 @@
 # Overview
 configuration of my Linux environment
 
+# Get started
+
+## Install dependencies
+
+```bash
+pip3 install -r requirements.txt
+```
+
+## Setup environment
+
+```bash
+python3 main.py -s themes/colored_simple.ym
+```
+
 # Tools
 
 ## tty-clock
@@ -13,9 +27,9 @@ Open digital clock in terminal
 tty-clock -ct -f "%H:%M, %d %b %Y"
 ```
 
-# VSCode
+## VSCode
 
-## Shortcuts
+### Shortcuts
 
 | shortcut                 | description                             |
 | -                        | -                                       |
@@ -30,9 +44,9 @@ tty-clock -ct -f "%H:%M, %d %b %Y"
 | Ctrl + Enter             | open file in split view [from explorer] |
 
 
-# Ranger
+## Ranger
 
-## Shortcuts
+### Shortcuts
 
 | shortcut | description            |
 | -        | -                      |
