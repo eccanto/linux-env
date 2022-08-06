@@ -25,7 +25,14 @@ class BaseConfiguration(ABC):
         self.configuration.write(self.config_path)
 
     def install(self) -> None:
-        shutil.copy(self.config_path, self.installation_path)
+        try:
+            shutil.copy(self.config_path, self.installation_path)
+        except PermissionError:
+            if not PermissionManager.is_root():
+                with PermissionManager(user=PermissionManager.User.ROOT):
+                    shutil.copy(self.config_path, self.installation_path)
+            else:
+                raise
 
     def _backup(self) -> None:
         if self.installation_path.exists():
