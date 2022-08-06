@@ -8,7 +8,7 @@ configuration of my Linux environment
 ## Install dependencies
 
 ```bash
-sudo pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Setup environment

@@ -42,7 +42,7 @@ class BaseConfiguration(ABC):
                     with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
                         zip_file.write(self.installation_path, self.installation_path.name)
                 except PermissionError:
-                    subprocess.run(f'zip {backup_zip}.zip {self.installation_path}', shell=True, check=True)
+                    subprocess.run(f'sudo zip {backup_zip}.zip {self.installation_path}', shell=True, check=True)
 
     @classmethod
     def reload(cls) -> None:
