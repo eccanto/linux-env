@@ -139,9 +139,10 @@ class PackagesInstaller:
                 '''
             )
 
-        configuration = PolybarConfiguration(
-            self.settings.joinpath('polybar/config'), self.config_directory.joinpath('polybar')
-        )
+        polybar_config = self.config_directory.joinpath('polybar')
+        polybar_config.mkdir(parents=True, exist_ok=True)
+
+        configuration = PolybarConfiguration(self.settings.joinpath('polybar/config'), polybar_config)
         configuration.setup(self.style.components['polybar'])
 
     def install_picom(self) -> None:
