@@ -1,12 +1,13 @@
 import os
 from enum import Enum
-from pwd import getpwnam
+from pathlib import Path
+import pwd
 
 
 class PermissionManager:
     class User(Enum):
-        NORMAL = getpwnam(os.getlogin()).pw_uid
-        ROOT = getpwnam('root').pw_uid
+        NORMAL = pwd.getpwnam(os.getlogin()).pw_uid
+        ROOT = pwd.getpwnam('root').pw_uid
 
     def __init__(self, user: User) -> None:
         self.user_euid = user.value
@@ -14,10 +15,12 @@ class PermissionManager:
         self.previous_user_euid = os.geteuid()
 
     def __enter__(self) -> 'PermissionManager':
+        os.environ['HOME'] = str(Path(f'~{pwd.getpwuid(self.user_euid).pw_name}').expanduser())
         os.seteuid(self.user_euid)
         return self
 
     def __exit__(self, *_) -> None:
+        os.environ['HOME'] = str(Path(f'~{pwd.getpwuid(self.previous_user_euid).pw_name}').expanduser())
         os.seteuid(self.previous_user_euid)
 
     @classmethod
