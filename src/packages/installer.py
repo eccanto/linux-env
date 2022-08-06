@@ -144,10 +144,16 @@ class PackagesInstaller:
         polybar_config = self.config_directory.joinpath('polybar')
         polybar_config.mkdir(parents=True, exist_ok=True)
 
-        shutil.copytree(polybar_settings.parent, polybar_config)
-
         configuration = PolybarConfiguration(polybar_settings, polybar_config)
-        configuration.setup(self.style.components['polybar'])
+        configuration.update(self.style.components['polybar'])
+        configuration.backup()
+
+        if polybar_config.exists():
+            shutil.rmtree(polybar_config)
+            shutil.copytree(polybar_settings.parent, polybar_config)
+
+        configuration.install()
+        configuration.reload()
 
     def install_picom(self) -> None:
         if not self.is_installed('picom'):
