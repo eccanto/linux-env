@@ -18,8 +18,6 @@ class BaseConfiguration(ABC):
 
         self.configuration = self.get_parser()(config_path)
 
-        self.installation_path.mkdir(parents=True, exist_ok=True)
-
     def update(self, style: DotMap) -> None:
         self.configuration.update(style)
         self.configuration.write(self.config_path)

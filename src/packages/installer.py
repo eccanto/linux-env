@@ -78,7 +78,10 @@ class PackagesInstaller:
                 '''
             )
 
-        configuration = I3Configuration(self.settings.joinpath('i3/config'), self.config_directory.joinpath('i3'))
+        config_directory = self.config_directory.joinpath('i3')
+        config_directory.mkdir(parents=True, exist_ok=True)
+
+        configuration = I3Configuration(self.settings.joinpath('i3/config'), config_directory)
         configuration.setup(self.style.components['i3'])
 
     def install_i3lock(self) -> None:
