@@ -24,17 +24,12 @@ class BaseConfiguration(ABC):
         self.configuration.update(style)
         self.configuration.write(self.config_path)
 
+    @PermissionManager.run_as_root_if_failed()
     def install(self) -> None:
-        try:
-            shutil.copy(self.config_path, self.installation_path)
-        except PermissionError:
-            if not PermissionManager.is_root():
-                with PermissionManager(user=PermissionManager.User.ROOT):
-                    shutil.copy(self.config_path, self.installation_path)
-            else:
-                raise
+        shutil.copy(self.config_path, self.installation_path)
 
-    def _backup(self) -> None:
+    @PermissionManager.run_as_root_if_failed()
+    def backup(self) -> None:
         if self.installation_path.exists():
             backup_zip = f'{self.installation_path}_backup_{time.time()}'
 
@@ -45,16 +40,6 @@ class BaseConfiguration(ABC):
             else:
                 with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
                     zip_file.write(self.installation_path, self.installation_path.name)
-
-    def backup(self) -> None:
-        try:
-            self._backup()
-        except PermissionError:
-            if not PermissionManager.is_root():
-                with PermissionManager(user=PermissionManager.User.ROOT):
-                    self._backup()
-            else:
-                raise
 
     @classmethod
     def reload(cls) -> None:

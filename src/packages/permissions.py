@@ -1,3 +1,4 @@
+import logging
 import os
 from enum import Enum
 from pathlib import Path
@@ -26,3 +27,21 @@ class PermissionManager:
     @classmethod
     def is_root(cls):
         return os.geteuid() == cls.User.ROOT.value
+
+    @classmethod
+    def run_as_root_if_failed(cls):
+        def inner(func):
+            def wrapper(*args, **kwargs):
+                try:
+                    func(*args, **kwargs)
+                except PermissionError:
+                    if not cls.is_root():
+                        logging.info('trying as root...')
+
+                        with cls(user=cls.User.ROOT):
+                            func(*args, **kwargs)
+                    else:
+                        raise
+
+            return wrapper
+        return inner

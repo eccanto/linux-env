@@ -190,9 +190,7 @@ class PackagesInstaller:
                 mkdir -p {rofi_config}/themes
                 cp "{rofi_theme}" {rofi_config}/themes
 
-                echo "select nord theme and press 'Alt + a'"
-
-                rofi-theme-selector
+                echo "run 'rofi-theme-selector' and select nord theme and press 'Alt + a'"
                 '''
             )
 
@@ -244,7 +242,7 @@ class PackagesInstaller:
             )
 
     def install_vscode(self) -> None:
-        if not self.is_installed('vscode'):
+        if not self.is_installed('code'):
             logging.info('installing vscode...')
 
             vscode_temp = self.temp.joinpath('vscode-latest.deb')
