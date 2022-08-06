@@ -26,7 +26,15 @@ class PackagesInstaller:
         self.style = style
 
     def run_command(self, command: str) -> None:
-        subprocess.run(command, shell=True, check=True, executable='/bin/bash')
+        subprocess.run(
+            f'''
+            set -eu
+            {command}
+            ''',
+            shell=True,
+            check=True,
+            executable='/bin/bash',
+        )
 
     def is_installed(self, package_name: str) -> bool:
         return which(package_name) is not None
@@ -365,7 +373,7 @@ class PackagesInstaller:
             tmux_temp = self.temp.joinpath('tmux')
             self.run_command(
                 f'''
-                sudo apt install -y libevent-dev bison byacc
+                sudo apt install -y libevent-dev ncurses-dev bison byacc
 
                 if [[ ! -d "{tmux_temp}" ]]; then
                     git clone https://github.com/tmux/tmux.git "{tmux_temp}"
