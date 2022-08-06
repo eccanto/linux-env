@@ -7,6 +7,7 @@ import coloredlogs
 
 from src.configuration.parser.yaml_parser import YamlParser
 from src.packages.installer import PackagesInstaller
+from src.packages.permissions import PermissionManager
 
 
 CUSTOM_SETTINGS = Path('.custom_settings')
@@ -21,44 +22,45 @@ LOCAL_CONFIG = Path('~/.config').expanduser()
 def main(style_path) -> None:
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
 
-    if CUSTOM_SETTINGS.exists():
-        shutil.rmtree(CUSTOM_SETTINGS)
+    with PermissionManager(user=PermissionManager.User.NORMAL):
+        if CUSTOM_SETTINGS.exists():
+            shutil.rmtree(CUSTOM_SETTINGS)
 
-    DEPENDENCIES.mkdir(parents=True, exist_ok=True)
+        DEPENDENCIES.mkdir(parents=True, exist_ok=True)
 
-    style = YamlParser(style_path)
+        style = YamlParser(style_path)
 
-    shutil.copytree(DEFAULT_SETTINGS, CUSTOM_SETTINGS)
+        shutil.copytree(DEFAULT_SETTINGS, CUSTOM_SETTINGS)
 
-    logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
-    shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
+        logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
+        shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
-    installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, LOCAL_CONFIG, style)
-    installer.install_requirements()
-    installer.install_pip_requirements()
-    installer.install_i3_gaps()
-    installer.install_i3lock()
-    installer.install_polybar()
-    installer.install_picom()
-    installer.install_vscode()
-    installer.install_fonts_awesome()
-    installer.install_dunst()
-    installer.install_rust()
-    installer.install_btop()
-    installer.install_dockly()
-    installer.install_lazygit()
-    installer.install_tmux()
-    installer.install_firefox()
-    installer.install_rofi()
-    installer.install_powerlevel10k()
-    installer.install_bat()
-    installer.install_lsd()
-    installer.install_fzf()
-    installer.install_ueberzug()
-    installer.install_ranger()
-    installer.install_neovim()
+        installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, LOCAL_CONFIG, style)
+        installer.install_requirements()
+        installer.install_pip_requirements()
+        installer.install_i3_gaps()
+        installer.install_i3lock()
+        installer.install_polybar()
+        installer.install_picom()
+        installer.install_vscode()
+        installer.install_fonts_awesome()
+        installer.install_dunst()
+        installer.install_rust()
+        installer.install_btop()
+        installer.install_dockly()
+        installer.install_lazygit()
+        installer.install_tmux()
+        installer.install_firefox()
+        installer.install_rofi()
+        installer.install_powerlevel10k()
+        installer.install_bat()
+        installer.install_lsd()
+        installer.install_fzf()
+        installer.install_ueberzug()
+        installer.install_ranger()
+        installer.install_neovim()
 
-    logging.info('done!')
+        logging.info('done!')
 
 
 if __name__ == '__main__':

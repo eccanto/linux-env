@@ -1,4 +1,5 @@
 import logging
+import os
 import shutil
 import subprocess
 import time
@@ -9,6 +10,7 @@ from pathlib import Path
 import click
 from dotmap import DotMap
 from src.configuration.parser.base_parser import BaseParser
+from src.packages.permissions import PermissionManager
 
 
 class BaseConfiguration(ABC):
@@ -25,8 +27,8 @@ class BaseConfiguration(ABC):
     def install(self) -> None:
         shutil.copy(self.config_path, self.installation_path)
 
-    def backup(self) -> None:
-        backup_zip = f'{self.installation_path}_{time.time()}'
+    def _backup(self) -> None:
+        backup_zip = f'{self.installation_path}_backup_{time.time()}'
 
         logging.info('generating %s local configurations backup "%s.zip"...', self.get_name(), backup_zip)
 
@@ -35,6 +37,16 @@ class BaseConfiguration(ABC):
         else:
             with zipfile.ZipFile(f'{backup_zip}.zip', 'w', compression=zipfile.ZIP_DEFLATED) as zip_file:
                 zip_file.write(self.installation_path, self.installation_path.name)
+
+    def backup(self) -> None:
+        try:
+            self._backup()
+        except PermissionError:
+            if not PermissionManager.is_root():
+                with PermissionManager(user=PermissionManager.User.ROOT):
+                    self._backup()
+            else:
+                raise
 
     @classmethod
     def reload(cls) -> None:
