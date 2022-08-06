@@ -1,4 +1,5 @@
 import logging
+import os
 import shutil
 from pathlib import Path
 
@@ -21,6 +22,9 @@ LOCAL_CONFIG = Path('~/.config').expanduser()
 @click.option('-s', '--style_path', help='Yaml style path.', required=True, type=click.Path(exists=True))
 def main(style_path) -> None:
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
+
+    if os.geteuid != PermissionManager.User.ROOT.value:
+        raise PermissionError('need to be root')
 
     with PermissionManager(user=PermissionManager.User.NORMAL):
         if CUSTOM_SETTINGS.exists():
