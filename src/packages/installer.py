@@ -1,5 +1,6 @@
 import logging
 import os
+import pwd
 import shutil
 import subprocess
 from pathlib import Path
@@ -26,7 +27,15 @@ class PackagesInstaller:
         self.style = style
 
     def run_command(self, command: str) -> None:
-        subprocess.run(command, shell=True, check=True, executable='/bin/bash')
+        subprocess.run(
+            f'''
+            su - {pwd.getpwuid(os.getlogin()).pw_name}
+            {command}
+            ''',
+            shell=True,
+            check=True,
+            executable='/bin/bash',
+        )
 
     def is_installed(self, package_name: str) -> bool:
         return which(package_name) is not None
