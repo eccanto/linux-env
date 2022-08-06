@@ -15,7 +15,6 @@ CUSTOM_SETTINGS = Path('.custom_settings')
 DEFAULT_SETTINGS = Path('settings')
 
 DEPENDENCIES = Path('.dependencies')
-LOCAL_CONFIG = Path('~/.config').expanduser()
 
 
 @click.command()
@@ -27,6 +26,8 @@ def main(style_path) -> None:
         raise PermissionError('need to be root')
 
     with PermissionManager(user=PermissionManager.User.NORMAL):
+        local_config = Path('~/.config').expanduser()
+
         if CUSTOM_SETTINGS.exists():
             shutil.rmtree(CUSTOM_SETTINGS)
 
@@ -39,7 +40,7 @@ def main(style_path) -> None:
         logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
         shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
-        installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, LOCAL_CONFIG, style)
+        installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, local_config, style)
         installer.install_requirements()
         installer.install_pip_requirements()
         installer.install_i3_gaps()
