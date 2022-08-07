@@ -201,7 +201,7 @@ class PackagesInstaller:
             logging.info('installing rofi...')
 
             rofi_config = self.config_directory.joinpath('rofi')
-            rofi_theme = self.settings.joinpath('rofi/nord.rasi')
+            rofi_theme = self.settings.joinpath('rofi/themes/nord.rasi')
             self.run_command(
                 f'''
                 sudo apt install -y rofi
