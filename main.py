@@ -42,6 +42,7 @@ def main(style_path) -> None:
     installer.install_i3lock()
     installer.install_polybar()
     installer.install_picom()
+    installer.install_alacritty()
     installer.install_vscode()
     installer.install_fonts_awesome()
     installer.install_dunst()

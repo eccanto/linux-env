@@ -1,5 +1,4 @@
 import logging
-import os
 import shutil
 import subprocess
 import time
@@ -7,7 +6,6 @@ import zipfile
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-import click
 from dotmap import DotMap
 from src.configuration.parser.base_parser import BaseParser
 
@@ -46,10 +44,9 @@ class BaseConfiguration(ABC):
 
     @classmethod
     def reload(cls) -> None:
-        if click.confirm(f'Do you want to reload {cls.get_name()}?', default=True):
-            logging.info('reloading %s...', cls.get_name())
-            subprocess.run(cls.get_reload_command(), shell=True, check=True)
-            logging.info('%s was reloaded', cls.get_name())
+        logging.info('reloading %s...', cls.get_name())
+        subprocess.run(cls.get_reload_command(), shell=True, check=True)
+        logging.info('%s was reloaded', cls.get_name())
 
     def setup(self, style: DotMap) -> None:
         self.update(style)
