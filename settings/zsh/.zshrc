@@ -44,7 +44,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 source /usr/share/zsh-plugins/sudo.plugin.zsh
 
