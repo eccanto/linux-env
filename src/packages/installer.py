@@ -191,9 +191,10 @@ class PackagesInstaller:
                 '''
             )
 
-        configuration = PicomConfiguration(
-            self.settings.joinpath('picom/picom.conf'), self.config_directory.joinpath('picom')
-        )
+        picom_config = self.config_directory.joinpath('picom')
+        picom_config.mkdir(parents=True, exist_ok=True)
+
+        configuration = PicomConfiguration(self.settings.joinpath('picom/picom.conf'), picom_config)
         configuration.setup(self.style.components['picom'])
 
     def install_rofi(self) -> None:
@@ -230,9 +231,10 @@ class PackagesInstaller:
 
             self.run_command('sudo apt install -y dunst')
 
-        configuration = DunstConfiguration(
-            self.settings.joinpath('dunst/dunstrc'), self.config_directory.joinpath('dunst')
-        )
+        dunst_config = self.config_directory.joinpath('dunst')
+        dunst_config.mkdir(parents=True, exist_ok=True)
+
+        configuration = DunstConfiguration(self.settings.joinpath('dunst/dunstrc'), dunst_config)
         configuration.setup(self.style.components['dunst'])
 
     def install_ranger(self):
@@ -314,9 +316,10 @@ class PackagesInstaller:
                 '''
             )
 
-        configuration = AlacrittyConfiguration(
-            self.settings.joinpath('alacritty/alacritty.yml'), self.config_directory.joinpath('alacritty')
-        )
+        alacrity_config = self.config_directory.joinpath('alacritty')
+        alacrity_config.mkdir(parents=True, exist_ok=True)
+
+        configuration = AlacrittyConfiguration(self.settings.joinpath('alacritty/alacritty.yml'), alacrity_config)
         configuration.setup(self.style.components['alacritty'])
 
     def install_btop(self) -> None:
