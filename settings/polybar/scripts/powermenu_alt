@@ -6,11 +6,11 @@ rofi_command="rofi -theme $HOME/.config/polybar/scripts/themes/powermenu_alt.ras
 uptime=$(uptime -p | sed -e 's/up //g')
 
 # Options
-shutdown=" Shutdown"
-reboot=" Restart"
-lock=" Lock"
-suspend=" Suspend"
-logout=" Logout"
+shutdown="⏻ Shutdown"
+reboot="⟳ Restart"
+lock="➥ Lock"
+suspend="⏾ Suspend"
+logout="✘ Logout"
 
 # Variable passed to rofi
 options="$lock\n$logout\n$suspend\n$reboot\n$shutdown"
@@ -35,4 +35,3 @@ case $chosen in
         i3 exit logout
         ;;
 esac
-

@@ -170,20 +170,8 @@ components:
       value: "92:class_g = 'Code'"
 
   rofi:
-    - refex: 'background-color: #\w+'
-      value: 'background-color: #000000'
-
-    - refex: 'bg-alt: #\w+'
-      value: !format ['bg-alt: {}', *base_color]
-
-    - refex: 'fg: #\w+'
-      value: 'fg: #ECEFF4'
-
-    - refex: 'nord-blue-light: #\w+'
-      value: 'nord-blue-light: #000000'
-
-    - refex: 'nord-yellow: #\w+'
-      value: !format ['nord-yellow: {}', *base_color]
+    - refex: 'selected-normal-background: #\w+'
+      value: !format ['selected-normal-background: {}', *base_color]
 
   rofi_menu:
     - regex: 'background: \s*#\w+;'

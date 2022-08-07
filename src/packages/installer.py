@@ -28,7 +28,7 @@ class PackagesInstaller:
     def run_command(self, command: str) -> None:
         subprocess.run(
             f'''
-            set -eu
+            set -eux
             {command}
             ''',
             shell=True,
@@ -177,7 +177,7 @@ class PackagesInstaller:
                     uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev
 
                 if [[ ! -d {picom_temp} ]]; then
-                    git clone https://github.com/ibhagwan/picom.git {picom_temp}
+                    git clone https://github.com/ibhagwan/picom.git "{picom_temp}"
                     pushd {picom_temp}
                         git submodule update --init --recursive
                     popd
@@ -203,9 +203,22 @@ class PackagesInstaller:
 
             rofi_config = self.config_directory.joinpath('rofi')
             rofi_settings = self.settings.joinpath('rofi')
+            rofi_temp = self.temp.joinpath('rofi')
             self.run_command(
                 f'''
-                sudo apt install -y rofi
+                sudo apt-get install -y libgtk2.0-dev flex
+
+                if [[ ! -d "{rofi_temp}" ]]; then
+                    git clone https://github.com/davatorium/rofi.git "{rofi_temp}"
+                fi
+
+                pushd "{rofi_temp}"
+                    git checkout 1.7.3
+
+                    meson setup build
+                    ninja -C build
+                    sudo ninja -C build install
+                popd
 
                 mkdir -p {rofi_config}
                 cp -r {rofi_settings}/* {rofi_config}/
@@ -495,7 +508,7 @@ class PackagesInstaller:
             )
 
     def install_fonts_nerd(self) -> None:
-        if not os.path.exists('/usr/local/share/fonts/NerdFontsll'):
+        if not os.path.exists('/usr/local/share/fonts/NerdFonts'):
             logging.info('installing fonts nerd...')
 
             fonts_temp = self.temp.joinpath('fonts/nerd')
@@ -547,14 +560,47 @@ class PackagesInstaller:
             '''
         )
 
-        if not os.path.exists('/usr/share/zsh-plugins/sudo.plugin.zsh'):
-            logging.info('installing zsh plugin: sudo.plugin.zsh...')
+        if not os.path.exists('/usr/share/zsh-plugins/'):
+            logging.info('configuring zsh plugin directory...')
 
             self.run_command(
                 '''
                 sudo mkdir -p /usr/share/zsh-plugins/
                 sudo chown $(whoami):$(whoami) /usr/share/zsh-plugins/
+                '''
+            )
+
+        if not os.path.exists('/usr/share/zsh-plugins/sudo.plugin.zsh'):
+            logging.info('installing zsh plugin: sudo.plugin.zsh...')
+
+            self.run_command(
+                '''
                 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P /usr/share/zsh-plugins/
+                '''
+            )
+
+        plugins_path = Path('~/.zsh/').expanduser()
+        plugins_path.mkdir(parents=True, exist_ok=True)
+
+        if not plugins_path.joinpath('zsh-autosuggestions').exists():
+            logging.info('installing zsh plugin: zsh-autosuggestions.zsh...')
+
+            self.run_command(
+                f'''
+                git clone https://github.com/zsh-users/zsh-autosuggestions {plugins_path}/zsh-autosuggestions
+
+                echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+                '''
+            )
+
+        if not plugins_path.joinpath('zsh-syntax-highlighting').exists():
+            logging.info('installing zsh plugin: zsh-syntax-highlighting.zsh...')
+
+            self.run_command(
+                f'''
+                git clone https://github.com/zsh-users/zsh-syntax-highlighting {plugins_path}/zsh-syntax-highlighting
+
+                echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
                 '''
             )
 
