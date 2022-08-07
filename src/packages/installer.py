@@ -495,7 +495,7 @@ class PackagesInstaller:
             )
 
     def install_powerlevel10k(self) -> None:
-        if os.path.exists('/usr/local/share/powerlevel10k/powerlevel10k.zsh-theme'):
+        if not os.path.exists('/usr/local/share/powerlevel10k/powerlevel10k.zsh-theme'):
             logging.info('installing powerlevel10k...')
 
             powerlevel10k_temp = self.temp.joinpath('powerlevel10k')
