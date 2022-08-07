@@ -53,3 +53,33 @@ tty-clock -ct -f "%H:%M, %d %b %Y"
 | i        | display file (preview) |
 | Alt + j  | scroll preview down    |
 | Alt + k  | scroll preview up      |
+
+
+# Useful
+
+## Change keyboard layout
+
+```bash
+# change to Español latam
+setxkbmap -layout latam
+
+echo "setxkbmap -layout latam" >> ~/.profile
+```
+
+**Nota**:
+
+## Search icons in system fonts
+
+```bash
+sudo apt install gucharmap
+
+gucharmap
+```
+
+## Generate monitor profile
+
+```bash
+arandr
+```
+
+relocate the monitors and save the profile "Layout -> Save as" (bash file). You can generate multiple profiles for different situations (home, office, etc.).

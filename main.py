@@ -45,6 +45,7 @@ def main(style_path) -> None:
     installer.install_alacritty()
     installer.install_vscode()
     installer.install_fonts_awesome()
+    installer.install_fonts_nerd()
     installer.install_dunst()
     installer.install_rust()
     installer.install_btop()

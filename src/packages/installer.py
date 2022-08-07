@@ -202,13 +202,13 @@ class PackagesInstaller:
             logging.info('installing rofi...')
 
             rofi_config = self.config_directory.joinpath('rofi')
-            rofi_theme = self.settings.joinpath('rofi/themes/nord.rasi')
+            rofi_settings = self.settings.joinpath('rofi')
             self.run_command(
                 f'''
                 sudo apt install -y rofi
 
-                mkdir -p {rofi_config}/themes
-                cp "{rofi_theme}" {rofi_config}/themes
+                mkdir -p {rofi_config}
+                cp -r {rofi_settings}/* {rofi_config}/
 
                 echo "run 'rofi-theme-selector' and select nord theme and press 'Alt + a'"
                 '''
@@ -476,7 +476,7 @@ class PackagesInstaller:
         if not os.path.exists('/usr/share/fonts/opentype/scp'):
             logging.info('installing fonts awesome...')
 
-            fonts_temp = self.temp.joinpath('fonts')
+            fonts_temp = self.temp.joinpath('fonts/awesome')
             self.run_command(
                 f'''
                 sudo mkdir -p /usr/share/fonts/opentype
@@ -490,6 +490,23 @@ class PackagesInstaller:
                         sudo cp use-on-desktop/* /usr/share/fonts
                         sudo fc-cache -f -v
                     popd
+                popd
+                '''
+            )
+
+    def install_fonts_nerd(self) -> None:
+        if not os.path.exists('/usr/local/share/fonts/NerdFontsll'):
+            logging.info('installing fonts nerd...')
+
+            fonts_temp = self.temp.joinpath('fonts/nerd')
+            self.run_command(
+                f'''
+                if [[ ! -d "{fonts_temp}" ]]; then
+                    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git "{fonts_temp}"
+                fi
+
+                pushd "{fonts_temp}"
+                    sudo ./install.sh -S
                 popd
                 '''
             )
