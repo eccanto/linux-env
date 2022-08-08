@@ -1,5 +1,4 @@
 import logging
-import os
 import shutil
 from pathlib import Path
 
@@ -18,7 +17,7 @@ DEPENDENCIES = Path('.dependencies')
 
 @click.command()
 @click.option('-s', '--style_path', help='Yaml style path.', required=True, type=click.Path(exists=True))
-def main(style_path) -> None:
+def main(style_path: str) -> None:
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
 
     local_config = Path('~/.config').expanduser()
@@ -28,7 +27,7 @@ def main(style_path) -> None:
 
     DEPENDENCIES.mkdir(parents=True, exist_ok=True)
 
-    style = YamlParser(style_path)
+    style = YamlParser(Path(style_path))
 
     shutil.copytree(DEFAULT_SETTINGS, CUSTOM_SETTINGS)
 

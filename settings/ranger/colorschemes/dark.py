@@ -1,10 +1,24 @@
 from __future__ import absolute_import, division, print_function
 
-from ranger.gui.colorscheme import ColorScheme
+from typing import Any, Tuple
+
 from ranger.gui.color import (
-    black, blue, cyan, green, magenta, red, white, yellow, default,
-    normal, bold, reverse, dim, BRIGHT,
+    BRIGHT,
+    black,
+    blue,
+    bold,
+    cyan,
+    default,
+    dim,
+    green,
+    magenta,
+    normal,
+    red,
+    reverse,
+    white,
+    yellow,
 )
+from ranger.gui.colorscheme import ColorScheme
 
 
 class Dark(ColorScheme):
@@ -15,171 +29,169 @@ class Dark(ColorScheme):
     EXECUTABLE_COLOR = 62
     TITLEBAR_GOOD_COLOR = 62 + BRIGHT
 
-    def use(self, context):  # pylint: disable=too-many-branches,too-many-statements
-        fg, bg, attr = (self.FOREGROUND_COLOR, default, normal)
+    def use(self, context: Any) -> Tuple[int, int, int]:  # noqa: MC0001
+        foreground, background, attribute = (self.FOREGROUND_COLOR, default, normal)
 
         if context.reset:
             return (self.FOREGROUND_COLOR, black, normal)
 
-        elif context.in_browser:
+        if context.in_browser:
             if context.selected:
-                attr = reverse
+                attribute = reverse
             else:
-                attr = normal
+                attribute = normal
             if context.empty or context.error:
-                bg = red
+                background = red
             if context.border:
-                fg = default
+                foreground = default
             if context.media:
                 if context.image:
-                    fg = yellow
+                    foreground = yellow
                 else:
-                    fg = magenta
+                    foreground = magenta
             if context.container:
-                fg = red
+                foreground = red
             if context.directory:
-                attr |= bold
-                fg = self.DIRECTORY_COLOR
-                fg += BRIGHT
-            elif context.executable and not \
-                    any((context.media, context.container,
-                         context.fifo, context.socket)):
-                attr |= bold
-                fg = self.EXECUTABLE_COLOR
-                fg += BRIGHT
+                attribute |= bold
+                foreground = self.DIRECTORY_COLOR
+                foreground += BRIGHT
+            elif context.executable and not any((context.media, context.container, context.fifo, context.socket)):
+                attribute |= bold
+                foreground = self.EXECUTABLE_COLOR
+                foreground += BRIGHT
             if context.socket:
-                attr |= bold
-                fg = magenta
-                fg += BRIGHT
+                attribute |= bold
+                foreground = magenta
+                foreground += BRIGHT
             if context.fifo or context.device:
-                fg = yellow
+                foreground = yellow
                 if context.device:
-                    attr |= bold
-                    fg += BRIGHT
+                    attribute |= bold
+                    foreground += BRIGHT
             if context.link:
-                fg = cyan if context.good else magenta
+                foreground = cyan if context.good else magenta
             if context.tag_marker and not context.selected:
-                attr |= bold
-                if fg in (red, magenta):
-                    fg = white
+                attribute |= bold
+                if foreground in (red, magenta):
+                    foreground = white
                 else:
-                    fg = red
-                fg += BRIGHT
+                    foreground = red
+                foreground += BRIGHT
             if not context.selected and (context.cut or context.copied):
-                attr |= bold
-                fg = black
-                fg += BRIGHT
+                attribute |= bold
+                foreground = black
+                foreground += BRIGHT
                 # If the terminal doesn't support bright colors, use dim white
                 # instead of black.
                 if BRIGHT == 0:
-                    attr |= dim
-                    fg = white
+                    attribute |= dim
+                    foreground = white
             if context.main_column:
                 # Doubling up with BRIGHT here causes issues because it's
                 # additive not idempotent.
                 if context.selected:
-                    attr |= bold
+                    attribute |= bold
                 if context.marked:
-                    attr |= bold
-                    fg = yellow
+                    attribute |= bold
+                    foreground = yellow
             if context.badinfo:
-                if attr & reverse:
-                    bg = magenta
+                if attribute & reverse:
+                    background = magenta
                 else:
-                    fg = magenta
+                    foreground = magenta
 
             if context.inactive_pane:
-                fg = cyan
+                foreground = cyan
 
         elif context.in_titlebar:
             if context.hostname:
-                fg = red if context.bad else self.TITLEBAR_GOOD_COLOR
+                foreground = red if context.bad else self.TITLEBAR_GOOD_COLOR
             elif context.directory:
-                fg = self.DIRECTORY_COLOR
-                fg += BRIGHT
+                foreground = self.DIRECTORY_COLOR
+                foreground += BRIGHT
             elif context.tab:
                 if context.good:
-                    bg = green
+                    background = green
             elif context.link:
-                fg = cyan
-            attr |= bold
+                foreground = cyan
+            attribute |= bold
 
         elif context.in_statusbar:
             if context.permissions:
                 if context.good:
-                    fg = cyan
+                    foreground = cyan
                 elif context.bad:
-                    fg = magenta
+                    foreground = magenta
             if context.marked:
-                attr |= bold | reverse
-                fg = yellow
-                fg += BRIGHT
+                attribute |= bold | reverse
+                foreground = yellow
+                foreground += BRIGHT
             if context.frozen:
-                attr |= bold | reverse
-                fg = cyan
-                fg += BRIGHT
+                attribute |= bold | reverse
+                foreground = cyan
+                foreground += BRIGHT
             if context.message:
                 if context.bad:
-                    attr |= bold
-                    fg = red
-                    fg += BRIGHT
+                    attribute |= bold
+                    foreground = red
+                    foreground += BRIGHT
             if context.loaded:
-                bg = self.progress_bar_color
+                background = self.progress_bar_color
             if context.vcsinfo:
-                fg = blue
-                attr &= ~bold
+                foreground = blue
+                attribute &= ~bold
             if context.vcscommit:
-                fg = yellow
-                attr &= ~bold
+                foreground = yellow
+                attribute &= ~bold
             if context.vcsdate:
-                fg = cyan
-                attr &= ~bold
+                foreground = cyan
+                attribute &= ~bold
 
         if context.text:
             if context.highlight:
-                attr |= reverse
+                attribute |= reverse
 
         if context.in_taskview:
             if context.title:
-                fg = blue
+                foreground = blue
 
             if context.selected:
-                attr |= reverse
+                attribute |= reverse
 
             if context.loaded:
                 if context.selected:
-                    fg = self.progress_bar_color
+                    foreground = self.progress_bar_color
                 else:
-                    bg = self.progress_bar_color
+                    background = self.progress_bar_color
 
         if context.vcsfile and not context.selected:
-            attr &= ~bold
+            attribute &= ~bold
             if context.vcsconflict:
-                fg = magenta
+                foreground = magenta
             elif context.vcsuntracked:
-                fg = cyan
+                foreground = cyan
             elif context.vcschanged:
-                fg = red
+                foreground = red
             elif context.vcsunknown:
-                fg = red
+                foreground = red
             elif context.vcsstaged:
-                fg = green
+                foreground = green
             elif context.vcssync:
-                fg = green
+                foreground = green
             elif context.vcsignored:
-                fg = default
+                foreground = default
 
         elif context.vcsremote and not context.selected:
-            attr &= ~bold
+            attribute &= ~bold
             if context.vcssync or context.vcsnone:
-                fg = green
+                foreground = green
             elif context.vcsbehind:
-                fg = red
+                foreground = red
             elif context.vcsahead:
-                fg = blue
+                foreground = blue
             elif context.vcsdiverged:
-                fg = magenta
+                foreground = magenta
             elif context.vcsunknown:
-                fg = red
+                foreground = red
 
-        return fg, bg, attr
+        return foreground, background, attribute

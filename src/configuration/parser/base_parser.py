@@ -5,7 +5,7 @@ from typing import Any
 
 
 class BaseParser(ABC):
-    def __init__(self, path) -> None:
+    def __init__(self, path: Path) -> None:
         super().__init__()
 
         self.path = path
@@ -20,16 +20,13 @@ class BaseParser(ABC):
     def write(self, output: Path) -> None:
         pass
 
-    def __getattr__(self, name: str):
+    def __getattr__(self, name: str) -> Any:
         return getattr(self._data, name)
 
-    def __setattr__(self, name: str, value: Any) -> None:
-        super().__setattr__(name, value)
-
-    def update(self, data):
+    def update(self, data: Any) -> None:
         self._update_data(self._data, data)
 
-    def _update_data(self, self_data, data):
+    def _update_data(self, self_data: Any, data: Any) -> Any:
         for key, value in data.items():
             if isinstance(value, collections.abc.Mapping):
                 self_data[key] = self._update_data(self_data.get(key, {}), value)

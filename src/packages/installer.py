@@ -1,7 +1,7 @@
 import logging
 import os
 import shutil
-import subprocess
+import subprocess  # nosec #B404
 from pathlib import Path
 from shutil import which
 from typing import Any
@@ -14,11 +14,11 @@ from src.configuration.configurations import (
     PicomConfiguration,
     PolybarConfiguration,
     RofiConfiguration,
-    RofiMenuConfiguration
+    RofiMenuConfiguration,
 )
 
 
-class PackagesInstaller:
+class PackagesInstaller:  # pylint: disable=too-many-public-methods
     def __init__(self, temp: Path, settings: Path, config_directory: Path, style: Any) -> None:
         self.temp = temp
         self.settings = settings
@@ -31,7 +31,7 @@ class PackagesInstaller:
             set -eux
             {command}
             ''',
-            shell=True,
+            shell=True,  # nosec #B602
             check=True,
             executable='/bin/bash',
         )
@@ -234,7 +234,7 @@ class PackagesInstaller:
 
         configuration_rofi_menu = RofiMenuConfiguration(
             self.settings.joinpath('polybar/scripts/themes/colors.rasi'),
-            self.config_directory.joinpath('polybar/scripts/themes/colors.rasi')
+            self.config_directory.joinpath('polybar/scripts/themes/colors.rasi'),
         )
         configuration_rofi_menu.setup(self.style.components['rofi_menu'])
 
@@ -250,7 +250,7 @@ class PackagesInstaller:
         configuration = DunstConfiguration(self.settings.joinpath('dunst/dunstrc'), dunst_config)
         configuration.setup(self.style.components['dunst'])
 
-    def install_ranger(self):
+    def install_ranger(self) -> None:
         if not self.is_installed('ranger'):
             logging.info('installing ranger...')
 
@@ -270,7 +270,8 @@ class PackagesInstaller:
                 # install ranger plugins
                 mkdir -p {ranger_config_directory}/pluggins
                 if [[ ! -d {ranger_config_directory}/plugins/ranger_devicons ]]; then
-                    git clone https://github.com/alexanderjeurissen/ranger_devicons {ranger_config_directory}/plugins/ranger_devicons
+                    git clone https://github.com/alexanderjeurissen/ranger_devicons \
+                        {ranger_config_directory}/plugins/ranger_devicons
                 fi
                 '''
             )
@@ -314,8 +315,8 @@ class PackagesInstaller:
             alacrity_temp = self.temp.joinpath('alacrity')
             self.run_command(
                 f'''
-                sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev \
-                    autotools-dev automake libncurses-dev
+                sudo apt-get install -y cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev \
+                    libxkbcommon-dev autotools-dev automake libncurses-dev
 
                 if [[ ! -d {alacrity_temp} ]]; then
                     git clone https://github.com/alacritty/alacritty.git {alacrity_temp}
@@ -343,7 +344,8 @@ class PackagesInstaller:
             self.run_command(
                 f'''
                 mkdir -p "{btop_temp}"
-                wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz -P "{btop_temp}"
+                wget https://github.com/aristocratos/btop/releases/download/v1.1.4/btop-x86_64-linux-musl.tbz \
+                    -P "{btop_temp}"
                 pushd "{btop_temp}"
                     tar -xvjf btop-x86_64-linux-musl.tbz
                     bash install.sh
@@ -374,7 +376,8 @@ class PackagesInstaller:
             self.run_command(
                 f'''
                 mkdir -p "{lazygit_temp}"
-                wget https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz -P "{lazygit_temp}"
+                wget https://github.com/jesseduffield/lazygit/releases/download/v0.34/lazygit_0.34_Linux_x86_64.tar.gz \
+                    -P "{lazygit_temp}"
                 pushd "{lazygit_temp}"
                     tar -xf lazygit_0.34_Linux_x86_64.tar.gz
                     sudo cp lazygit /usr/local/bin
@@ -575,7 +578,8 @@ class PackagesInstaller:
 
             self.run_command(
                 '''
-                wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh -P /usr/share/zsh-plugins/
+                wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
+                    -P /usr/share/zsh-plugins/
                 '''
             )
 

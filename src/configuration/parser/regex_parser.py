@@ -1,6 +1,7 @@
 import logging
 import re
 from pathlib import Path
+from typing import Any
 
 from src.configuration.parser.base_parser import BaseParser
 
@@ -10,10 +11,10 @@ class RegexParser(BaseParser):
         return path.read_text()
 
     def write(self, output: Path) -> None:
-        with open(output, 'w') as raw_file:
+        with open(output, 'w', encoding='UTF-8') as raw_file:
             raw_file.write(self._data)
 
-    def update(self, data):
+    def update(self, data: Any) -> None:
         for regex, value in [item.values() for item in data]:
             current_value = re.search(rf'({regex})', self._data)
 

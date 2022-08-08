@@ -6,3 +6,6 @@ __pycache__/
 .dependencies/
 .custom_settings/
 *.log
+
+# Tools
+.mypy_cache
