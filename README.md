@@ -16,16 +16,27 @@ configuration of my Linux environment
 
 # Get started
 
+## Create a Python virtual environment
+
+```bash
+# create
+python3 -m venv .venv
+
+# activate
+source .venv/bin/activate
+```
+
 ## Install dependencies
 
 ```bash
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Setup environment
 
+##
 ```bash
-python3 main.py -s themes/colored_simple.ym
+python main.py -s themes/colored_simple.ym
 ```
 
 # Tools

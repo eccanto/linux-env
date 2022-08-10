@@ -7,7 +7,7 @@ skip-string-normalization = true
 exclude = '''
 (
   /(
-    \.dependencies | \.custom_settings
+    \.dependencies | \.custom_settings | \.venv
   )/
 )
 '''
@@ -17,7 +17,7 @@ line_length = 120
 indent = '    '
 lines_after_imports = 2
 profile = "black"
-skip = [".dependencies", ".custom_settings"]
+skip = [".dependencies", ".custom_settings", ".venv"]
 
 [tool.mypy]
 # already tested by pylint
@@ -41,6 +41,7 @@ strict_equality = true
 init-hook='import sys; sys.path.append(".")'
 
 [tool.pylint.BASIC]
+max-line-length = 120
 good-names = [
     "i",
     "j",

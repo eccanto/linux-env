@@ -9,3 +9,4 @@ __pycache__/
 
 # Tools
 .mypy_cache
+.venv

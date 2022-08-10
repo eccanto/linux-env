@@ -6,7 +6,7 @@ member-warnings: true
 inherits:
   - default
 ignore-paths:
-  - docs
+  - .venv
 ignore-patterns:
   - __pycache__
 autodetect: true
@@ -33,6 +33,7 @@ pydocstyle:
   disable:
     - D203  # 1 blank line required before class docstring: incompatible with reST and D211.
     - D205  # 1 blank line required between summary line and description: incompatible with reST.
+    - D213  # Multi-line docstring summary should start at the second line: incompatible with reST.
     - D400  # First line should endd with a period: incompatible with reST.
     - D401  # First line should be in imperative mood: incompatible with the standard "Verb forms in reference documentation".
 

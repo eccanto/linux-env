@@ -1,8 +1,10 @@
+"""Ranger theme."""
+
 from __future__ import absolute_import, division, print_function
 
 from typing import Any, Tuple
 
-from ranger.gui.color import (
+from ranger.gui.color import (  # pylint: disable=import-error
     BRIGHT,
     black,
     blue,
@@ -18,10 +20,12 @@ from ranger.gui.color import (
     white,
     yellow,
 )
-from ranger.gui.colorscheme import ColorScheme
+from ranger.gui.colorscheme import ColorScheme  # pylint: disable=import-error
 
 
 class Dark(ColorScheme):
+    """Ranger class theme."""
+
     progress_bar_color = blue
 
     DIRECTORY_COLOR = 60

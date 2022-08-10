@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+"""Entry point to set up the local environment."""
+
 import logging
 import shutil
 from pathlib import Path
@@ -18,9 +21,11 @@ DEPENDENCIES = Path('.dependencies')
 @click.command()
 @click.option('-s', '--style_path', help='Yaml style path.', required=True, type=click.Path(exists=True))
 def main(style_path: str) -> None:
-    coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
+    """Setup linux environment.
 
-    local_config = Path('~/.config').expanduser()
+    :param style_path: The file path that describes the style to be used.
+    """
+    coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
 
     if CUSTOM_SETTINGS.exists():
         shutil.rmtree(CUSTOM_SETTINGS)
@@ -34,7 +39,7 @@ def main(style_path: str) -> None:
     logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
     shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
-    installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, local_config, style)
+    installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, style)
     installer.install_requirements()
     installer.install_pip_requirements()
     installer.install_fonts_awesome()
