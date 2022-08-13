@@ -19,7 +19,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run -display-run " search"
+bindsym $mod+Escape exec --no-startup-id ~/.config/polybar/scripts/powermenu_alt
 
 # take screenshot
 bindsym Print exec flameshot gui
@@ -135,6 +136,7 @@ for_window [class=".*"] border pixel 4
 for_window [class="Org.gnome.Nautilus"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Gucharmap"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable

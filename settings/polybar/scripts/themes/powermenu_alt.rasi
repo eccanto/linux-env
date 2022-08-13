@@ -1,5 +1,5 @@
 configuration {
-    font:                           "Iosevka Nerd Font 12";
+    font:                           "Hack Nerd Font 8";
     show-icons:                     false;
     icon-theme:                     "Papirus";
     display-drun:                   ":";
@@ -20,10 +20,10 @@ window {
     background-color:               @background;
     text-color:                     @foreground;
     border-radius:                  4px;
-    height:                         20%;
+    height:                         26%;
     width:                          16%;
-    x-offset:                       -5;
-    y-offset:                       44;
+    x-offset:                       -4;
+    y-offset:                       28;
     border-color:                   @border;
     border:                         2px 2px 2px 2px;
     padding:                        8px;
@@ -37,12 +37,11 @@ prompt {
 }
 
 textbox-prompt-colon {
-    expand:                         false;
-    str:                            "𝌆";
+    expand:                         true;
+    str:                            "";
     background-color:               @background;
     text-color:                     @logo;
     padding:                        5px 0px 0px 10px;
-    font:                           "feather 10";
 }
 
 inputbar {

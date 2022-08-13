@@ -4,6 +4,7 @@
 import logging
 import shutil
 from pathlib import Path
+from typing import List
 
 import click
 import coloredlogs
@@ -17,15 +18,31 @@ DEFAULT_SETTINGS = Path('settings')
 
 DEPENDENCIES = Path('.dependencies')
 
+COMPONENTS_INSTALL = PackagesInstaller.component_methods()
+
 
 @click.command()
 @click.option('-s', '--style_path', help='Yaml style path.', required=True, type=click.Path(exists=True))
-def main(style_path: str) -> None:
+@click.option(
+    '-c',
+    '--component',
+    'components',
+    multiple=True,
+    type=click.Choice(COMPONENTS_INSTALL.keys()),
+    help=(
+        'Components to be installed. The --component option can be specified several times, '
+        'if no component is indicated all of them will be installed'
+    ),
+)
+def main(style_path: str, components: List[str]) -> None:
     """Setup linux environment.
 
     :param style_path: The file path that describes the style to be used.
     """
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
+
+    if not components:
+        components = COMPONENTS_INSTALL.keys()
 
     if CUSTOM_SETTINGS.exists():
         shutil.rmtree(CUSTOM_SETTINGS)
@@ -40,31 +57,8 @@ def main(style_path: str) -> None:
     shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
     installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, style)
-    installer.install_requirements()
-    installer.install_pip_requirements()
-    installer.install_fonts_awesome()
-    installer.install_fonts_nerd()
-    installer.install_i3_gaps()
-    installer.install_i3lock()
-    installer.install_polybar()
-    installer.install_picom()
-    installer.install_alacritty()
-    installer.install_vscode()
-    installer.install_dunst()
-    installer.install_rust()
-    installer.install_btop()
-    installer.install_dockly()
-    installer.install_lazygit()
-    installer.install_tmux()
-    installer.install_firefox()
-    installer.install_rofi()
-    installer.install_powerlevel10k()
-    installer.install_bat()
-    installer.install_lsd()
-    installer.install_fzf()
-    installer.install_ueberzug()
-    installer.install_ranger()
-    installer.install_neovim()
+    for component in components:
+        COMPONENTS_INSTALL[component](installer)
 
     logging.info('done!')
 

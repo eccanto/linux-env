@@ -72,7 +72,13 @@ class BaseConfiguration(ABC):
         """Reloads the configurations."""
         if cls._RELOAD_COMMAND is not None:
             logging.info('reloading %s...', cls.get_name())
-            subprocess.run(cls._RELOAD_COMMAND, shell=True, check=True)  # nosec #B602
+            subprocess.run(
+                cls._RELOAD_COMMAND,
+                shell=True,  # nosec #B602
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
             logging.info('%s was reloaded', cls.get_name())
         else:
             logging.info('%s reloads itself', cls.get_name())

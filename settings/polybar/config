@@ -21,10 +21,9 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 1
 
-font-0 = "Source Code Pro Semibold:size=9;1"
-font-1 = "Iosevka:size=9;1"
-font-2 = "Font Awesome 5 Free:style=Solid:size=9;1"
-font-3 = "Font Awesome 5 Brands:size=9;1"
+font-0 = "Hack Nerd Font:style=Solid:size=8;1"
+font-1 = "Source Code Pro Semibold:size=9;1"
+font-2 = "Iosevka:size=9;1"
 
 modules-left = i3
 modules-right = memory swap cpu wlan eth backlight pulseaudio date battery sysmenu
@@ -97,7 +96,7 @@ bar-empty = ─
 
 [module/sysmenu]
 type = custom/text
-content = 
+content = "  "
 content-padding = 2
 ;content-foreground = ${color.white}
 click-left = ~/.config/polybar/scripts/powermenu_alt
@@ -164,7 +163,7 @@ type = internal/memory
 
 format = <label>
 
-label = " RAM %gb_used%/%gb_total%"
+label = " RAM %gb_used%/%gb_total%"
 label-foreground = #1E272B
 label-background = #f1fa8c
 label-padding-left = 2
@@ -175,7 +174,7 @@ type = internal/memory
 
 format = <label>
 
-label = " SWAP %swap_used%/%swap_total%"
+label = "  SWAP %swap_used%/%swap_total%"
 label-foreground = #1E272B
 label-background = #bd93f9
 label-padding-left = 2
@@ -232,7 +231,7 @@ format-connected = <ramp-signal> <label-connected>
 format-connected-foreground = #1E272B
 format-connected-background = #ff79c6
 format-connected-padding = 2
-label-connected = %essid%
+label-connected = " %essid%"
 label-connected-foreground = #1E272B
 
 format-disconnected =
@@ -254,7 +253,7 @@ format-connected-foreground = #1E272B
 format-connected-background = #8be9fd
 format-connected-prefix = " "
 format-connected-prefix-foreground = #1E272B
-label-connected = %local_ip%
+label-connected = " %local_ip%"
 
 format-disconnected =
 
@@ -281,4 +280,3 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-

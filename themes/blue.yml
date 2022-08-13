@@ -35,10 +35,9 @@ components:
 
       border-color: "#00000000"
 
-      font-0: "Source Code Pro Semibold:size=9;1"
-      font-1: "Iosevka:size=9;1"
-      font-2: "Font Awesome 5 Free:style=Solid:size=9;1"
-      font-3: "Font Awesome 5 Brands:size=9;1"
+      font-0: "Hack Nerd Font:style=Solid:size=8;1"
+      font-1: "Source Code Pro Semibold:size=9;1"
+      font-2: "Iosevka:size=9;1"
 
       modules-left: i3
       modules-right: memory swap cpu wlan eth backlight pulseaudio date battery sysmenu

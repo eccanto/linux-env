@@ -6,6 +6,7 @@ import shutil
 import subprocess  # nosec #B404
 from pathlib import Path
 from shutil import which
+from types import FunctionType
 from typing import Any
 
 from src.configuration.configurations import (
@@ -36,6 +37,18 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
         self.settings = settings
         self.style = style
 
+    @classmethod
+    def component_methods(cls, prefix: str = 'install_'):
+        """Gets the components and their install functions.
+
+        :param prefix: Method name prefix to filter the installation methods.
+        """
+        return {
+            name[len(prefix):]: method
+            for name, method in cls.__dict__.items()
+            if isinstance(method, FunctionType) and name.startswith(prefix)
+        }
+
     @staticmethod
     def run_shell(script: str) -> None:
         """Runs a shell script.
@@ -60,7 +73,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
         """
         return which(package_name) is not None
 
-    def install_requirements(self) -> None:
+    def install_system_requirements(self) -> None:
         """Installs system requirements (apt)."""
         logging.info('installing required packages...')
 
@@ -76,7 +89,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
                 compton binutils gcc make cmake pkg-config fakeroot python3 python3-xcbgen xcb-proto                  \
                 libxcb-ewmh-dev wireless-tools libiw-dev libasound2-dev libpulse-dev libxcb-shape0 libxcb-shape0-dev  \
                 libcurl4-openssl-dev libmpdclient-dev pavucontrol python3-pip rxvt-unicode compton ninja-build meson  \
-                python3 curl playerctl feh flameshot tty-clock arandr cargo htop vlc firejail zsh
+                python3 curl playerctl feh flameshot tty-clock arandr cargo htop vlc firejail zsh exiftool
             '''
         )
 
@@ -254,6 +267,11 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
                 echo "run 'rofi-theme-selector' and select nord theme and press 'Alt + a'"
                 '''
             )
+
+        shutil.copy(
+            self.settings.joinpath('polybar/scripts/themes/powermenu_alt.rasi'),
+            self.CONFIG_DIRECTORY_PATH.joinpath('polybar/scripts/themes/powermenu_alt.rasi'),
+        )
 
         configuration_rofi = RofiConfiguration(
             self.settings.joinpath('rofi/themes/nord.rasi'),
@@ -517,6 +535,9 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
                 '''
             )
 
+        finder_source = self.settings.joinpath('fzf/fzf_preview')
+        self.run_shell(f'sudo cp {finder_source} /usr/bin/fzf_preview')
+
     def install_ueberzug(self) -> None:
         """Installs ueberzug terminal image visualizer."""
         if not self.is_installed('ueberzug'):
@@ -534,7 +555,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
     def install_fonts_awesome(self) -> None:
         """Installs awesome fonts."""
         if not os.path.exists('/usr/share/fonts/opentype/scp'):
-            logging.info('installing fonts awesome...')
+            logging.info('installing awesome fonts...')
 
             fonts_temp = self.temp.joinpath('fonts/awesome')
             self.run_shell(
@@ -557,7 +578,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
     def install_fonts_nerd(self) -> None:
         """Installs nerd fonts."""
         if not os.path.exists('/usr/local/share/fonts/NerdFonts'):
-            logging.info('installing fonts nerd...')
+            logging.info('installing nerd fonts...')
 
             fonts_temp = self.temp.joinpath('fonts/nerd')
             self.run_shell(
@@ -603,9 +624,8 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
             sudo usermod --shell /usr/bin/zsh ${user}
             sudo usermod --shell /usr/bin/zsh root
 
-            sudo chown ${user}:${user} /root
-            sudo chown ${user}:${user} /root/.cache -R
-            sudo chown ${user}:${user} /root/.local -R
+            sudo chown ${user}:${user} /root/.cache -R || true
+            sudo chown ${user}:${user} /root/.local -R || true
             '''
         )
 

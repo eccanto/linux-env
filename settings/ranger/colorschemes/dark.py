@@ -4,7 +4,7 @@ from __future__ import absolute_import, division, print_function
 
 from typing import Any, Tuple
 
-from ranger.gui.color import (  # pylint: disable=import-error
+from ranger.gui.color import (  # pylint: disable=import-error,import-error
     BRIGHT,
     black,
     blue,
@@ -20,7 +20,7 @@ from ranger.gui.color import (  # pylint: disable=import-error
     white,
     yellow,
 )
-from ranger.gui.colorscheme import ColorScheme  # pylint: disable=import-error
+from ranger.gui.colorscheme import ColorScheme  # pylint: disable=import-error,import-error
 
 
 class Dark(ColorScheme):
