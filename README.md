@@ -1,16 +1,38 @@
 **`WIP`**
 
 # Overview
-configuration of my Linux environment
 
+Configuration of my Linux environment.
+
+![themes](documentation/themes.gif)
 
 # Table of contents
 
 * [Get started](#get-started)
+  * [Create a Python virtual environment](#create-a-python-virtual-environment)
   * [Install dependencies](#install-dependencies)
   * [Setup environment](#setup-environment)
+* [Tools](#tools)
+  * [I3Lock](#i3lock)
+  * [tty-clock](#tty-clock)
+  * [fzf preview](#fzf-preview)
+  * [Peek](#peek)
+  * [VSCode](#vscode)
+  * [Ranger](#ranger)
+  * [Neovim](#neovim)
+* [Useful](#useful)
+  * [Change keyboard layout](#change-keyboard-layout)
+  * [Search icons in system fonts](#search-icons-in-system-fonts)
+  * [Generate monitor profile](#generate-monitor-profile)
+  * [Reconfigure powerlevel10k](#reconfigure-powerlevel10k)
+  * [Disable underlining of the powerlevel10k zsh-syntax-highlighting plugin](#disable-underlining-of-the-powerlevel10k-zsh-syntax-highlighting-plugin)
+  * [Fix polybar brightness module on amd card](#fix-polybar-brightness-module-on-amd-card)
+  * [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
 * [Static code analysis tools](#static-code-analysis-tools)
-  * [Find Problems](#find-problems)
+  * [Set up the Git hooks custom directory](#set-up-the-git-hooks-custom-directory)
+  * [Python Static Checkers](#python-static-checkers)
+* [Compatibility](#compatibility)
+* [Disclaimer](#disclaimer)
 * [License](#license)
 * [Changelog](#changelog)
 
@@ -36,17 +58,58 @@ pip install -r requirements.txt
 
 ##
 ```bash
-python main.py -s themes/colored_simple.ym
+python main.py -s themes/colored_simple.yml
 ```
 
 # Tools
 
+## I3
+
+[i3](https://i3wm.org/) is a tiling window manager:
+
+![i3 tiling window manager](documentation/i3.png)
+
+## I3Lock
+
+A modern version of i3lock with color functionality and other features ([github](https://github.com/Raymo111/i3lock-color)).
+
+![i3lock command](documentation/i3lock.gif)
+
+**Shortcut**: `< Win + l >`
+
 ## tty-clock
 
-Open digital clock in terminal
+Open digital clock in terminal.
 
 ```bash
 tty-clock -ct -f "%H:%M, %d %b %Y"
+```
+
+![tty-clock command](documentation/tty-clock.gif)
+
+## fzf preview
+
+A custom script to preview and open files in your system:
+
+```bash
+fzf_preview
+```
+
+![fzf_preview command](documentation/fzf_preview.gif)
+
+Depending on the type of file selected, a different application will be used to open it:
+- images: `feh -x`
+- directories: `code`
+- other file types: `nvim`
+
+**Shortcut**: `< Win + c >`
+
+## Peek
+
+Simple screen recorder with an easy to use interface ([github](https://github.com/phw/peek)):
+
+```bash
+peek
 ```
 
 ## VSCode
@@ -76,6 +139,9 @@ tty-clock -ct -f "%H:%M, %d %b %Y"
 | Alt + j  | scroll preview down    |
 | Alt + k  | scroll preview up      |
 
+## Neovim
+
+My Neovim configuration: [github](https://github.com/eccanto/nvim-config)
 
 # Useful
 
@@ -108,17 +174,17 @@ gucharmap
 arandr
 ```
 
-relocate the monitors and save the profile "Layout -> Save as" (bash file). You can generate multiple profiles for different situations (home, office, etc.).
+Relocate the monitors and save the profile "Layout -> Save as" (bash file). You can generate multiple profiles for different situations (home, office, etc.).
 
-## reconfigure powerlevel10k
+## Reconfigure powerlevel10k
 
 ```bash
 p10k configure
 ```
 
-## powerlevel10k plugin - zsh-syntax-highlighting - disabled the underline
+## Disable underlining of the powerlevel10k zsh-syntax-highlighting plugin
 
-Add the following to your .zshrc:
+Add the following to your `.zshrc`:
 
 ```bash
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
@@ -126,7 +192,7 @@ ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 ```
 
-# fix polybar brightness module on amd card
+## Fix polybar brightness module on amd card
 
 1. get card name:
 
@@ -153,6 +219,42 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
     ```bash
     sudo chmod a+rw /sys/class/backlight/$(ls /sys/class/backlight/ | head -n 1)/brightness
+    ```
+
+## Set polybar on multiple screens
+
+1. Create a polybar launcher script:
+
+    ```bash
+    # launch_polybar.sh
+
+    if type "xrandr"; then
+        for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+            MONITOR=$m polybar --reload i3wmthemer_bar &
+        done
+    else
+        polybar --reload i3wmthemer_bar &
+    fi
+    ```
+
+2. Edit the polybar config file (`~/.config/polybar/config`):
+
+    ```
+    [bar/i3wmthemer_bar]
+    monitor = ${env:MONITOR:}
+    ...
+    ```
+
+3. Kill current polybar:
+
+    ```
+    sudo pkill polybar
+    ```
+
+4. Run script:
+
+    ```
+    bash launch_polybar.sh
     ```
 
 # Static code analysis tools

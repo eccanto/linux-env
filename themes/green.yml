@@ -3,7 +3,7 @@ general:
     color: &base_color "#19C03A"
     font:
       color: &font_color "#C1C1C1"
-    wallpaper: settings/wallpapers/bg_001.jpg
+    wallpaper: settings/wallpapers/bg_008.jpg
 
 components:
   alacritty:

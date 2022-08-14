@@ -122,10 +122,10 @@ function DRAW_PREVIEW {
                 [path]="${@}")
             ADD_PLACEMENT add_preview_command
         else
-            (bat --style=numbers --color=always --line-range :500 "$1");
+            (/usr/bin/bat --style=numbers --color=always --line-range :500 "$1");
         fi
     else
-        (lsd -F --tree --depth 1 --color=always --icon=always "$1")
+        (/usr/bin/lsd -F --tree --depth 1 --color=always --icon=always "$1")
     fi
 }
 
@@ -326,11 +326,11 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 
     export_functions
     declare -r file_path=$(
-            find "${DIRECTORY}"                                               \
-                -not \( -path "${HOME}/Android" -prune \)          \
-                -not \( -path "${HOME}/Unity" -prune \)            \
-                -not \( -path "${HOME}/snap" -prune \)             \
-                -not \( -path "${HOME}/\.*" -prune \)              \
+            find "${DIRECTORY}"                                    \
+                -not \( -path "*/Android" -prune \)                \
+                -not \( -path "*/Unity" -prune \)                  \
+                -not \( -path "*/snap" -prune \)                   \
+                -not \( -path "*/\.*" -prune \)                    \
                 -not \( -path "*/build" -prune \)                  \
                 -not \( -path "*/PackageCache" -prune \)           \
                 -not \( -path "*/.venv" -prune \)                  \

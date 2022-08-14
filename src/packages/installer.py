@@ -9,6 +9,8 @@ from shutil import which
 from types import FunctionType
 from typing import Any
 
+import click
+
 from src.configuration.configurations import (
     AlacrittyConfiguration,
     DunstConfiguration,
@@ -140,7 +142,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
                 sudo apt install -y autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev \
                     libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev         \
                     libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev libxkbcommon-dev       \
-                    libxkbcommon-x11-dev libjpeg-dev i3lock
+                    libxkbcommon-x11-dev libjpeg-dev i3lock peek
 
                 if [[ ! -d "{i3lock_color_temp}" ]]; then
                     git clone https://github.com/Raymo111/i3lock-color.git {i3lock_color_temp}
@@ -532,11 +534,13 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
                 fi
 
                 ~/.fzf/install
+                sudo ln -s -f ${HOME}/.fzf/bin/fzf /usr/bin/fzf
                 '''
             )
 
-        finder_source = self.settings.joinpath('fzf/fzf_preview')
-        self.run_shell(f'sudo cp {finder_source} /usr/bin/fzf_preview')
+        if click.confirm('Do you want to install "fzf_preview"?'):
+            finder_source = self.settings.joinpath('fzf/fzf_preview')
+            self.run_shell(f'sudo cp {finder_source} /usr/bin/fzf_preview')
 
     def install_ueberzug(self) -> None:
         """Installs ueberzug terminal image visualizer."""

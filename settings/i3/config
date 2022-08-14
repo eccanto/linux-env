@@ -20,7 +20,10 @@ bindsym $mod+Shift+q kill
 
 # start program launcher
 bindsym $mod+d exec --no-startup-id rofi -show run -display-run " search"
+bindsym $mod+i exec --no-startup-id rofi -i -show drun -modi drun -show-icons
 bindsym $mod+Escape exec --no-startup-id ~/.config/polybar/scripts/powermenu_alt
+
+bindsym $mod+c exec --no-startup-id alacritty --class floating -e bash -c "/usr/bin/fzf_preview"
 
 # take screenshot
 bindsym Print exec flameshot gui
@@ -132,8 +135,9 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
-for_window [class=".*"] border pixel 4
+for_window [class=".*"] border pixel 3
 for_window [class="Org.gnome.Nautilus"] floating enable
+for_window [class="feh"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Gucharmap"] floating enable
 for_window [class="Gnome-calculator"] floating enable
@@ -167,6 +171,9 @@ for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+
+for_window [instance="floating"] floating enable border pixel 2
+for_window [instance="floating"] resize grow left 280, resize grow right 280, resize grow down 0, resize grow up 0
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -229,7 +236,7 @@ exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
 
 # Theme colors
-client.focused #EAD49B #1E272B #EAD49B #C36E19 #C36E19
+client.focused #EAD49B #1E272B #EAD49B #FF8000 #FF8000
 client.focused_inactive #EAD49B #1E272B #EAD49B #78824B #2C2C2C
 client.unfocused #EAD49B #1E272B #EAD49B #78824B #2C2C2C
 client.urgent #EAD49B #1E272B #EAD49B #78824B #78824B

@@ -1,7 +1,7 @@
 general:
   base:
     color: &base_color "#FF8000"
-    wallpaper: settings/wallpapers/bg_001.jpg
+    wallpaper: settings/wallpapers/bg_008.jpg
 
 components:
   alacritty:
