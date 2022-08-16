@@ -8,34 +8,40 @@ Configuration of my Linux environment.
 
 # Table of contents
 
-* [Get started](#get-started)
-  * [Create a Python virtual environment](#create-a-python-virtual-environment)
-  * [Install dependencies](#install-dependencies)
-  * [Setup environment](#setup-environment)
-* [Tools](#tools)
-  * [I3](#i3)
-  * [I3Lock](#i3lock)
-  * [tty-clock](#tty-clock)
-  * [fzf preview](#fzf-preview)
-  * [Peek](#peek)
-  * [VSCode](#vscode)
-  * [Ranger](#ranger)
-  * [Neovim](#neovim)
-* [Useful](#useful)
-  * [Change keyboard layout](#change-keyboard-layout)
-  * [Search icons in system fonts](#search-icons-in-system-fonts)
-  * [Generate monitor profile](#generate-monitor-profile)
-  * [Reconfigure powerlevel10k](#reconfigure-powerlevel10k)
-  * [Disable underlining of the powerlevel10k zsh-syntax-highlighting plugin](#disable-underlining-of-the-powerlevel10k-zsh-syntax-highlighting-plugin)
-  * [Fix polybar brightness module on amd card](#fix-polybar-brightness-module-on-amd-card)
-  * [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
-* [Static code analysis tools](#static-code-analysis-tools)
-  * [Set up the Git hooks custom directory](#set-up-the-git-hooks-custom-directory)
-  * [Python Static Checkers](#python-static-checkers)
-* [Compatibility](#compatibility)
-* [Disclaimer](#disclaimer)
-* [License](#license)
-* [Changelog](#changelog)
+- [Overview](#overview)
+- [Table of contents](#table-of-contents)
+- [Get started](#get-started)
+  - [Create a Python virtual environment](#create-a-python-virtual-environment)
+  - [Install dependencies](#install-dependencies)
+  - [Setup environment](#setup-environment)
+- [Tools](#tools)
+  - [I3](#i3)
+    - [Shortcuts](#shortcuts)
+  - [I3Lock](#i3lock)
+  - [tty-clock](#tty-clock)
+  - [fzf preview](#fzf-preview)
+  - [Peek](#peek)
+  - [VSCode](#vscode)
+    - [Shortcuts](#shortcuts-1)
+  - [Ranger](#ranger)
+    - [Shortcuts](#shortcuts-2)
+  - [Neovim](#neovim)
+- [Useful](#useful)
+  - [Change keyboard layout](#change-keyboard-layout)
+  - [Search icons in system fonts](#search-icons-in-system-fonts)
+  - [Generate monitor profile](#generate-monitor-profile)
+  - [Reconfigure powerlevel10k](#reconfigure-powerlevel10k)
+  - [Disable underlining of the powerlevel10k zsh-syntax-highlighting plugin](#disable-underlining-of-the-powerlevel10k-zsh-syntax-highlighting-plugin)
+  - [Fix polybar brightness module on amd card](#fix-polybar-brightness-module-on-amd-card)
+  - [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
+- [Developers](#developers)
+  - [Static code analysis tools](#static-code-analysis-tools)
+    - [Set up the Git hooks custom directory](#set-up-the-git-hooks-custom-directory)
+    - [Python Static Checkers](#python-static-checkers)
+- [Compatibility](#compatibility)
+- [Disclaimer](#disclaimer)
+- [License](#license)
+- [Changelog](#changelog)
 
 # Get started
 
@@ -72,10 +78,52 @@ python main.py -s themes/colored_simple.yml
 
 ### Shortcuts
 
-| shortcut                 | description                             |
-| -                        | -                                       |
-| Ctrl + B                 | toggle (show and hide) explorer view    |
-| Alt  + [Up,Down]         | move line(s) to [Up,Down]               |
+| shortcut                   | description                                                            |
+|----------------------------|------------------------------------------------------------------------|
+| Win + u                    | hide borders                                                           |
+| Win + y                    | restore borders                                                        |
+| Win + n                    | change to "normal" border mode (show window title)                     |
+| Win + Shift + q            | kill focused window                                                    |
+| Win + Enter                | open Alacritty terminal emulator                                       |
+| Win + d                    | open Rofi - Application and executable explorer                        |
+| Win + i                    | open Rofi - Application GUIs explorer                                  |
+| Win + Escape               | open Rofi - System menu: poweroff, sleep, etc.                         |
+| Win + Print                | open flameshot - screenshot capturer                                   |
+| Win + l                    | lock screen session                                                    |
+| Win + Left                 | focus left window                                                      |
+| Win + Right                | focus right window                                                     |
+| Win + Down                 | focus down window                                                      |
+| Win + Up                   | focus up window                                                        |
+| Win + Shift + Left         | move the focused window to left                                        |
+| Win + Shift + Right        | move the focused window to right                                       |
+| Win + Shift + Down         | move the focused window to down                                        |
+| Win + Shift + Up           | move the focused window to up                                          |
+| Win + Ctrl + Shift + Left  | move the focused workspace to left                                     |
+| Win + Ctrl + Shift + Right | move the focused workspace to right                                    |
+| Win + Ctrl + Shift + Down  | move the focused workspace to down                                     |
+| Win + Ctrl + Shift + Up    | move the focused workspace to up                                       |
+| Win + b                    | workspace back and forth                                               |
+| Win + Shift + b            | move window to workspace back_and_forth                                |
+| Win + h                    | change split mode to "horizontal"                                      |
+| Win + v                    | change split mode to "vertical"                                        |
+| Win + f                    | toggle fullscreen mode for the focused window                          |
+| Win + s                    | change layout mode to "stacking"                                       |
+| Win + w                    | change layout mode to "tabbed"                                         |
+| Win + e                    | change layout mode to "toggle split"                                   |
+| Win + Shift + Space        | toggle tiling / floating                                               |
+| Win + Space                | change focus between tiling / floating windows                         |
+| Win + Shift + s            | Sticky floating windows, even if you switch to another workspace       |
+| Win + a                    | focus the parent window                                                |
+| Win + Shift + Minus        | move the currently focused window to the scratchpad                    |
+| Win + Shift                | show the next scratchpad window or hide the focused scratchpad window. |
+| Win + Ctrl + Left          | focus left workspace                                                   |
+| Win + Ctrl + Right         | focus right workspace                                                  |
+| Win + Shift + c            | reload the configuration file                                          |
+| Win + Shift + r            | restart i3 inplace                                                     |
+| Win + Shift + e            | exit i3                                                                |
+| Win + 0                    | Set shut down, restart and locking features                            |
+| Win + r                    | enable resize windows mode                                             |
+| Win + Shift + g            | enable gap mode                                                        |
 
 ## I3Lock
 
@@ -265,13 +313,15 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
     bash launch_polybar.sh
     ```
 
-# Static code analysis tools
+# Developers
+
+## Static code analysis tools
 
 These are the linters that will help us to follow good practices and style guides of our source
 code. We will be using the following static analysis tools, which will be executed when generating
 a new commit in the repository (**git hooks**).
 
-## Set up the Git hooks custom directory
+### Set up the Git hooks custom directory
 
 After cloning the repository run the following command in the repository root:
 
@@ -279,7 +329,7 @@ After cloning the repository run the following command in the repository root:
 git config core.hooksPath .githooks
 ```
 
-## Python Static Checkers
+### Python Static Checkers
 
 Tools used:
 - [black](https://github.com/psf/black): Black is the uncompromising Python code formatter.
