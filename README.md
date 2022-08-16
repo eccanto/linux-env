@@ -18,13 +18,15 @@ Configuration of my Linux environment.
   - [I3](#i3)
     - [Shortcuts](#shortcuts)
   - [I3Lock](#i3lock)
+    - [Shortcuts](#shortcuts-1)
   - [tty-clock](#tty-clock)
   - [fzf preview](#fzf-preview)
+    - [Shortcuts](#shortcuts-2)
   - [Peek](#peek)
   - [VSCode](#vscode)
-    - [Shortcuts](#shortcuts-1)
+    - [Shortcuts](#shortcuts-3)
   - [Ranger](#ranger)
-    - [Shortcuts](#shortcuts-2)
+    - [Shortcuts](#shortcuts-4)
   - [Neovim](#neovim)
 - [Useful](#useful)
   - [Change keyboard layout](#change-keyboard-layout)
@@ -131,7 +133,11 @@ A modern version of i3lock with color functionality and other features ([github]
 
 ![i3lock command](documentation/i3lock.gif)
 
-**Shortcut**: `< Win + l >`
+### Shortcuts
+
+| shortcut | description                 |
+|----------|-----------------------------|
+| Win + l  | lock screen session borders |
 
 ## tty-clock
 
@@ -158,7 +164,11 @@ Depending on the type of file selected, a different application will be used to 
 - directories: `code`
 - other file types: `nvim`
 
-**Shortcut**: `< Win + c >`
+### Shortcuts
+
+| shortcut | description                 |
+|----------|-----------------------------|
+| Win + c  | open fzf_preview in a new alacritty floating window |
 
 ## Peek
 
