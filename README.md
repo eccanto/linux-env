@@ -13,6 +13,7 @@ Configuration of my Linux environment.
   * [Install dependencies](#install-dependencies)
   * [Setup environment](#setup-environment)
 * [Tools](#tools)
+  * [I3](#i3)
   * [I3Lock](#i3lock)
   * [tty-clock](#tty-clock)
   * [fzf preview](#fzf-preview)
@@ -68,6 +69,13 @@ python main.py -s themes/colored_simple.yml
 [i3](https://i3wm.org/) is a tiling window manager:
 
 ![i3 tiling window manager](documentation/i3.png)
+
+### Shortcuts
+
+| shortcut                 | description                             |
+| -                        | -                                       |
+| Ctrl + B                 | toggle (show and hide) explorer view    |
+| Alt  + [Up,Down]         | move line(s) to [Up,Down]               |
 
 ## I3Lock
 

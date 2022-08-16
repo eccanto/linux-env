@@ -598,7 +598,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
             )
 
     def install_powerlevel10k(self) -> None:
-        """Installs powerlevel10k zsh theme."""
+        """Installs powerlevel10k zsh."""
         if not os.path.exists('/usr/local/share/powerlevel10k/powerlevel10k.zsh-theme'):
             logging.info('installing powerlevel10k...')
 
@@ -643,38 +643,58 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
                 '''
             )
 
-        if not os.path.exists('/usr/share/zsh-plugins/sudo.plugin.zsh'):
-            logging.info('installing zsh plugin: sudo.plugin.zsh...')
-
-            self.run_shell(
-                '''
-                wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
-                    -P /usr/share/zsh-plugins/
-                '''
-            )
+        zsh_rc_path = Path('~/.zshrc').expanduser()
 
         plugins_path = Path('~/.zsh/').expanduser()
         plugins_path.mkdir(parents=True, exist_ok=True)
 
-        if not plugins_path.joinpath('zsh-autosuggestions').exists():
+        if (
+            ('zsh-autosuggestions.zsh' not in zsh_rc_path.read_text())
+            and
+            click.confirm('Do you want to install "zsh-autosuggestions.zsh" zsh plugging?')
+        ):
             logging.info('installing zsh plugin: zsh-autosuggestions.zsh...')
 
             self.run_shell(
                 f'''
-                git clone https://github.com/zsh-users/zsh-autosuggestions {plugins_path}/zsh-autosuggestions
-
-                echo "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ~/.zshrc
+                if [[ ! -d "{plugins_path}/zsh-autosuggestions" ]]; then
+                    git clone https://github.com/zsh-users/zsh-autosuggestions {plugins_path}/zsh-autosuggestions
+                fi
+                echo "source {plugins_path}/zsh-autosuggestions/zsh-autosuggestions.zsh" >> {zsh_rc_path}
                 '''
             )
 
-        if not plugins_path.joinpath('zsh-syntax-highlighting').exists():
+        if (
+            ('zsh-syntax-highlighting.zsh' not in zsh_rc_path.read_text())
+            and
+            click.confirm('Do you want to install "zsh-syntax-highlighting.zsh" zsh plugging?')
+        ):
             logging.info('installing zsh plugin: zsh-syntax-highlighting.zsh...')
 
             self.run_shell(
                 f'''
-                git clone https://github.com/zsh-users/zsh-syntax-highlighting {plugins_path}/zsh-syntax-highlighting
+                if [[ ! -d "{plugins_path}/zsh-syntax-highlighting" ]]; then
+                    git clone https://github.com/zsh-users/zsh-syntax-highlighting {plugins_path}/zsh-syntax-highlighting
+                fi
+                echo "source {plugins_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> {zsh_rc_path}
+                '''
+            )
 
-                echo "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+        if (
+            ('sudo.plugin.zsh' not in zsh_rc_path.read_text())
+            and
+            click.confirm('Do you want to install "sudo.plugin.zsh" zsh plugging?')
+        ):
+            logging.info('installing zsh plugin: sudo.plugin.zsh...')
+
+            self.run_shell(
+                f'''
+                if [[ ! -d "{plugins_path}/zsh-plugins/" ]]; then
+                    mkdir -p {plugins_path}/zsh-plugins/
+                    wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh \
+                        -P {plugins_path}/zsh-plugins/
+                fi
+                echo "source {plugins_path}/zsh-plugins/sudo.plugin.zsh" >> {zsh_rc_path}
                 '''
             )
 

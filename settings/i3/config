@@ -136,7 +136,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
 for_window [class=".*"] border pixel 3
-for_window [class="Org.gnome.Nautilus"] floating enable
+# for_window [class="Org.gnome.Nautilus"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Gucharmap"] floating enable

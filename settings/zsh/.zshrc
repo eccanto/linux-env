@@ -33,7 +33,6 @@ alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-source /usr/share/zsh-plugins/sudo.plugin.zsh
 
 export TERM=linux
 export TERMINFO=/etc/terminfo
@@ -45,7 +44,6 @@ SAVEHIST=10000
 setopt appendhistory
 
 source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/share/zsh-plugins/sudo.plugin.zsh
 
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
