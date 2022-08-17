@@ -36,6 +36,7 @@ Configuration of my Linux environment.
   - [Disable underlining of the powerlevel10k zsh-syntax-highlighting plugin](#disable-underlining-of-the-powerlevel10k-zsh-syntax-highlighting-plugin)
   - [Fix polybar brightness module on amd card](#fix-polybar-brightness-module-on-amd-card)
   - [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
+  - [Remove absolute path from current working directory](#remove-absolute-path-from-current-working-directory)
 - [Developers](#developers)
   - [Static code analysis tools](#static-code-analysis-tools)
     - [Set up the Git hooks custom directory](#set-up-the-git-hooks-custom-directory)
@@ -180,6 +181,10 @@ peek
 
 ## VSCode
 
+[Visual Studio Code](https://code.visualstudio.com/) is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+
+![VSCode](documentation/vscode.png)
+
 ### Shortcuts
 
 | shortcut                 | description                             |
@@ -322,6 +327,16 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
     ```
     bash launch_polybar.sh
     ```
+
+## Remove absolute path from current working directory
+
+Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and change its value to `first`:
+
+```bash
+  typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=first
+```
+
+![p10k](documentation/p10k_truncate_path.png)
 
 # Developers
 
