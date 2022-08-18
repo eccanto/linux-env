@@ -181,23 +181,25 @@ peek
 
 ## VSCode
 
-[Visual Studio Code](https://code.visualstudio.com/) is a code editor redefined and optimized for building and debugging modern web and cloud applications.
+[Visual Studio Code](https://code.visualstudio.com/) is a code editor redefined and optimized for building and debugging
+modern web and cloud applications.
 
 ![VSCode](documentation/vscode.png)
 
 ### Shortcuts
 
-| shortcut                 | description                             |
-| -                        | -                                       |
-| Ctrl + B                 | toggle (show and hide) explorer view    |
-| Alt  + [Up,Down]         | move line(s) to [Up,Down]               |
-| Alt  + [Left,Right]      | focus [Left,Right] group                |
-| Ctrl + Shift + D         | go to definition                        |
-| Ctrl + [Up,Down]         | scroll to [Up,Down]                     |
-| Alt  + Shift + [Up,Down] | mark select multi-line [Up,Down]        |
-| Alt  + ,                 | go to back                              |
-| Alt  + .                 | go to forward                           |
-| Ctrl + Enter             | open file in split view [from explorer] |
+| shortcut                 | description                                                                                        |
+|--------------------------|----------------------------------------------------------------------------------------------------|
+| Ctrl + b                 | toggle explorer view (if the terminal is focused then the previous editor group will be selected.) |
+| Alt  + [Left,Right]      | focus [Left,Right] group and side bar (circularly)                                                 |
+| Alt  + [Up,Down]         | move line(s) to [Up,Down]                                                                          |
+| Ctrl + Shift + d         | go to definition                                                                                   |
+| Ctrl + [Up,Down]         | scroll to [Up,Down]                                                                                |
+| Alt  + Shift + [Up,Down] | mark select multi-line [Up,Down]                                                                   |
+| Alt  + ,                 | go to back                                                                                         |
+| Alt  + .                 | go to forward                                                                                      |
+| Ctrl + Enter             | open file in split view [from explorer]                                                            |
+| Ctrl + m                 | open markdown preview on the Side                                                                  |
 
 
 ## Ranger
@@ -205,7 +207,7 @@ peek
 ### Shortcuts
 
 | shortcut | description            |
-| -        | -                      |
+|----------|------------------------|
 | i        | display file (preview) |
 | Alt + j  | scroll preview down    |
 | Alt + k  | scroll preview up      |

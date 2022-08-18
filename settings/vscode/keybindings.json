@@ -29,7 +29,17 @@
     },
     {
         "key": "alt+left",
-        "command": "workbench.action.focusLeftGroup"
+        "command": "workbench.action.focusLeftGroup",
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.explorer.fileView.focus",
+        "when": "!sideBarFocus && activeEditorGroupIndex == 1"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.focusLastEditorGroup",
+        "when": "sideBarFocus"
     },
     {
         "key": "alt+right",
@@ -41,9 +51,9 @@
         "when": "sideBarFocus"
     },
     {
-        "key": "alt+left",
+        "key": "alt+right",
         "command": "workbench.explorer.fileView.focus",
-        "when": "editorFocus && !activeEditorIsFirstInGroup"
+        "when": "!sideBarFocus && activeEditorGroupLast"
     },
     {
         "key": "alt+[Comma]",
@@ -102,7 +112,21 @@
     },
     {
         "key": "ctrl+b",
-        "command": "workbench.action.focusFirstEditorGroup",
+        "command": "workbench.action.focusPreviousPart",
         "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "-editor.action.toggleTabFocusMode"
+    },
+    {
+        "key": "ctrl+m",
+        "command": "markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+k v",
+        "command": "-markdown.showPreviewToSide",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
     }
 ]
