@@ -188,19 +188,27 @@ modern web and cloud applications.
 
 ### Shortcuts
 
-| shortcut                 | description                                                                                        |
-|--------------------------|----------------------------------------------------------------------------------------------------|
-| Ctrl + b                 | toggle explorer view (if the terminal is focused then the previous editor group will be selected.) |
-| Alt  + [Left,Right]      | focus [Left,Right] group and side bar (circularly)                                                 |
-| Alt  + [Up,Down]         | move line(s) to [Up,Down]                                                                          |
-| Ctrl + Shift + d         | go to definition                                                                                   |
-| Ctrl + [Up,Down]         | scroll to [Up,Down]                                                                                |
-| Alt  + Shift + [Up,Down] | mark select multi-line [Up,Down]                                                                   |
-| Alt  + ,                 | go to back                                                                                         |
-| Alt  + .                 | go to forward                                                                                      |
-| Ctrl + Enter             | open file in split view [from explorer]                                                            |
-| Ctrl + m                 | open markdown preview on the Side                                                                  |
-
+| shortcut                    | description                                                |
+|-----------------------------|------------------------------------------------------------|
+| Ctrl + b                    | if the `editor` is focused: toggle explorer view           |
+| Ctrl + b                    | if the `terminal` is focused: focus previous editor group  |
+| Alt  + [Left,Right,Up,Down] | focus [Left,Right,Up,Down] group and side bar (circularly) |
+| Alt  + Up                   | if the `terminal` is focused: focus previous group         |
+| Ctrl + [Left,Right,Up,Down] | move to [Left,Right,Up,Down] group                         |
+| Ctrl + Alt + Shift + Right  | resize: increase group view width                          |
+| Ctrl + Alt + Shift + Left   | resize: decrease group view width                          |
+| Ctrl + Alt + Shift + Up     | resize: increase group view height                         |
+| Ctrl + Alt + Shift + Down   | resize: decrease group view height                         |
+| Ctrl + m                    | open markdown preview on the Side                          |
+| Ctrl + g                    | go to line/column                                          |
+| Ctrl + Shift + [Up,Down]    | move lines [Up,Down]                                       |
+| Ctrl + Shift + d            | go to definition                                           |
+| Ctrl + [Up,Down]            | scroll to [Up,Down]                                        |
+| Alt  + Shift + [Left,Right] | select words [Left,Right]                                  |
+| Alt  + Shift + [Up,Down]    | mark select multi-line [Up,Down]                           |
+| Alt  + ,                    | go to back                                                 |
+| Alt  + .                    | go to forward                                              |
+| Ctrl + Enter                | open file in split view [from explorer view]               |
 
 ## Ranger
 

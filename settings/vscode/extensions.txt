@@ -1,10 +1,15 @@
 analytic-signal.preview-mp4
+batisteo.vscode-django
 bungcip.better-toml
 Compulim.vscode-clock
 coolbear.systemd-unit-file
 cschlosser.doxdocgen
 d-biehl.robotcode
+darkriszty.markdown-table-prettify
+dcasella.i3
 donjayamanne.githistory
+donjayamanne.python-environment-manager
+donjayamanne.python-extension-pack
 DotJoshJohnson.xml
 emmanuelbeziat.vscode-great-icons
 GitHub.github-vscode-theme
@@ -12,6 +17,7 @@ GrapeCity.gc-excelviewer
 jeff-hykin.better-cpp-syntax
 josetr.cmake-language-support-vscode
 keith.robotframework
+KevinRose.vsc-python-indent
 mads-hartmann.bash-ide-vscode
 mechatroner.rainbow-csv
 ms-azuretools.vscode-docker
@@ -39,6 +45,8 @@ sukumo28.wav-preview
 TomiTurtiainen.rf-intellisense
 tomoki1207.pdf
 twxs.cmake
+VisualStudioExptTeam.vscodeintellicode
 vscode-icons-team.vscode-icons
+wholroyd.jinja
 wwm.better-align
 yzane.markdown-pdf

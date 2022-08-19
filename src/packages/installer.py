@@ -329,7 +329,7 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
 
     def install_vscode(self) -> None:
         """Installs vscode package."""
-        if not self.is_installed('code'):
+        if (not self.is_installed('code')) or click.confirm('Do you want to update "vscode"?'):
             logging.info('installing vscode...')
 
             vscode_temp = self.temp.joinpath('vscode-latest.deb')
