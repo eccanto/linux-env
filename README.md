@@ -205,6 +205,15 @@ Simple screen recorder with an easy to use interface ([github](https://github.co
 peek
 ```
 
+![Peek](documentation/peek.png)
+
+
+## Flameshot
+
+Powerful yet simple to use screenshot software ([github](https://github.com/flameshot-org/flameshot)).
+
+![Flameshot](documentation/flameshot.gif)
+
 ## VSCode
 
 [Visual Studio Code](https://code.visualstudio.com/) is a code editor redefined and optimized for building and debugging
