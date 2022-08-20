@@ -24,6 +24,7 @@ Configuration of my Linux environment.
   - [tty-clock](#tty-clock)
   - [fzf preview](#fzf-preview)
   - [Peek](#peek)
+  - [Flameshot](#flameshot)
   - [VSCode](#vscode)
   - [Ranger](#ranger)
   - [Neovim](#neovim)
