@@ -34,9 +34,8 @@ alias ls='lsd --group-dirs=first'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export TERM=linux
 export TERMINFO=/etc/terminfo
-export TERM=xterm-256color
+export TERM=tmux-256color
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

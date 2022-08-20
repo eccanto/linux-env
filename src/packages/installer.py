@@ -470,6 +470,14 @@ class PackagesInstaller:  # pylint: disable=too-many-public-methods
 
         logging.info('configuring tmux...')
 
+        tmux_tpm_directory = Path('~/.tmux/plugins/tpm').expanduser()
+        if not tmux_tpm_directory.exists():
+            self.run_shell(
+                f'''
+                git clone https://github.com/tmux-plugins/tpm "{tmux_tpm_directory}"
+                '''
+            )
+
         tmux_config_file = Path('~/.tmux.conf').expanduser()
         tmux_settings_file = self.settings.joinpath('tmux/tmux.conf')
         self.run_shell(

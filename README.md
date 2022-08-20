@@ -22,6 +22,7 @@ Configuration of my Linux environment.
   - [VSCode](#vscode)
   - [Neovim](#neovim)
   - [Tmux](#tmux)
+  - [fzf](#fzf)
   - [fzf preview](#fzf-preview)
   - [Ranger](#ranger)
   - [tty-clock](#tty-clock)
@@ -210,28 +211,57 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 
 ![Tmux](documentation/tmux.gif)
 
-| shortcut                    | description                 |
-|-----------------------------|-----------------------------|
-| tmux                        | start new                   |
-| tmux new -s <NAME>          | start new with session name |
-| tmux a                      | attach                      |
-| tmux a -t <NAME>            | attach to named             |
-| tmux ls                     | list sessions               |
-| tmux kill-session -t <NAME> | kill session                |
-| [Ctrl + b] s                | list sessions               |
-| [Ctrl + b] c                | create window               |
-| [Ctrl + b] w                | list windows                |
-| [Ctrl + b] n                | next window                 |
-| [Ctrl + b] p                | previous window             |
-| [Ctrl + b] f                | find window                 |
-| [Ctrl + b] ,                | rename window               |
-| [Ctrl + b] &                | kill window                 |
-| [Ctrl + b] %                | vertical split              |
-| [Ctrl + b] "                | horizontal split            |
-| [Ctrl + b] o                | swap panes                  |
-| [Ctrl + b] q                | show pane numbers           |
-| [Ctrl + b] x                | kill pane                   |
-| [Ctrl + b] d                | detach tmux                 |
+| shortcut                    | description                          |
+|-----------------------------|--------------------------------------|
+| tmux                        | start new                            |
+| tmux new -s <NAME>          | start new with session name          |
+| tmux a                      | attach                               |
+| tmux a -t <NAME>            | attach to named                      |
+| tmux ls                     | list sessions                        |
+| tmux kill-session -t <NAME> | kill session                         |
+| tmux kill-server            | kill server (restart configurations) |
+| [Ctrl + b] + Ctrl + s       | save tmux state (tmux-resurrect)     |
+| [Ctrl + b] + Ctrl + r       | restore tmux state (tmux-resurrect)  |
+| Alt + n                     | create window                        |
+| Alt + n                     | create window                        |
+| Alt + Tab                   | next window                          |
+| Alt + Left                  | select left pane                     |
+| Alt + Right                 | select right pane                    |
+| Alt + Up                    | select up pane                       |
+| Alt + Down                  | select down pane                     |
+| Alt + Shift + Left          | split left pane                      |
+| Alt + Shift + Right         | split right pane                     |
+| Alt + Shift + Up            | split up pane                        |
+| Alt + Shift + Down          | split down pane                      |
+| Alt + Shift + 4             | resize pane to left                  |
+| Alt + Shift + 6             | resize pane to right                 |
+| Alt + Shift + 8             | resize pane to up                    |
+| Alt + Shift + 2             | resize pane to down                  |
+| [Ctrl + b] s                | list sessions                        |
+| [Ctrl + b] c                | create window                        |
+| [Ctrl + b] w                | list windows                         |
+| [Ctrl + b] n                | next window                          |
+| [Ctrl + b] p                | previous window                      |
+| [Ctrl + b] f                | find window                          |
+| [Ctrl + b] ,                | rename window                        |
+| [Ctrl + b] &                | kill window                          |
+| [Ctrl + b] %                | vertical split                       |
+| [Ctrl + b] "                | horizontal split                     |
+| [Ctrl + b] o                | swap panes                           |
+| [Ctrl + b] q                | show pane numbers                    |
+| [Ctrl + b] x                | kill pane                            |
+| [Ctrl + b] d                | detach tmux                          |
+
+## fzf
+
+fzf is a general-purpose command-line fuzzy finder ([github](https://github.com/junegunn/fzf)).
+
+![fzf command](documentation/fzf.gif)
+
+| shortcut | description                   |
+|----------|-------------------------------|
+| Ctrl + r | find in history from terminal |
+| Ctrl + t | find path from terminal       |
 
 ## fzf preview
 
@@ -249,8 +279,8 @@ Depending on the type of file selected, a different application will be used to 
 - other file types: `nvim`
 
 
-| shortcut | description                 |
-|----------|-----------------------------|
+| shortcut | description                                         |
+|----------|-----------------------------------------------------|
 | Win + c  | open fzf_preview in a new alacritty floating window |
 
 ## Ranger
