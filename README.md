@@ -8,8 +8,6 @@ Configuration of my Linux environment.
 
 # Table of contents
 
-- [Overview](#overview)
-- [Table of contents](#table-of-contents)
 - [Get started](#get-started)
   - [Create a Python virtual environment](#create-a-python-virtual-environment)
   - [Install dependencies](#install-dependencies)
