@@ -79,7 +79,6 @@ python main.py -s themes/colored_simple.yml
 
 ![i3 tiling window manager](documentation/i3.png)
 
-### Shortcuts
 
 | shortcut                   | description                                                            |
 |----------------------------|------------------------------------------------------------------------|
@@ -134,11 +133,39 @@ A modern version of i3lock with color functionality and other features ([github]
 
 ![i3lock command](documentation/i3lock.gif)
 
-### Shortcuts
 
 | shortcut | description                 |
 |----------|-----------------------------|
 | Win + l  | lock screen session borders |
+
+
+## Rofi
+
+A window switcher, Application launcher and dmenu replacement ([github](https://github.com/davatorium/rofi)).
+
+### Rofi executables explorer
+
+![Rofi Executables](documentation/rofi_executables.gif)
+
+| shortcut | description                    |
+|----------|--------------------------------|
+| Win + d  | open Rofi executables explorer |
+
+### Rofi applications explorer
+
+![Rofi Applications](documentation/rofi_applications.gif)
+
+| shortcut | description                     |
+|----------|---------------------------------|
+| Win + i  | open Rofi applications explorer |
+
+### Rofi System menu
+
+![Rofi Applications](documentation/rofi_system.gif)
+
+| shortcut     | description                     |
+|--------------|---------------------------------|
+| Win + Escape | open Rofi applications explorer |
 
 ## tty-clock
 
@@ -165,7 +192,6 @@ Depending on the type of file selected, a different application will be used to 
 - directories: `code`
 - other file types: `nvim`
 
-### Shortcuts
 
 | shortcut | description                 |
 |----------|-----------------------------|
@@ -186,7 +212,6 @@ modern web and cloud applications.
 
 ![VSCode](documentation/vscode.png)
 
-### Shortcuts
 
 | shortcut                    | description                                                |
 |-----------------------------|------------------------------------------------------------|
@@ -212,17 +237,62 @@ modern web and cloud applications.
 
 ## Ranger
 
-### Shortcuts
+A VIM-inspired filemanager for the console ([github](https://github.com/ranger/ranger)).
 
-| shortcut | description            |
-|----------|------------------------|
-| i        | display file (preview) |
-| Alt + j  | scroll preview down    |
-| Alt + k  | scroll preview up      |
+![Ranger](documentation/ranger.gif)
+
+
+| shortcut  | description                     |
+|-----------|---------------------------------|
+| i         | display file (preview)          |
+| Shift + s | open shell on current directory |
+| F2        | rename selected file/directory  |
+| yy        | copy selected file/directory    |
+| pp        | paste selected file/directory   |
+| dD        | delete selected file/directory  |
+| Alt   + j | scroll preview down             |
+| Alt   + k | scroll preview up               |
+| Ctrl  + r | reset                           |
+| Shift + w | display logs                    |
 
 ## Neovim
 
 My Neovim configuration: [github](https://github.com/eccanto/nvim-config)
+
+![Neovim](documentation/neovim.gif)
+
+
+## Tmux
+
+tmux is a terminal multiplexer: it enables a number of terminals to be created, accessed, and controlled from a single
+screen. tmux may be detached from a screen and continue running in the background, then later reattached.
+([github](https://github.com/tmux/tmux)).
+
+![Tmux](documentation/tmux.gif)
+
+| shortcut                    | description                 |
+|-----------------------------|-----------------------------|
+| tmux                        | start new                   |
+| tmux new -s <NAME>          | start new with session name |
+| tmux a                      | attach                      |
+| tmux a -t <NAME>            | attach to named             |
+| tmux ls                     | list sessions               |
+| tmux kill-session -t <NAME> | kill session                |
+| [Ctrl + b] s                | list sessions               |
+| [Ctrl + b] c                | create window               |
+| [Ctrl + b] w                | list windows                |
+| [Ctrl + b] n                | next window                 |
+| [Ctrl + b] p                | previous window             |
+| [Ctrl + b] f                | find window                 |
+| [Ctrl + b] ,                | rename window               |
+| [Ctrl + b] &                | kill window                 |
+| [Ctrl + b] %                | vertical split              |
+| [Ctrl + b] "                | horizontal split            |
+| [Ctrl + b] o                | swap panes                  |
+| [Ctrl + b] q                | show pane numbers           |
+| [Ctrl + b] x                | kill pane                   |
+| [Ctrl + b] d                | detach tmux                   |
+
 
 # Useful
 
