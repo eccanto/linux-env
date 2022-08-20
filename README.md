@@ -21,14 +21,14 @@ Configuration of my Linux environment.
     - [Rofi executables explorer](#rofi-executables-explorer)
     - [Rofi applications explorer](#rofi-applications-explorer)
     - [Rofi System menu](#rofi-system-menu)
-  - [tty-clock](#tty-clock)
-  - [fzf preview](#fzf-preview)
-  - [Peek](#peek)
-  - [Flameshot](#flameshot)
   - [VSCode](#vscode)
-  - [Ranger](#ranger)
   - [Neovim](#neovim)
   - [Tmux](#tmux)
+  - [fzf preview](#fzf-preview)
+  - [Ranger](#ranger)
+  - [tty-clock](#tty-clock)
+  - [Peek](#peek)
+  - [Flameshot](#flameshot)
 - [Useful](#useful)
   - [Change keyboard layout](#change-keyboard-layout)
   - [Search icons in system fonts](#search-icons-in-system-fonts)
@@ -168,53 +168,6 @@ A window switcher, Application launcher and dmenu replacement ([github](https://
 |--------------|---------------------------------|
 | Win + Escape | open Rofi applications explorer |
 
-## tty-clock
-
-Open digital clock in terminal.
-
-```bash
-tty-clock -ct -f "%H:%M, %d %b %Y"
-```
-
-![tty-clock command](documentation/tty-clock.gif)
-
-## fzf preview
-
-A custom script to preview and open files in your system:
-
-```bash
-fzf_preview
-```
-
-![fzf_preview command](documentation/fzf_preview.gif)
-
-Depending on the type of file selected, a different application will be used to open it:
-- images: `feh -x`
-- directories: `code`
-- other file types: `nvim`
-
-
-| shortcut | description                 |
-|----------|-----------------------------|
-| Win + c  | open fzf_preview in a new alacritty floating window |
-
-## Peek
-
-Simple screen recorder with an easy to use interface ([github](https://github.com/phw/peek)):
-
-```bash
-peek
-```
-
-![Peek](documentation/peek.png)
-
-
-## Flameshot
-
-Powerful yet simple to use screenshot software ([github](https://github.com/flameshot-org/flameshot)).
-
-![Flameshot](documentation/flameshot.gif)
-
 ## VSCode
 
 [Visual Studio Code](https://code.visualstudio.com/) is a code editor redefined and optimized for building and debugging
@@ -245,32 +198,11 @@ modern web and cloud applications.
 | Alt  + .                    | go to forward                                              |
 | Ctrl + Enter                | open file in split view [from explorer view]               |
 
-## Ranger
-
-A VIM-inspired filemanager for the console ([github](https://github.com/ranger/ranger)).
-
-![Ranger](documentation/ranger.gif)
-
-
-| shortcut  | description                     |
-|-----------|---------------------------------|
-| i         | display file (preview)          |
-| Shift + s | open shell on current directory |
-| F2        | rename selected file/directory  |
-| yy        | copy selected file/directory    |
-| pp        | paste selected file/directory   |
-| dD        | delete selected file/directory  |
-| Alt   + j | scroll preview down             |
-| Alt   + k | scroll preview up               |
-| Ctrl  + r | reset                           |
-| Shift + w | display logs                    |
-
 ## Neovim
 
 My Neovim configuration: [github](https://github.com/eccanto/nvim-config)
 
 ![Neovim](documentation/neovim.gif)
-
 
 ## Tmux
 
@@ -301,8 +233,73 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 | [Ctrl + b] o                | swap panes                  |
 | [Ctrl + b] q                | show pane numbers           |
 | [Ctrl + b] x                | kill pane                   |
-| [Ctrl + b] d                | detach tmux                   |
+| [Ctrl + b] d                | detach tmux                 |
 
+## fzf preview
+
+A custom script to preview and open files in your system:
+
+```bash
+fzf_preview
+```
+
+![fzf_preview command](documentation/fzf_preview.gif)
+
+Depending on the type of file selected, a different application will be used to open it:
+- images: `feh -x`
+- directories: `code`
+- other file types: `nvim`
+
+
+| shortcut | description                 |
+|----------|-----------------------------|
+| Win + c  | open fzf_preview in a new alacritty floating window |
+
+## Ranger
+
+A VIM-inspired filemanager for the console ([github](https://github.com/ranger/ranger)).
+
+![Ranger](documentation/ranger.gif)
+
+
+| shortcut  | description                     |
+|-----------|---------------------------------|
+| i         | display file (preview)          |
+| Shift + s | open shell on current directory |
+| F2        | rename selected file/directory  |
+| yy        | copy selected file/directory    |
+| pp        | paste selected file/directory   |
+| dD        | delete selected file/directory  |
+| Alt   + j | scroll preview down             |
+| Alt   + k | scroll preview up               |
+| Ctrl  + r | reset                           |
+| Shift + w | display logs                    |
+
+## tty-clock
+
+Open digital clock in terminal.
+
+```bash
+tty-clock -ct -f "%H:%M, %d %b %Y"
+```
+
+![tty-clock command](documentation/tty-clock.gif)
+
+## Peek
+
+Simple screen recorder with an easy to use interface ([github](https://github.com/phw/peek)):
+
+```bash
+peek
+```
+
+![Peek](documentation/peek.png)
+
+## Flameshot
+
+Powerful yet simple to use screenshot software ([github](https://github.com/flameshot-org/flameshot)).
+
+![Flameshot](documentation/flameshot.gif)
 
 # Useful
 
