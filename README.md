@@ -463,7 +463,7 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
 
 ### Architecture
 
-The following diagram describes the installers basic architecture. To support a new Linux OS you must create an installer class **`YourOS`**`Installer` that implements all the abstract methods of `BaseInstaller` and register it in the `SystemInstaller:OS_INSTALLERS` mapping.
+The following diagram describes the installers basic architecture. To support a new Linux OS you must create an installer class **`YourOS`**`Installer` that implements all the abstract methods of `BaseInstaller` class and register it in the `SystemInstaller:OS_INSTALLERS` mapping.
 
 ![Instsallers architecture](documentation/architecture/diagram.png)
 
@@ -510,6 +510,15 @@ class SystemInstaller(BaseInstaller):
     }
 
     ...
+```
+
+Get the OS identifier tuple:
+
+```ipython
+In [1]: import distro
+
+In [2]: (distro.id(), distro.version())
+Out[2]: ('ubuntu', '20.04')
 ```
 
 ## Static code analysis tools

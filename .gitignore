@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+# Temporary files
+*.bkp
+
 # Project
 .dependencies/
 .custom_settings/
