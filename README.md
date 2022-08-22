@@ -4,7 +4,7 @@
 
 Configuration of my Linux environment.
 
-![themes](documentation/themes.gif)
+![themes](documentation/media/themes.gif)
 
 # Table of contents
 
@@ -38,6 +38,9 @@ Configuration of my Linux environment.
   - [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
   - [Remove absolute path from current working directory](#remove-absolute-path-from-current-working-directory)
 - [Developers](#developers)
+  - [Add support for a new Linux OS](#add-support-for-a-new-linux-os)
+    - [Architecture](#architecture)
+    - [Example](#example)
   - [Static code analysis tools](#static-code-analysis-tools)
     - [Set up the Git hooks custom directory](#set-up-the-git-hooks-custom-directory)
     - [Python Static Checkers](#python-static-checkers)
@@ -77,7 +80,7 @@ python main.py -s themes/colored_simple.yml
 
 [i3](https://i3wm.org/) is a tiling window manager:
 
-![i3 tiling window manager](documentation/i3.png)
+![i3 tiling window manager](documentation/media/i3.png)
 
 
 | shortcut                   | description                                                            |
@@ -131,7 +134,7 @@ python main.py -s themes/colored_simple.yml
 
 A modern version of i3lock with color functionality and other features ([github](https://github.com/Raymo111/i3lock-color)).
 
-![i3lock command](documentation/i3lock.gif)
+![i3lock command](documentation/media/i3lock.gif)
 
 
 | shortcut | description                 |
@@ -145,7 +148,7 @@ A window switcher, Application launcher and dmenu replacement ([github](https://
 
 ### Rofi executables explorer
 
-![Rofi Executables](documentation/rofi_executables.gif)
+![Rofi Executables](documentation/media/rofi_executables.gif)
 
 | shortcut | description                    |
 |----------|--------------------------------|
@@ -153,7 +156,7 @@ A window switcher, Application launcher and dmenu replacement ([github](https://
 
 ### Rofi applications explorer
 
-![Rofi Applications](documentation/rofi_applications.gif)
+![Rofi Applications](documentation/media/rofi_applications.gif)
 
 | shortcut | description                     |
 |----------|---------------------------------|
@@ -161,7 +164,7 @@ A window switcher, Application launcher and dmenu replacement ([github](https://
 
 ### Rofi System menu
 
-![Rofi Applications](documentation/rofi_system.gif)
+![Rofi Applications](documentation/media/rofi_system.gif)
 
 | shortcut     | description                     |
 |--------------|---------------------------------|
@@ -172,7 +175,7 @@ A window switcher, Application launcher and dmenu replacement ([github](https://
 [Visual Studio Code](https://code.visualstudio.com/) is a code editor redefined and optimized for building and debugging
 modern web and cloud applications.
 
-![VSCode](documentation/vscode.png)
+![VSCode](documentation/media/vscode.png)
 
 
 | shortcut                    | description                                                |
@@ -188,6 +191,7 @@ modern web and cloud applications.
 | Ctrl + Alt + Shift + Down   | resize: decrease group view height                         |
 | Ctrl + m                    | open markdown preview on the Side                          |
 | Ctrl + g                    | go to line/column                                          |
+| Ctrl + Space                | search suggestions                                         |
 | Ctrl + Shift + [Up,Down]    | move lines [Up,Down]                                       |
 | Ctrl + Shift + d            | go to definition                                           |
 | Ctrl + [Up,Down]            | scroll to [Up,Down]                                        |
@@ -201,7 +205,7 @@ modern web and cloud applications.
 
 My Neovim configuration: [github](https://github.com/eccanto/nvim-config)
 
-![Neovim](documentation/neovim.gif)
+![Neovim](documentation/media/neovim.gif)
 
 ## Tmux
 
@@ -209,16 +213,16 @@ tmux is a terminal multiplexer: it enables a number of terminals to be created, 
 screen. tmux may be detached from a screen and continue running in the background, then later reattached.
 ([github](https://github.com/tmux/tmux)).
 
-![Tmux](documentation/tmux.gif)
+![Tmux](documentation/media/tmux.gif)
 
 | shortcut                    | description                          |
 |-----------------------------|--------------------------------------|
 | tmux                        | start new                            |
-| tmux new -s <NAME>          | start new with session name          |
+| tmux new -s [NAME]          | start new with session name          |
 | tmux a                      | attach                               |
-| tmux a -t <NAME>            | attach to named                      |
+| tmux a -t [NAME]            | attach to named                      |
 | tmux ls                     | list sessions                        |
-| tmux kill-session -t <NAME> | kill session                         |
+| tmux kill-session -t [NAME] | kill session                         |
 | tmux kill-server            | kill server (restart configurations) |
 | [Ctrl + b] + Ctrl + s       | save tmux state (tmux-resurrect)     |
 | [Ctrl + b] + Ctrl + r       | restore tmux state (tmux-resurrect)  |
@@ -233,10 +237,10 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 | Alt + Shift + Right         | split right pane                     |
 | Alt + Shift + Up            | split up pane                        |
 | Alt + Shift + Down          | split down pane                      |
-| Alt + Shift + 4             | resize pane to left                  |
-| Alt + Shift + 6             | resize pane to right                 |
-| Alt + Shift + 8             | resize pane to up                    |
-| Alt + Shift + 2             | resize pane to down                  |
+| Alt + 4                     | resize pane to left                  |
+| Alt + 6                     | resize pane to right                 |
+| Alt + 8                     | resize pane to up                    |
+| Alt + 2                     | resize pane to down                  |
 | [Ctrl + b] s                | list sessions                        |
 | [Ctrl + b] c                | create window                        |
 | [Ctrl + b] w                | list windows                         |
@@ -256,7 +260,7 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 
 fzf is a general-purpose command-line fuzzy finder ([github](https://github.com/junegunn/fzf)).
 
-![fzf command](documentation/fzf.gif)
+![fzf command](documentation/media/fzf.gif)
 
 | shortcut | description                   |
 |----------|-------------------------------|
@@ -271,7 +275,7 @@ A custom script to preview and open files in your system:
 fzf_preview
 ```
 
-![fzf_preview command](documentation/fzf_preview.gif)
+![fzf_preview command](documentation/media/fzf_preview.gif)
 
 Depending on the type of file selected, a different application will be used to open it:
 - images: `feh -x`
@@ -287,7 +291,7 @@ Depending on the type of file selected, a different application will be used to 
 
 A VIM-inspired filemanager for the console ([github](https://github.com/ranger/ranger)).
 
-![Ranger](documentation/ranger.gif)
+![Ranger](documentation/media/ranger.gif)
 
 
 | shortcut  | description                     |
@@ -311,7 +315,7 @@ Open digital clock in terminal.
 tty-clock -ct -f "%H:%M, %d %b %Y"
 ```
 
-![tty-clock command](documentation/tty-clock.gif)
+![tty-clock command](documentation/tty-media/clock.gif)
 
 ## Peek
 
@@ -321,13 +325,13 @@ Simple screen recorder with an easy to use interface ([github](https://github.co
 peek
 ```
 
-![Peek](documentation/peek.png)
+![Peek](documentation/media/peek.png)
 
 ## Flameshot
 
 Powerful yet simple to use screenshot software ([github](https://github.com/flameshot-org/flameshot)).
 
-![Flameshot](documentation/flameshot.gif)
+![Flameshot](documentation/media/flameshot.gif)
 
 # Useful
 
@@ -451,9 +455,62 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
   typeset -g POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER=first
 ```
 
-![p10k](documentation/p10k_truncate_path.png)
+![p10k](documentation/media/p10k_truncate_path.png)
 
 # Developers
+
+## Add support for a new Linux OS
+
+### Architecture
+
+The following diagram describes the installers basic architecture. To support a new Linux OS you must create an installer class **`YourOS`**`Installer` that implements all the abstract methods of `BaseInstaller` and register it in the `SystemInstaller:OS_INSTALLERS` mapping.
+
+![Instsallers architecture](documentation/architecture/diagram.png)
+
+### Example
+
+Create an installer class that implements all abstract methods of the `BaseInstaller` class:
+
+```python
+# str/installers/ubuntu.py
+
+...
+
+class UbuntuInstaller(BaseInstaller):
+    """Class in charge of managing the installation of the required packages on Ubuntu."""
+
+    def install_system_requirements(self) -> None:
+        """Installs system requirements."""
+        ...
+
+    def install_i3gaps(self) -> None:
+        """Installs i3 gaps package."""
+        ...
+
+    ...
+```
+
+Register the created class and define its compatibility:
+
+```python
+# src/installer.py
+
+...
+
+from src.installers.ubuntu import UbuntuInstaller
+
+
+class SystemInstaller(BaseInstaller):
+    """Class in charge of managing the installation and configuration of the required packages."""
+
+    OS_INSTALLERS = {
+        ('ubuntu', '20.04'): UbuntuInstaller,
+        ('ubuntu', '22.04'): UbuntuInstaller,
+        ...
+    }
+
+    ...
+```
 
 ## Static code analysis tools
 

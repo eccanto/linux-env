@@ -44,9 +44,14 @@ setopt appendhistory
 
 source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 
+# fix zsh Home and End keys
 bindkey  "^[[H"   beginning-of-line
 bindkey  "^[[F"   end-of-line
 bindkey  "^[[3~"  delete-char
+
+# fix tmux Home and End keys
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
 
 export VISUAL=vim
 export EDITOR=vim

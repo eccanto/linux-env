@@ -3,6 +3,7 @@
 
 import logging
 import shutil
+from itertools import chain
 from pathlib import Path
 from typing import List
 
@@ -10,55 +11,50 @@ import click
 import coloredlogs
 
 from src.configuration.parser.yaml_parser import YamlParser
-from src.packages.installer import PackagesInstaller
+from src.installer import SystemInstaller
 
 
-CUSTOM_SETTINGS = Path('.custom_settings')
-DEFAULT_SETTINGS = Path('settings')
-
-DEPENDENCIES = Path('.dependencies')
-
-COMPONENTS_INSTALL = PackagesInstaller.component_methods()
+REQUIRED_INSTALLERS = SystemInstaller.required_methods()
+PACKAGE_INSTALLERS = SystemInstaller.install_methods()
+AVAILABLE_INSTALLERS = {
+    name: function for name, function in PACKAGE_INSTALLERS.items() if name not in REQUIRED_INSTALLERS
+}
 
 
 @click.command()
-@click.option('-s', '--style_path', help='Yaml style path.', required=True, type=click.Path(exists=True))
+@click.option('-s', '--style', help='Yaml style path.', type=click.Path())
 @click.option(
-    '-c',
-    '--component',
-    'components',
+    '-f',
+    '--function',
+    'functions',
     multiple=True,
-    type=click.Choice(COMPONENTS_INSTALL.keys()),
+    type=click.Choice(AVAILABLE_INSTALLERS.keys()),
     help=(
         'Components to be installed. The --component option can be specified several times, '
         'if no component is indicated all of them will be installed'
     ),
 )
-def main(style_path: str, components: List[str]) -> None:
+def main(style: str, functions: List[str]) -> None:
     """Setup linux environment.
 
-    :param style_path: The file path that describes the style to be used.
+    :param style: The file path that describes the style to be used.
     """
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
 
-    if not components:
-        components = COMPONENTS_INSTALL.keys()
+    if style:
+        style = YamlParser(Path(style))
 
-    if CUSTOM_SETTINGS.exists():
-        shutil.rmtree(CUSTOM_SETTINGS)
+        logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
+        shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
-    DEPENDENCIES.mkdir(parents=True, exist_ok=True)
+    if not functions:
+        functions = PACKAGE_INSTALLERS.keys()
 
-    style = YamlParser(Path(style_path))
+    installer = SystemInstaller(style)
+    installer.prepare()
 
-    shutil.copytree(DEFAULT_SETTINGS, CUSTOM_SETTINGS)
-
-    logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
-    shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
-
-    installer = PackagesInstaller(DEPENDENCIES, CUSTOM_SETTINGS, style)
-    for component in components:
-        COMPONENTS_INSTALL[component](installer)
+    for function in chain(REQUIRED_INSTALLERS.keys(), functions):
+        PACKAGE_INSTALLERS[function](installer)
 
     logging.info('done!')
 
