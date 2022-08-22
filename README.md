@@ -1,5 +1,3 @@
-**`WIP`**
-
 # Overview
 
 Configuration of my Linux environment.
