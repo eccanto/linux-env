@@ -189,7 +189,9 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
             alacrity_config = self.CONFIG_DIRECTORY_PATH.joinpath('alacritty')
             alacrity_config.mkdir(parents=True, exist_ok=True)
 
-            configuration = AlacrittyConfiguration(self.SETTINGS_PATH.joinpath('alacritty/alacritty.yml'), alacrity_config)
+            configuration = AlacrittyConfiguration(
+                self.SETTINGS_PATH.joinpath('alacritty/alacritty.yml'), alacrity_config
+            )
             configuration.setup(self.style.components['alacritty'])
 
     def install_btop(self) -> None:
@@ -304,10 +306,8 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
         plugins_path = Path('~/.zsh/').expanduser()
         plugins_path.mkdir(parents=True, exist_ok=True)
 
-        if (
-            ('zsh-autosuggestions.zsh' not in zsh_rc_path.read_text())
-            and
-            click.confirm('Do you want to install "zsh-autosuggestions.zsh" zsh plugging?')
+        if ('zsh-autosuggestions.zsh' not in zsh_rc_path.read_text(encoding='UTF-8')) and click.confirm(
+            'Do you want to install "zsh-autosuggestions.zsh" zsh plugging?'
         ):
             logging.info('installing zsh plugin: zsh-autosuggestions.zsh...')
 
@@ -320,26 +320,23 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
                 '''
             )
 
-        if (
-            ('zsh-syntax-highlighting.zsh' not in zsh_rc_path.read_text())
-            and
-            click.confirm('Do you want to install "zsh-syntax-highlighting.zsh" zsh plugging?')
+        if ('zsh-syntax-highlighting.zsh' not in zsh_rc_path.read_text(encoding='UTF-8')) and click.confirm(
+            'Do you want to install "zsh-syntax-highlighting.zsh" zsh plugging?'
         ):
             logging.info('installing zsh plugin: zsh-syntax-highlighting.zsh...')
 
             self.run_shell(
                 f'''
                 if [[ ! -d "{plugins_path}/zsh-syntax-highlighting" ]]; then
-                    git clone https://github.com/zsh-users/zsh-syntax-highlighting {plugins_path}/zsh-syntax-highlighting
+                    git clone https://github.com/zsh-users/zsh-syntax-highlighting \
+                        {plugins_path}/zsh-syntax-highlighting
                 fi
                 echo "source {plugins_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> {zsh_rc_path}
                 '''
             )
 
-        if (
-            ('sudo.plugin.zsh' not in zsh_rc_path.read_text())
-            and
-            click.confirm('Do you want to install "sudo.plugin.zsh" zsh plugging?')
+        if ('sudo.plugin.zsh' not in zsh_rc_path.read_text(encoding='UTF-8')) and click.confirm(
+            'Do you want to install "sudo.plugin.zsh" zsh plugging?'
         ):
             logging.info('installing zsh plugin: sudo.plugin.zsh...')
 

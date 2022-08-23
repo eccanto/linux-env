@@ -28,7 +28,7 @@ AVAILABLE_INSTALLERS = {
     '--function',
     'functions',
     multiple=True,
-    type=click.Choice(AVAILABLE_INSTALLERS.keys()),
+    type=click.Choice(list(AVAILABLE_INSTALLERS.keys())),
     help=(
         'Components to be installed. The --component option can be specified several times, '
         'if no component is indicated all of them will be installed'
@@ -41,16 +41,15 @@ def main(style: str, functions: List[str]) -> None:
     """
     coloredlogs.install(fmt='%(asctime)s-%(name)s-%(levelname)s: %(message)s', level=logging.INFO)
 
-    if style:
-        style = YamlParser(Path(style))
-
-        logging.info('setting wallpaper "%s"...', style.general.base.wallpaper)
-        shutil.copy(style.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
+    style_parser = YamlParser(Path(style)) if style else None
+    if style_parser:
+        logging.info('setting wallpaper "%s"...', style_parser.general.base.wallpaper)
+        shutil.copy(style_parser.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
     if not functions:
         functions = PACKAGE_INSTALLERS.keys()
 
-    installer = SystemInstaller(style)
+    installer = SystemInstaller(style_parser)
     installer.prepare()
 
     for function in chain(REQUIRED_INSTALLERS.keys(), functions):

@@ -18,7 +18,8 @@ class BaseInstaller(ABC):  # pylint: disable=too-many-public-methods
     SETTINGS_PATH = Path('.custom_settings')
 
     @classmethod
-    def prepare(cls):
+    def prepare(cls) -> None:
+        """Prepares environment dependencies."""
         cls.DEPENDENCIES_PATH.mkdir(parents=True, exist_ok=True)
 
         if cls.SETTINGS_PATH.exists():
@@ -27,13 +28,13 @@ class BaseInstaller(ABC):  # pylint: disable=too-many-public-methods
 
     @classmethod
     def required_methods(cls) -> Dict[str, Any]:
-        return {
-            cls.install_system_requirements.__name__: cls.install_system_requirements
-        }
+        """Gets the required installer methods."""
+        return {cls.install_system_requirements.__name__: cls.install_system_requirements}
 
     @classmethod
     def install_methods(cls, prefix: str = 'install_') -> Dict[str, Any]:
-        """Gets the components and their install functions.
+        """Gets the installer methods.
+
         :param prefix: Method name prefix to filter the installation methods.
         """
         return {

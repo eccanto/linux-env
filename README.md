@@ -553,8 +553,8 @@ Tools used:
 
 # Compatibility
 
-- Ubuntu 22.04 LTS [locally tested]
-- Ubuntu 18.04 LTS [locally tested]
+- Ubuntu 22.04 LTS
+- Ubuntu 20.04 LTS
 
 # Disclaimer
 
