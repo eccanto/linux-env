@@ -31,6 +31,7 @@ alias la='lsd -a --group-dirs=first'
 alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
+alias history='history 0'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
