@@ -225,7 +225,6 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 | [Ctrl + b] + Ctrl + s       | save tmux state (tmux-resurrect)     |
 | [Ctrl + b] + Ctrl + r       | restore tmux state (tmux-resurrect)  |
 | Alt + n                     | create window                        |
-| Alt + n                     | create window                        |
 | Alt + Tab                   | next window                          |
 | Alt + Left                  | select left pane                     |
 | Alt + Right                 | select right pane                    |
