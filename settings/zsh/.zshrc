@@ -50,7 +50,7 @@ bindkey  '^[[H'   beginning-of-line
 bindkey  '^[[F'   end-of-line
 bindkey  '^[[3~'  delete-char
 
-# fix ssh Home and End keys [root]
+# fix zsh Home and End keys [root]
 bindkey  '\e[1~'  beginning-of-line  # Linux console
 bindkey  '\e[H'   beginning-of-line  # xterm
 bindkey  '\eOH'   beginning-of-line  # gnome-terminal
