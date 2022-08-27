@@ -46,9 +46,19 @@ setopt appendhistory
 source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # fix zsh Home and End keys
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
-bindkey  "^[[3~"  delete-char
+bindkey  '^[[H'   beginning-of-line
+bindkey  '^[[F'   end-of-line
+bindkey  '^[[3~'  delete-char
+
+# fix ssh Home and End keys [root]
+bindkey  '\e[1~'  beginning-of-line  # Linux console
+bindkey  '\e[H'   beginning-of-line  # xterm
+bindkey  '\eOH'   beginning-of-line  # gnome-terminal
+bindkey  '\e[2~'  overwrite-mode     # Linux console, xterm, gnome-terminal
+bindkey  '\e[3~'  delete-char        # Linux console, xterm, gnome-terminal
+bindkey  '\e[4~'  end-of-line        # Linux console
+bindkey  '\e[F'   end-of-line        # xterm
+bindkey  '\eOF'   end-of-line        # gnome-terminal
 
 # fix tmux Home and End keys
 bindkey "^A" beginning-of-line
