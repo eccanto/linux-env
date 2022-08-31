@@ -29,6 +29,7 @@ case $chosen in
     $suspend)
         mpc -q pause
         amixer set Master mute
+        lock
         systemctl suspend
         ;;
     $logout)
