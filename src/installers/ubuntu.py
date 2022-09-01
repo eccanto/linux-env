@@ -146,7 +146,7 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
         logging.info('installing rofi...')
 
         rofi_config = self.CONFIG_DIRECTORY_PATH.joinpath('rofi')
-        rofi_settings = self.settings.joinpath('rofi')
+        rofi_settings = self.SETTINGS_PATH.joinpath('rofi')
         rofi_temp = self.DEPENDENCIES_PATH.joinpath('rofi')
         self.run_shell(
             f'''
@@ -189,7 +189,7 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
 
         vscode_temp = self.DEPENDENCIES_PATH.joinpath('vscode-latest.deb')
         vscode_config = self.CONFIG_DIRECTORY_PATH.joinpath('Code/User')
-        vscode_settings = self.settings.joinpath('vscode')
+        vscode_settings = self.SETTINGS_PATH.joinpath('vscode')
         self.run_shell(
             f'''
             wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O "{vscode_temp}"
