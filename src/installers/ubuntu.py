@@ -333,8 +333,8 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
         self.run_shell(
             f'''
             mkdir -p {bat_temp}
-            wget https://github.com/sharkdp/bat/releases/download/v0.18.3/bat_0.18.3_amd64.deb -P {bat_temp}
-            sudo dpkg -i {bat_temp}/bat_0.18.3_amd64.deb
+            wget https://github.com/sharkdp/bat/releases/download/v0.22.0/bat_0.22.0_amd64.deb -P {bat_temp}
+            sudo dpkg -i {bat_temp}/bat_0.22.0_amd64.deb
             '''
         )
 
