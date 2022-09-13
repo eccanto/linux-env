@@ -1,6 +1,7 @@
 {
     "workbench.iconTheme": "vscode-great-icons",
     "editor.fontSize": 13,
+    "clock.dateFormat": "hh:MM TT mm/dd/yyyy",
     "editor.renderWhitespace": "all",
     "autoDocstring.docstringFormat": "sphinx",
     "workbench.colorCustomizations": {
