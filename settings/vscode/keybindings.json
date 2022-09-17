@@ -285,5 +285,16 @@
         "command": "workbench.action.terminal.sendSequence",
         "args": {"text": "\u000c"},
         "when": "terminalFocus"
-    }
+    },
+    {
+        "key": "ctrl+shift+alt+right",
+        "command": "workbench.action.increaseViewSize",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "ctrl+shift+alt+left",
+        "command": "workbench.action.decreaseViewSize",
+        "when": "sideBarFocus"
+    },
 ]
+
