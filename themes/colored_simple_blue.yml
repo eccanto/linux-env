@@ -191,7 +191,7 @@ components:
       value: "92:class_g = 'Code'"
 
   rofi:
-    - refex: 'selected-normal-background: #\w+'
+    - refex: 'selected-normal-background:\s*#\w+'
       value: !format ['selected-normal-background: {}', *base_color]
 
   rofi_menu:
