@@ -35,6 +35,7 @@ Configuration of my Linux environment.
   - [Fix polybar brightness module on amd card](#fix-polybar-brightness-module-on-amd-card)
   - [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
   - [Remove absolute path from current working directory](#remove-absolute-path-from-current-working-directory)
+  - [Change permissions on sys brightness permanently using udev](#change-permissions-on-sys-brightness-permanently-using-udev)
 - [Developers](#developers)
   - [Add support for a new Linux OS](#add-support-for-a-new-linux-os)
     - [Architecture](#architecture)
@@ -453,6 +454,30 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
 ```
 
 ![p10k](documentation/media/p10k_truncate_path.png)
+
+## Change permissions on sys brightness permanently using udev
+
+1. Add your user to `video` group:
+
+    ```bash
+    sudo usermod -a -G video <YOUR_USERNAME>
+    ```
+
+2. Get your video system kernel (`YOUR_KERNEL`) running this command:
+
+    ```bash
+    # get <YOUR_KERNEL>
+    ls /sys/class/backlight/ | head -n 1
+    ```
+
+3. Create/edit `/etc/udev/rules.d/backlight.rules` file:
+
+    ```bash
+    ACTION=="change", SUBSYSTEM=="backlight", KERNEL=="<YOUR_KERNEL>", RUN+="/usr/bin/chgrp video /sys/class/backlight/%k/brightness"
+    ACTION=="change", SUBSYSTEM=="backlight", KERNEL=="<YOUR_KERNEL>", RUN+="/usr/bin/chmod g+w /sys/class/backlight/%k/brightness"
+    ```
+
+4. restart your system.
 
 # Developers
 
