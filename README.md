@@ -36,6 +36,7 @@ Configuration of my Linux environment.
   - [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
   - [Remove absolute path from current working directory](#remove-absolute-path-from-current-working-directory)
   - [Change permissions on sys brightness permanently using udev](#change-permissions-on-sys-brightness-permanently-using-udev)
+  - [Enter SSH passphrase once](#enter-ssh-passphrase-once)
 - [Developers](#developers)
   - [Add support for a new Linux OS](#add-support-for-a-new-linux-os)
     - [Architecture](#architecture)
@@ -478,6 +479,38 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
     ```
 
 4. restart your system.
+
+## Enter SSH passphrase once
+
+1. Install dependencies:
+
+    ```bash
+    sudo apt install keychain
+    ```
+
+2. Configure git, create/edit `~/.ssh/config` file (`YOUR_REMOTE_HOST` example: "github.com", and `YOUR_SSH_KEY` example: "~/.ssh/id_rsa"):
+
+    ```config
+    Host <YOUR_REMOTE_HOST>
+        IgnoreUnknown UseKeychain
+        UseKeychain yes
+        AddKeysToAgent yes
+        IdentityFile <YOUR_SSH_KEY>
+    ```
+
+3. Change git config file mode:
+
+    ```bash
+    chmod 644 ~/.ssh/config
+    ```
+
+4. Add keychain to profile file (example: `~/.zshrc`, `~/.bashrc`, etc.)
+
+    ```bash
+    ...
+
+    eval $(keychain -q --noask --eval id_rsa)
+    ```
 
 # Developers
 
