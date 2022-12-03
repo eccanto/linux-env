@@ -490,12 +490,28 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
 
 2. Configure git, create/edit `~/.ssh/config` file (`YOUR_REMOTE_HOST` example: "github.com", and `YOUR_SSH_KEY` example: "~/.ssh/id_rsa"):
 
-    ```config
+    ```sshconfig
     Host <YOUR_REMOTE_HOST>
         IgnoreUnknown UseKeychain
         UseKeychain yes
         AddKeysToAgent yes
         IdentityFile <YOUR_SSH_KEY>
+    ```
+
+    Example with multiple hosts:
+
+    ```sshconfig
+    Host *
+        IgnoreUnknown UseKeychain
+        UseKeychain yes
+        AddKeysToAgent yes
+
+    Host github.com
+        IdentityFile ~/.ssh/github
+
+    Host <COMPANY_HOST>
+        IdentityFile ~/.ssh/git_company
+        Port <COMPANY_PORT>
     ```
 
 3. Change git config file mode:
