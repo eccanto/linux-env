@@ -1,5 +1,7 @@
 {
     "workbench.iconTheme": "vscode-great-icons",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "svgPreview.autoOpen": false,
     "editor.fontSize": 13,
     "clock.dateFormat": "hh:MM TT mm/dd/yyyy",
     "editor.renderWhitespace": "all",
@@ -18,8 +20,6 @@
     "editor.rulers": [
         120
     ],
-    "window.zoomLevel": 0,
-    "workbench.colorTheme": "GitHub Dark Default",
     "editor.semanticTokenColorCustomizations": {
         "enabled": true,
         "rules": {
@@ -83,5 +83,6 @@
     "workbench.activityBar.visible": false,
     "redhat.telemetry.enabled": false,
     "terminal.integrated.tabs.enabled": false,
-    "window.menuBarVisibility": "hidden"
+    "window.menuBarVisibility": "hidden",
+    "hediet.vscode-drawio.theme": "Kennedy"
 }
