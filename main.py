@@ -47,7 +47,7 @@ def main(style: str, functions: List[str]) -> None:
         shutil.copy(style_parser.general.base.wallpaper, Path('~/.wallpaper.jpg').expanduser())
 
     if not functions:
-        functions = PACKAGE_INSTALLERS.keys()
+        functions = list(PACKAGE_INSTALLERS.keys())
 
     installer = SystemInstaller(style_parser)
     installer.prepare()
