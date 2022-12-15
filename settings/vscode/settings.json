@@ -104,6 +104,7 @@
         "levelname",
         "matplotlib",
         "mccabe",
+        "msecs",
         "mypy",
         "ncols",
         "nrows",
