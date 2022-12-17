@@ -28,7 +28,7 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
                 xcb-proto libxcb-ewmh-dev wireless-tools libiw-dev libasound2-dev libpulse-dev libxcb-shape0       \
                 libxcb-shape0-dev libcurl4-openssl-dev libmpdclient-dev pavucontrol python3-pip rxvt-unicode       \
                 compton ninja-build meson python3 curl playerctl feh flameshot tty-clock arandr cargo htop vlc     \
-                firejail zsh exiftool
+                firejail zsh exiftool neofetch
             '''
         )
 
@@ -320,7 +320,7 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
             wget -O ~/FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64"
             sudo tar xjf ~/FirefoxSetup.tar.bz2 -C /opt/
             rm ~/FirefoxSetup.tar.bz2
-            sudo mv /usr/bin/firefox /usr/bin/firefox_backup
+            sudo mv /usr/bin/firefox /usr/bin/firefox_backup || true
             sudo ln -s /opt/firefox/firefox /usr/bin/firefox
             '''
         )
