@@ -37,6 +37,7 @@ Configuration of my Linux environment.
   - [Remove absolute path from current working directory](#remove-absolute-path-from-current-working-directory)
   - [Change permissions on sys brightness permanently using udev](#change-permissions-on-sys-brightness-permanently-using-udev)
   - [Enter SSH passphrase once](#enter-ssh-passphrase-once)
+  - [Bluetooth - a2dp-sink profile connect failed](#bluetooth---a2dp-sink-profile-connect-failed)
 - [Developers](#developers)
   - [Add support for a new Linux OS](#add-support-for-a-new-linux-os)
     - [Architecture](#architecture)
@@ -526,6 +527,42 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
     ...
 
     eval $(keychain -q --noask --eval id_rsa)
+    ```
+
+## Bluetooth - a2dp-sink profile connect failed
+
+When I try to connect to any headphone, blueman throws:
+
+```bash
+blueman.bluez.errors.DBusFailedError: Protocol not available.
+```
+
+In logs there are pretty similar errors:
+
+```bash
+... bluetoothd[000]: a2dp-sink profile connect failed for 00:00:00:00:00
+```
+
+To solve it, follow these steps:
+
+1. Run the following commands:
+
+    ```bash
+    sudo apt-get install pulseaudio-module-bluetooth
+    ```
+
+2. Adding the `module-bluez5-discover` at the end of the pulseaudio `/etc/pulse/default.pa config`:
+
+    ```config
+    load-module module-bluez5-discover
+    ```
+
+3. Run the following commands:
+
+    ```bash
+    sudo killall pulseaudio
+    pulseaudio --start
+    sudo systemctl restart bluetooth
     ```
 
 # Developers

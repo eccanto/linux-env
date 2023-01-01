@@ -28,7 +28,9 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
                 xcb-proto libxcb-ewmh-dev wireless-tools libiw-dev libasound2-dev libpulse-dev libxcb-shape0       \
                 libxcb-shape0-dev libcurl4-openssl-dev libmpdclient-dev pavucontrol python3-pip rxvt-unicode       \
                 compton ninja-build meson python3 curl playerctl feh flameshot tty-clock arandr cargo htop vlc     \
-                firejail zsh exiftool neofetch
+                firejail zsh exiftool
+                neofetch
+                nala
             '''
         )
 
