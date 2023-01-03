@@ -52,11 +52,13 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
             self.os_installer.install_system_requirements()
 
     def install_speedtest(self) -> None:
-        """Installs system requirements (pip)."""
+        """Installs speedtest package (pip)."""
         self.os_installer.install_speedtest()
 
     def install_i3gaps(self) -> None:
         """Installs i3 gaps package."""
+        self.os_installer.install_bsnotifier()
+
         if not self.is_installed('i3'):
             self.os_installer.install_i3gaps()
 
@@ -66,6 +68,10 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
 
             configuration = I3Configuration(self.SETTINGS_PATH.joinpath('i3/config'), config_directory)
             configuration.setup(self.style.components['i3'])
+
+            config_path = config_directory.joinpath('config')
+            config_raw = config_path.read_text()
+            config_path.write_text(config_raw.replace('${USER_HOME}', str(Path('~').expanduser())))
 
     def install_i3lock(self) -> None:
         """Installs i3 lock package."""

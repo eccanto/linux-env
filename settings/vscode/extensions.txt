@@ -1,6 +1,7 @@
 alefragnani.project-manager
 alexkrechik.cucumberautocomplete
 analytic-signal.preview-mp4
+ban.quietlight-plus
 batisteo.vscode-django
 bungcip.better-toml
 christian-kohler.path-intellisense
@@ -30,6 +31,7 @@ keith.robotframework
 KevinRose.vsc-python-indent
 mads-hartmann.bash-ide-vscode
 mechatroner.rainbow-csv
+Meezilla.json
 mikestead.dotenv
 mohsen1.prettify-json
 mrorz.language-gettext
@@ -58,8 +60,10 @@ orsenkucher.vscode-graphql
 peterfh.linesinfostatusbar
 PKief.material-icon-theme
 pranaygp.vscode-css-peek
+praveencrony.total-lines
 redhat.java
 redhat.vscode-xml
+rid9.datetime
 robocorp.robotframework-lsp
 ryuta46.multi-command
 scala-lang.scala
@@ -79,5 +83,6 @@ vscjava.vscode-maven
 vscode-icons-team.vscode-icons
 wholroyd.jinja
 wwm.better-align
+xabikos.JavaScriptSnippets
 yzane.markdown-pdf
 ziyasal.vscode-open-in-github

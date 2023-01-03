@@ -191,7 +191,7 @@ set $mode_system (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutd
 mode "$mode_system" {
     bindsym l exec lock
     bindsym s exec lock && systemctl suspend
-    bindsym e i3 exit logout
+    bindsym e exec i3 exit logout
     bindsym h exec systemctl hibernate
     bindsym r exec systemctl reboot
     bindsym Shift+s exec systemctl poweroff
@@ -226,14 +226,14 @@ mode "resize" {
 }
 
 # Autostart applications
-exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
+exec --no-startup-id bsnotifier -l "20" -o "$(mktemp)"
 exec --no-startup-id nm-applet
-# exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
+exec_always --no-startup-id feh --bg-fill ${USER_HOME}/.wallpaper.jpg
+exec_always --no-startup-id ${USER_HOME}/.config/polybar/i3wmthemer_bar_launch.sh
 
 # Theme colors
 client.focused #EAD49B #1E272B #EAD49B #FF8000 #FF8000

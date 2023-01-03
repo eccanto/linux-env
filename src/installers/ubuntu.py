@@ -35,7 +35,7 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
         )
 
     def install_speedtest(self) -> None:
-        """Installs system requirements (pip)."""
+        """Installs speedtest package (pip)."""
         logging.info('installing speedtest-cli...')
 
         self.run_shell('pip install speedtest-cli')

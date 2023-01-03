@@ -1,5 +1,6 @@
 """Class in charge of managing the packages/applications installation."""
 
+import logging
 import shutil
 import subprocess  # nosec #B404
 from abc import ABC, abstractmethod
@@ -162,3 +163,16 @@ class BaseInstaller(ABC):  # pylint: disable=too-many-public-methods
     @abstractmethod
     def install_neovim(self) -> None:
         """Installs neovim editor."""
+
+    def install_bsnotifier(self) -> None:
+        """Installs bsnotifier package (pip)."""
+        logging.info('installing bsnotifier...')
+
+        self.run_shell(
+            '''
+            pip install -U bsnotifier
+
+            BSNOTIFIER_PATH="$(which bsnotifier)"
+            sudo ln -fs "${BSNOTIFIER_PATH}" /usr/bin/bsnotifier
+            '''
+        )
