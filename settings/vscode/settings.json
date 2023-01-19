@@ -146,5 +146,9 @@
         "ylim",
         "yticks"
     ],
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "window.zoomLevel": 0,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": true
 }
