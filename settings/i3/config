@@ -9,7 +9,7 @@ bindsym $mod+u border none
 bindsym $mod+y border pixel 2
 bindsym $mod+n border normal
 
-font xft:URWGothic-Book 8
+font xft:URWGothic-Book 9
 
 floating_modifier $mod
 
@@ -236,10 +236,10 @@ exec_always --no-startup-id feh --bg-fill ${USER_HOME}/.wallpaper.jpg
 exec_always --no-startup-id ${USER_HOME}/.config/polybar/i3wmthemer_bar_launch.sh
 
 # Theme colors
-client.focused #EAD49B #1E272B #EAD49B #FF8000 #FF8000
-client.focused_inactive #EAD49B #1E272B #EAD49B #78824B #2C2C2C
-client.unfocused #EAD49B #1E272B #EAD49B #78824B #2C2C2C
-client.urgent #EAD49B #1E272B #EAD49B #78824B #78824B
+client.focused #2180DE #000000 #D0D0D0 #2180DE #2180DE
+client.focused_inactive #2180DE #000000 #D0D0D0 #2180DE #000000
+client.unfocused #474747 #000000 #2180DE #78824B #2C2C2C
+client.urgent #2180DE #000000 #D0D0D0 #2180DE #2180DE
 client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B
 
 client.background #1E272B

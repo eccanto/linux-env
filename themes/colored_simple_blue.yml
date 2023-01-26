@@ -142,17 +142,20 @@ components:
     - regex: for_window \[class="\.\*\"] border pixel \d+
       value: for_window [class=".*"] border pixel 2
 
+    - regex: font xft:URWGothic-Book \d+
+      value: font xft:URWGothic-Book 9
+
     - regex: "client.focused .+"
-      value: !concat ["client.focused #EAD49B #1E272B #EAD49B", *base_color, *base_color]
+      value: !concat ["client.focused #2180DE #000000 #D0D0D0", *base_color, *base_color]
 
     - regex: "client.focused_inactive .+"
-      value: "client.focused_inactive #EAD49B #1E272B #EAD49B #78824B #2C2C2C"
+      value: !concat ["client.focused_inactive", *base_color, "#000000 #D0D0D0", *base_color, "#000000"]
 
     - regex: "client.unfocused .+"
-      value: "client.unfocused #EAD49B #1E272B #EAD49B #78824B #2C2C2C"
+      value: !concant ["client.unfocused #474747 #000000", *base_color, "#78824B #2C2C2C"]
 
     - regex: "client.urgent .+"
-      value: "client.urgent #EAD49B #1E272B #EAD49B #78824B #78824B"
+      value: !concat ["client.urgent", *base_color, "#000000 #D0D0D0", *base_color, *base_color]
 
     - regex: "client.placeholder .+"
       value: "client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B"
