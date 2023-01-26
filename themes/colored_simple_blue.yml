@@ -146,13 +146,13 @@ components:
       value: font xft:URWGothic-Book 9
 
     - regex: "client.focused .+"
-      value: !concat ["client.focused #2180DE #000000 #D0D0D0", *base_color, *base_color]
+      value: !concat ["client.focused", *base_color, "#000000 #D0D0D0", *base_color, *base_color]
 
     - regex: "client.focused_inactive .+"
-      value: !concat ["client.focused_inactive", *base_color, "#000000 #D0D0D0", *base_color, "#000000"]
+      value: !concat ["client.focused_inactive #7D7D7D #000000", *base_color, *base_color, "#000000"]
 
     - regex: "client.unfocused .+"
-      value: !concant ["client.unfocused #474747 #000000", *base_color, "#78824B #2C2C2C"]
+      value: "client.unfocused #212121 #000000 #A6A6A6 #78824B #2C2C2C"
 
     - regex: "client.urgent .+"
       value: !concat ["client.urgent", *base_color, "#000000 #D0D0D0", *base_color, *base_color]
