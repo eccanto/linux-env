@@ -237,6 +237,7 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 | Alt + Shift + Right         | split right pane                     |
 | Alt + Shift + Up            | split up pane                        |
 | Alt + Shift + Down          | split down pane                      |
+| Alt + z                     | Zoom current pane                    |
 | Alt + 4                     | resize pane to left                  |
 | Alt + 6                     | resize pane to right                 |
 | Alt + 8                     | resize pane to up                    |
