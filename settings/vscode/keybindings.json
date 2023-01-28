@@ -296,5 +296,10 @@
         "command": "workbench.action.decreaseViewSize",
         "when": "sideBarFocus"
     },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
 ]
 
