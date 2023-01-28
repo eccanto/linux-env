@@ -3,10 +3,11 @@ from i3ipc import Connection
 
 
 def focus_first(i3, node):
-    while len(node.focus) > 1:
-        node = i3.get_tree().find_by_id(node.focus[0])
+    if node.type != 'workspace':
+        while len(node.focus) > 1:
+            node = i3.get_tree().find_by_id(node.focus[0])
 
-    i3.command(f'[con_id={node.id}] focus')
+        i3.command(f'[con_id={node.id}] focus')
 
 
 def focus_next(focused=None) -> None:
