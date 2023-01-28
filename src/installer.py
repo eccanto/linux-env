@@ -62,6 +62,15 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
         if not self.is_installed('i3'):
             self.os_installer.install_i3gaps()
 
+        if not self.is_installed('i3_tab_switcher'):
+            script_path = self.SETTINGS_PATH.joinpath('i3/i3_tab_switcher.py')
+            self.run_shell(
+                f'''
+                sudo pip3 install -r requirements.txt
+                sudo ln -s -f $(realpath {script_path}) /usr/bin/i3_tab_switcher
+                '''
+            )
+
         if self.style:
             config_directory = self.CONFIG_DIRECTORY_PATH.joinpath('i3')
             config_directory.mkdir(parents=True, exist_ok=True)

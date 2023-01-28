@@ -13,3 +13,4 @@ mypy==0.971
 pyroma==4.0
 types-PyYAML==6.0.11
 pylint==2.14.5
+i3ipc==2.2.1
