@@ -33,6 +33,7 @@ alias l='lsd --group-dirs=first'
 alias lla='lsd -lha --group-dirs=first'
 alias ls='lsd --group-dirs=first'
 alias history='history 0'
+alias xcp='tr -d "\n" | xclip -sele clic'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
