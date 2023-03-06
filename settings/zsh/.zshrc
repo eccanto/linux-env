@@ -69,3 +69,19 @@ bindkey "^E" end-of-line
 
 export VISUAL=vim
 export EDITOR=vim
+
+export FZF_DEFAULT_COMMAND='find .           \
+  -not \( -path "*/Android" -prune \)        \
+  -not \( -path "*/Unity" -prune \)          \
+  -not \( -path "*/snap" -prune \)           \
+  -not \( -path "*/\.*" -prune \)            \
+  -not \( -path "*/build" -prune \)          \
+  -not \( -path "*/PackageCache" -prune \)   \
+  -not \( -path "*/.venv" -prune \)          \
+  -not \( -path "*/.mypy_cache" -prune \)    \
+  -not \( -path "*/node_modules" -prune \)   \
+  -not \( -path "*/__pycache__" -prune \)    \
+  -not \( -path "*/.git" -prune \)           \
+  -not \( -path "*/VirtualBox VMs" -prune \) \
+  -print'
+export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"

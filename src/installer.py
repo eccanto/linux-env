@@ -250,7 +250,7 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
 
     def install_firefox(self) -> None:
         """Installs firefox web browser."""
-        if not self.is_installed('firefox'):
+        if (not self.is_installed('firefox')) or click.confirm('Do you want to update "firefox"?'):
             self.os_installer.install_firefox()
 
     def install_bat(self) -> None:
