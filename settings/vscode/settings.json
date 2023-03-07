@@ -1,6 +1,4 @@
 {
-    "workbench.iconTheme": "ayu",
-    "workbench.colorTheme": "GitHub Dark Default",
     "svgPreview.autoOpen": false,
     "editor.fontSize": 12,
     "clock.dateFormat": "hh:MM TT mm/dd/yyyy",
@@ -166,5 +164,11 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "vsicons.dontShowNewVersionMessage": true
+    "vsicons.dontShowNewVersionMessage": true,
+    "telemetry.telemetryLevel": "off",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "GitHub Dark Default",
+    "material-icon-theme.folders.theme": "specific",
+    "material-icon-theme.hidesExplorerArrows": true,
+    "material-icon-theme.folders.color": "#66B2FF"
 }

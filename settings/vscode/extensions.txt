@@ -74,7 +74,6 @@ scala-lang.scala
 SimonSiefke.svg-preview
 streetsidesoftware.code-spell-checker
 sukumo28.wav-preview
-teabyii.ayu
 tomoki1207.pdf
 twxs.cmake
 VisualStudioExptTeam.intellicode-api-usage-examples
