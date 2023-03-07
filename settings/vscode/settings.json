@@ -1,19 +1,31 @@
 {
-    "workbench.iconTheme": "vscode-great-icons",
+    "workbench.iconTheme": "ayu",
     "workbench.colorTheme": "GitHub Dark Default",
     "svgPreview.autoOpen": false,
-    "editor.fontSize": 13,
+    "editor.fontSize": 12,
     "clock.dateFormat": "hh:MM TT mm/dd/yyyy",
     "editor.renderWhitespace": "all",
     "indentRainbow.colors": [
         "rgba(100, 100, 100, 0.075)",
         "rgba(79, 200, 200, 0.075)"
     ],
+    "workbench.editor.tabSizing": "fit",
     "autoDocstring.docstringFormat": "sphinx",
     "workbench.colorCustomizations": {
-        "editorWhitespace.foreground": "#444444"
+        "editorWhitespace.foreground": "#2e2e2e",
+        "editor.background": "#000000",
+        "menu.background": "#000000",
+        "panel.background": "#000000",
+        "minimap.background": "#000000",
+        "breadcrumb.background": "#000000",
+        "sideBar.background": "#000000",
+        "terminal.background": "#000000",
+        "statusBar.background": "#000000",
+        "editorGroupHeader.tabsBackground": "#000000",
+        "tab.activeBackground": "#000000",
+        "tab.inactiveBackground": "#000000"
     },
-    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontSize": 12,
     "files.trimTrailingWhitespace": true,
     "files.exclude": {
         "**/__pycache__": true,
@@ -150,5 +162,9 @@
     "window.zoomLevel": 0,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.cursorBlinking": "expand",
-    "editor.cursorSmoothCaretAnimation": true
+    "editor.cursorSmoothCaretAnimation": "on",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "vsicons.dontShowNewVersionMessage": true
 }
