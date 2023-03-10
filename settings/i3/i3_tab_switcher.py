@@ -51,7 +51,7 @@ class I3Workspaces:
             else:
                 self.focus_next_tab(focused.parent)
 
-    def focus_next_grouptab(self, focused: Con = None) -> None:
+    def focus_next_group(self, focused: Con = None) -> None:
         if focused is None:
             focused = self.i3.get_tree().find_focused()
 
@@ -83,4 +83,4 @@ if __name__ == '__main__':
     if arguments.mode == Mode.TAB:
         i3.focus_next_tab()
     elif arguments.mode == Mode.GROUP:
-        i3.focus_next_grouptab()
+        i3.focus_next_group()
