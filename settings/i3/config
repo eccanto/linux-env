@@ -72,7 +72,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # focus in tabbed modes
-bindsym $mod+Tab exec i3_tab_switcher
+bindsym $mod+Tab exec i3_tab_switcher --mode "tab"
+bindsym $mod+Shift+Tab exec i3_tab_switcher --mode "group"
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
