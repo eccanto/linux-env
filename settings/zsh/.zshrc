@@ -85,3 +85,11 @@ export FZF_DEFAULT_COMMAND='find .           \
   -not \( -path "*/VirtualBox VMs" -prune \) \
   -print'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+
+# change mouse cursor style
+_fix_cursor() {
+   echo -ne '\e[5 q'
+}
+
+precmd_functions+=(_fix_cursor)
+
