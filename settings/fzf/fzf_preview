@@ -23,6 +23,8 @@ declare -r -x PREVIEW_ID="preview"
 
 declare -r OPEN_DIRECTORY="code"
 declare -r OPEN_IMAGE="feh -x"
+declare -r OPEN_VIDEO="vlc"
+declare -r OPEN_AUDIO="nvlc"
 declare -r OPEN_FILE="vim"
 
 function STORE_TERMINAL_SIZE_IN {
@@ -307,6 +309,38 @@ function export_functions {
 }
 
 
+function choice_ide {
+    local options=($@)
+
+    HEIGHT=15
+    WIDTH=40
+    CHOICE_HEIGHT=4
+    BACKTITLE="Choice an option"
+    TITLE="Applications"
+    MENU="Choose one of the following options:"
+
+    menu_options=()
+    for ((idx=0; idx<${#options[@]}; ++idx)); do
+        menu_options+=( "$idx" )
+        menu_options+=( "${options[idx]}" )
+    done
+
+    CHOICE=$(dialog --clear \
+                    --backtitle "$BACKTITLE" \
+                    --title "$TITLE" \
+                    --menu "$MENU" \
+                    $HEIGHT $WIDTH $CHOICE_HEIGHT \
+                    "${menu_options[@]}" \
+                    2>&1 >/dev/tty)
+    local status=$?
+    if (( $status != 0 )); then
+        CHOICE=-1
+    fi
+
+    return $CHOICE
+}
+
+
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
     if [[ "$#" -gt 1 ]]; then
         echo "Illegal number of parameters ($#)"
@@ -319,6 +353,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
 
     trap finalise EXIT
     process_options "${@}"
+
     # print the redraw key twice as there's a run condition we can't circumvent
     # (we can't know the time fzf finished redrawing it's layout)
     print_on_winch "${REDRAW_KEY}${REDRAW_KEY}"
@@ -349,11 +384,30 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
         if [[ -f "${file_path}" ]]; then
             if file "${file_path}" | grep -qE 'image|bitmap'; then
                 ${OPEN_IMAGE} "${file_path}"
+            elif file "${file_path}" | grep -qE 'mkv|mp4'; then
+                { nohup ${OPEN_VIDEO} "${file_path}" & } &
+            elif file "${file_path}" | grep -qE 'Audio'; then
+                { nohup alacritty -e bash -c "${OPEN_AUDIO} \"${file_path}\"" & } &
             else
                 ${OPEN_FILE} "${file_path}"
             fi
         else
-            ${OPEN_DIRECTORY} "${file_path}"
+            OPTIONS_IDES=( "nvim" "code" "nvlc" )
+            choice_ide ${OPTIONS_IDES[@]}
+            choice=${OPTIONS_IDES[$?]}
+
+            case "${choice}" in
+                "")
+                    ;;
+                nvim | nvlc)
+                    { nohup alacritty -e bash -c "cd \"${file_path}\" && ${choice} ." & } &
+                    ;;
+
+                *)
+                    cd "${file_path}"
+                    $choice .
+                    ;;
+            esac
         fi
     fi
 fi
