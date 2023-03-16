@@ -26,6 +26,7 @@ Configuration of my Linux environment.
   - [tty-clock](#tty-clock)
   - [Peek](#peek)
   - [Flameshot](#flameshot)
+  - [nVLC](#nvlc)
 - [Useful](#useful)
   - [Change keyboard layout](#change-keyboard-layout)
   - [Search icons in system fonts](#search-icons-in-system-fonts)
@@ -100,7 +101,7 @@ python main.py -s themes/colored_simple.yml
 | Win + Right                | focus right window                                                     |
 | Win + Down                 | focus down window                                                      |
 | Win + Up                   | focus up window                                                        |
-| Win + Shift + Left         | move the focused window to left                                        |
+| Win + Shift + Left         | move the focused window to left (**also delete stacked layouts**)      |
 | Win + Shift + Right        | move the focused window to right                                       |
 | Win + Shift + Down         | move the focused window to down                                        |
 | Win + Shift + Up           | move the focused window to up                                          |
@@ -333,6 +334,23 @@ peek
 Powerful yet simple to use screenshot software ([github](https://github.com/flameshot-org/flameshot)).
 
 ![Flameshot](documentation/media/flameshot.gif)
+
+## nVLC
+
+VLC command-line.
+
+| shortcut       | description                 |
+|----------------|-----------------------------|
+| h,H            | Show/Hide help box          |
+| P              | Show/Hide playlist box      |
+| B              | Show/Hide filebrowser       |
+| q, Q, Esc      | Quit                        |
+| s              | Stop                        |
+| <space>        | Pause/Play                  |
+| n, p           | Next/Previous playlist item |
+| <left>,<right> | Seek -/+ 1%                 |
+| a, z           | Volume Up/Down              |
+| m              | Mute                        |
 
 # Useful
 
