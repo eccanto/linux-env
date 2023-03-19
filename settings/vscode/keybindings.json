@@ -185,18 +185,8 @@
         "when": "textInputFocus"
     },
     {
-        "key": "ctrl+shift+left",
-        "command": "-cursorWordLeftSelect",
-        "when": "textInputFocus"
-    },
-    {
         "key": "shift+alt+right",
         "command": "cursorWordEndRightSelect",
-        "when": "textInputFocus"
-    },
-    {
-        "key": "ctrl+shift+right",
-        "command": "-cursorWordEndRightSelect",
         "when": "textInputFocus"
     },
     {
@@ -302,4 +292,3 @@
         "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
     },
 ]
-
