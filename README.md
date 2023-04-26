@@ -191,6 +191,7 @@ modern web and cloud applications.
 | Ctrl + Alt + Shift + Left   | resize: decrease group view width                          |
 | Ctrl + Alt + Shift + Up     | resize: increase group view height                         |
 | Ctrl + Alt + Shift + Down   | resize: decrease group view height                         |
+| Ctrl + Alt + f              | toggle editor width (maximize focused editor split)        |
 | Ctrl + m                    | open markdown preview on the Side                          |
 | Ctrl + g                    | go to line/column                                          |
 | Ctrl + Space                | search suggestions                                         |

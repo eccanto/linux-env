@@ -291,4 +291,8 @@
         "command": "workbench.action.terminal.clear",
         "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
     },
+    {
+        "key": "ctrl+alt+f",
+        "command": "workbench.action.toggleEditorWidths"
+    },
 ]
