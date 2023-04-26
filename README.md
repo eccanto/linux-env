@@ -182,8 +182,9 @@ modern web and cloud applications.
 
 | shortcut                    | description                                                |
 |-----------------------------|------------------------------------------------------------|
-| Ctrl + b                    | if the `editor` is focused: toggle explorer view           |
+| Ctrl + b                    | if the `editor` is focused: toggle sidebar explorer view   |
 | Ctrl + b                    | if the `terminal` is focused: focus previous editor group  |
+| Ctrl + shift + b            | toggle and focus sidebar explorer view                     |
 | Alt  + [Left,Right,Up,Down] | focus [Left,Right,Up,Down] group and side bar (circularly) |
 | Alt  + Up                   | if the `terminal` is focused: focus previous group         |
 | Ctrl + [Left,Right,Up,Down] | move to [Left,Right,Up,Down] group                         |

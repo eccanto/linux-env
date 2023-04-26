@@ -295,4 +295,14 @@
         "key": "ctrl+alt+f",
         "command": "workbench.action.toggleEditorWidths"
     },
+    {
+        "key": "ctrl+shift+b",
+        "command": "extension.multiCommand.execute",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleSidebarVisibility",
+                "workbench.action.focusSideBar"
+            ]
+        }
+    },
 ]
