@@ -1,6 +1,22 @@
 {
-    "svgPreview.autoOpen": false,
+    // "editor.fontSize": 12,
+    // "terminal.integrated.fontSize": 12,
+    // "window.zoomLevel": -1,
     "editor.fontSize": 12,
+    "terminal.integrated.fontSize": 12,
+    "workbench.editor.showTabs": true,
+    "editor.minimap.enabled": false,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "python.analysis.autoImportCompletions": true,
+    "editor.guides.indentation": false,
+    "editor.glyphMargin": false,
+    "python.terminal.activateEnvironment": false,
+    "workbench.sideBar.location": "right",
+    "indenticator.width": 1,
+    "indenticator.color.dark": "rgba(255, 255, 255, 0.3)",
+    "svgPreview.autoOpen": false,
     "clock.dateFormat": "hh:MM TT mm/dd/yyyy",
     "editor.renderWhitespace": "all",
     "indentRainbow.colors": [
@@ -23,7 +39,6 @@
         "tab.activeBackground": "#000000",
         "tab.inactiveBackground": "#000000"
     },
-    "terminal.integrated.fontSize": 12,
     "files.trimTrailingWhitespace": true,
     "files.exclude": {
         "**/__pycache__": true,
@@ -157,7 +172,6 @@
         "yticks"
     ],
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "window.zoomLevel": 0,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.cursorBlinking": "expand",
     "editor.cursorSmoothCaretAnimation": "on",
@@ -170,5 +184,6 @@
     "workbench.colorTheme": "GitHub Dark Default",
     "material-icon-theme.folders.theme": "specific",
     "material-icon-theme.hidesExplorerArrows": true,
-    "material-icon-theme.folders.color": "#66B2FF"
+    "material-icon-theme.folders.color": "#66B2FF",
+    "terminal.integrated.env.linux": {}
 }

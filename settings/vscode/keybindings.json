@@ -298,9 +298,20 @@
     {
         "key": "ctrl+shift+b",
         "command": "extension.multiCommand.execute",
+        "when": "!sideBarVisible",
         "args": {
             "sequence": [
                 "workbench.action.toggleSidebarVisibility",
+                "workbench.action.focusSideBar"
+            ]
+        }
+    },
+    {
+        "key": "ctrl+shift+b",
+        "command": "extension.multiCommand.execute",
+        "when": "sideBarVisible",
+        "args": {
+            "sequence": [
                 "workbench.action.focusSideBar"
             ]
         }
