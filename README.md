@@ -525,9 +525,9 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
     ```sshconfig
     IgnoreUnknown UseKeychain
 
-    Host *
-        UseKeychain yes
-        AddKeysToAgent yes
+    host *
+        Usekeychain yes
+        Addkeystoagent yes
 
     Host github.com
         IdentityFile ~/.ssh/github
