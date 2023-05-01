@@ -392,7 +392,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
                 ${OPEN_FILE} "${file_path}"
             fi
         else
-            OPTIONS_IDES=( "nvim" "code" "nvlc" )
+            OPTIONS_IDES=( "code" "nvim" "nvlc" )
             choice_ide ${OPTIONS_IDES[@]}
             choice=${OPTIONS_IDES[$?]}
 
