@@ -523,8 +523,9 @@ Edit `~/.p10k.zsh`, search for `POWERLEVEL9K_DIR_TRUNCATE_BEFORE_MARKER` and cha
     Example with multiple hosts:
 
     ```sshconfig
+    IgnoreUnknown UseKeychain
+
     Host *
-        IgnoreUnknown UseKeychain
         UseKeychain yes
         AddKeysToAgent yes
 
