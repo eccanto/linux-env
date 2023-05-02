@@ -86,36 +86,6 @@
         "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
-        "key": "ctrl+b",
-        "command": "workbench.action.toggleSidebarVisibility",
-        "when": "!sideBarVisible"
-    },
-    {
-        "key": "ctrl+b",
-        "command": "extension.multiCommand.execute",
-        "when": "sideBarVisible && view.workbench.explorer.fileView.visible",
-        "args": {
-            "sequence": [
-                "workbench.action.toggleSidebarVisibility"
-            ]
-        }
-    },
-    {
-        "key": "ctrl+b",
-        "command": "extension.multiCommand.execute",
-        "when": "sideBarVisible && !view.workbench.explorer.fileView.visible",
-        "args": {
-            "sequence": [
-                "workbench.explorer.fileView.focus",
-            ]
-        }
-    },
-    {
-        "key": "ctrl+b",
-        "command": "workbench.action.focusPreviousPart",
-        "when": "terminalFocus"
-    },
-    {
         "key": "ctrl+m",
         "command": "-editor.action.toggleTabFocusMode"
     },
@@ -316,4 +286,44 @@
             ]
         }
     },
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "!sideBarVisible"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "workbench.action.focusPreviousPart",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.multiCommand.execute",
+        "when": "sideBarVisible && !view.workbench.explorer.fileView.visible",
+        "args": {
+            "sequence": [
+                "workbench.explorer.fileView.focus"
+            ]
+        }
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.multiCommand.execute",
+        "when": "sideBarVisible && view.workbench.explorer.fileView.visible",
+        "args": {
+            "sequence": [
+                "workbench.action.toggleSidebarVisibility"
+            ]
+        }
+    },
+    {
+        "key": "ctrl+b",
+        "command": "extension.multiCommand.execute",
+        "when": "sideBarVisible && view.workbench.explorer.fileView.visible && !sideBarFocus",
+        "args": {
+            "sequence": [
+                "workbench.explorer.fileView.focus"
+            ]
+        }
+    }
 ]
