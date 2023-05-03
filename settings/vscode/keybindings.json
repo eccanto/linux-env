@@ -325,5 +325,16 @@
                 "workbench.explorer.fileView.focus"
             ]
         }
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "extension.multiCommand.execute",
+        "when": "terminal.visible",
+        "args": {
+            "sequence": [
+                "workbench.action.terminal.focus",
+                "workbench.action.toggleMaximizedPanel"
+            ]
+        }
     }
 ]
