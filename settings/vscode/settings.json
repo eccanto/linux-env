@@ -125,6 +125,7 @@
         "facecolor",
         "fancybox",
         "figsize",
+        "glassit",
         "hediet",
         "hspace",
         "ipdb",
@@ -158,6 +159,7 @@
         "veryhigh",
         "vmax",
         "vmin",
+        "vsicons",
         "workdir",
         "wspace",
         "xaxis",
@@ -185,5 +187,6 @@
     "material-icon-theme.folders.theme": "specific",
     "material-icon-theme.hidesExplorerArrows": true,
     "material-icon-theme.folders.color": "#66B2FF",
-    "terminal.integrated.env.linux": {}
+    "terminal.integrated.env.linux": {},
+    "glassit.alpha": 215
 }

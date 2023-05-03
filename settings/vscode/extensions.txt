@@ -3,12 +3,14 @@ analytic-signal.preview-mp4
 ban.quietlight-plus
 batisteo.vscode-django
 bungcip.better-toml
+burkeholland.simple-react-snippets
 chouzz.vscode-better-align
 christian-kohler.path-intellisense
 codezombiech.gitignore
 Compulim.vscode-clock
 coolbear.systemd-unit-file
 cschlosser.doxdocgen
+cstrap.python-snippets
 CucumberOpen.cucumber-official
 d-biehl.robotcode
 darkriszty.markdown-table-prettify
@@ -24,6 +26,7 @@ emmanuelbeziat.vscode-great-icons
 eserozvataf.one-dark-pro-monokai-darker
 formulahendry.auto-close-tag
 formulahendry.auto-rename-tag
+frhtylcn.pythonsnippets
 GitHub.github-vscode-theme
 GrapeCity.gc-excelviewer
 gurumukhi.selected-lines-count
@@ -33,6 +36,7 @@ jeff-hykin.better-cpp-syntax
 josetr.cmake-language-support-vscode
 KevinRose.vsc-python-indent
 mads-hartmann.bash-ide-vscode
+MariusAlchimavicius.json-to-ts
 mechatroner.rainbow-csv
 Meezilla.json
 mikestead.dotenv
@@ -56,6 +60,7 @@ ms-vscode.cmake-tools
 ms-vscode.cpptools
 ms-vscode.cpptools-extension-pack
 ms-vscode.cpptools-themes
+ms-vscode.live-server
 ms-vscode.remote-explorer
 msjsdiag.vscode-react-native
 njpwerner.autodocstring
@@ -65,16 +70,20 @@ peterfh.linesinfostatusbar
 PKief.material-icon-theme
 pranaygp.vscode-css-peek
 praveencrony.total-lines
+rangav.vscode-thunder-client
 redhat.java
 redhat.vscode-xml
 rid9.datetime
 robocorp.robotframework-lsp
 ryuta46.multi-command
+s-nlf-fh.glassit
 scala-lang.scala
 SimonSiefke.svg-preview
+SirTori.indenticator
 streetsidesoftware.code-spell-checker
 sukumo28.wav-preview
 tomoki1207.pdf
+tushortz.python-extended-snippets
 twxs.cmake
 VisualStudioExptTeam.intellicode-api-usage-examples
 VisualStudioExptTeam.vscodeintellicode
@@ -84,6 +93,7 @@ vscjava.vscode-java-pack
 vscjava.vscode-java-test
 vscjava.vscode-maven
 vscode-icons-team.vscode-icons
+WallabyJs.console-ninja
 wholroyd.jinja
 xabikos.JavaScriptSnippets
 yzane.markdown-pdf
