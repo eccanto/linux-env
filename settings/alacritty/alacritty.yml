@@ -1,5 +1,5 @@
 window:
-  opacity: 0.82
+  opacity: 1
   dynamic_padding: true
 
 scrolling:
