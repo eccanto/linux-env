@@ -182,6 +182,7 @@ modern web and cloud applications.
 
 | shortcut                    | description                                                |
 |-----------------------------|------------------------------------------------------------|
+| Ctrl + 0                    | select sidebar                                             |
 | Ctrl + b                    | if the `editor` is focused: toggle sidebar explorer view   |
 | Ctrl + b                    | if the `terminal` is focused: focus previous editor group  |
 | Ctrl + shift + b            | toggle and focus sidebar explorer view                     |
