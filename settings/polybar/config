@@ -1,195 +1,140 @@
 [bar/i3wmthemer_bar]
 width = 100%
-height = 20
-radius = 0
+height = 18
+border-top-size = 2
+border-bottom-size = 0
+border-left-size = 12%
+border-right-size = 12%
+
 fixed-center = false
-
-background = #1E272B
-foreground = #EAD49B
-
-line-size = 3
-line-color =
-
-border-top-size = 4
-border-left-size = 4
-border-right-size = 4
-border-color = #000000ff
-
-padding-left = 0
-padding-right = 0
-
-module-margin-left = 0
-module-margin-right = 1
-
-font-0 = "Hack Nerd Font:style=Solid:size=8;1"
-font-1 = "Source Code Pro Semibold:size=9;1"
-font-2 = "Iosevka:size=9;1"
-
+background = #BB000000
+foreground = #B2B2B2
+line-size = 10
+border-color = #00000000
+font-0 = Hack Nerd Font:style=Solid:size=7.2;1
+font-1 = Source Code Pro Semibold:size=7.2;1
+font-2 = Iosevka:size=7.2;1
 modules-left = i3
-modules-right = memory swap cpu wlan eth backlight pulseaudio date battery sysmenu
-
-tray-position =
-;tray-padding =
+modules-right = cpu memory swap wlan eth backlight pulseaudio date battery sysmenu
 wm-restack = i3
 override-redirect = false
-
 cursor-click = pointer
 cursor-scroll = ns-resize
+bottom = false
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
 sink = alsa_output.pci-0000_12_00.3.analog-stereo
-
 use-ui-max = true
-
 interval = 2
-
 format-volume = <ramp-volume> <label-volume>
-format-volume-foreground = #1E272B
-format-volume-background = #FFFFDC
+format-volume-foreground = #C1C1C1
+format-volume-background = #BB000000
 format-volume-padding = 2
-
-label-volume = %percentage:3%%
-
+label-volume = %percentage%%
 label-muted =  muted
 label-muted-foreground = #666
-
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
-
 click-right = pavucontrol
+ramp-volume-foreground = #F7F729
 
 [module/backlight]
-; run "sudo chmod a+rw /sys/class/backlight/intel_backlight/brightness" if permission denied
 type = internal/backlight
-
-card = intel_backlight
-
+card = acpi_video0
 use-actual-brightness = true
-
 enable-scroll = true
-
 format = <ramp> <label>
-format-foreground = #1E272B
-format-background = #D7D7D7
+format-foreground = #C1C1C1
+format-background = #BB000000
 ramp-padding-left = 2
-
-; Available tokens:
-;   %percentage% (default)
-label = %percentage:3%%
+label = %percentage%%
 label-padding-right = 2
-
-; Only applies if <ramp> is used
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-3 = 
 ramp-4 = 
-
-; Only applies if <bar> is used
 bar-width = 10
 bar-indicator = |
 bar-fill = ─
 bar-empty = ─
+ramp-foreground = #24B8F7
 
 [module/sysmenu]
 type = custom/text
 content = "  "
-content-padding = 2
-;content-foreground = ${color.white}
+content-padding = 1
 click-left = ~/.config/polybar/scripts/powermenu_alt
+content-foreground = #2180DE
 
 [module/battery]
 type = internal/battery
-
 full-at = 99
 low-at = 10
-
-; Use the following command to list batteries and adapters:
-; $ ls -1 /sys/class/power_supply/
 battery = BAT0
-adapter = ADP1
-
+adapter = ADP0
 poll-interval = 5
-
 time-format = %H:%M
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 format-full = <label-full>
 format-low = <label-low> <animation-low>
-
-label-charging = %percentage:3%%
-label-discharging = %percentage:3%%
-
+label-charging = %percentage%%
+label-discharging = %percentage%%
 label-low = BATTERY LOW
-
 label-full =  100%
 label-full-foreground = #73E87A
-
-; Only applies if <ramp-capacity> is used
+format-charging-padding = 2
+format-discharging-padding = 2
+format-full-padding = 2
 ramp-capacity-0 = 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
-
-; Only applies if <animation-charging> is used
 animation-charging-0 = 
 animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-; Framerate in milliseconds
 animation-charging-framerate = 750
-
-; Only applies if <animation-discharging> is used
 animation-discharging-0 = 
 animation-discharging-1 = 
 animation-discharging-2 = 
 animation-discharging-3 = 
 animation-discharging-4 = 
-; Framerate in milliseconds
 animation-discharging-framerate = 750
-
-; Only applies if <animation-low> is used
 animation-low-0 = 
 animation-low-1 = 
 animation-low-framerate = 500
 
 [module/memory]
 type = internal/memory
-
 format = <label>
-
-label = " RAM %gb_used%/%gb_total%"
-label-foreground = #1E272B
-label-background = #f1fa8c
+label = %{F#FF5E2C}%{F-} %percentage_used%%
+label-foreground = #C1C1C1
+label-background = #BB000000
 label-padding-left = 2
 label-padding-right = 2
 
 [module/swap]
 type = internal/memory
-
 format = <label>
-
-label = "  SWAP %swap_used%/%swap_total%"
-label-foreground = #1E272B
-label-background = #bd93f9
+label = %{F#bd93f9}%{F-} %percentage_swap_used%%
+label-foreground = #C1C1C1
+label-background = #BB000000
 label-padding-left = 2
 label-padding-right = 2
 
 [module/cpu]
 type = internal/cpu
-
 interval = 1
-
 format = <label>
-
-label = " CPU %percentage:3%%"
-label-foreground = #1E272B
-label-background = #50fa7b
+label = %{F#50fa7b}%{F-} %percentage%%
+label-foreground = #C1C1C1
+label-background = #BB000000
 label-padding-left = 2
 label-padding-right = 2
 
@@ -198,26 +143,21 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-
 label-mode-padding = 2
-label-mode-foreground = #1E272B
+label-mode-foreground = #BB000000
 label-mode-background = #78824b
-
 label-focused = %index%
-label-focused-background = #FF8000
-label-focused-foreground = #F2F2F2
+label-focused-background = #2180DE
+label-focused-foreground = #000000
 label-focused-padding = 2
-
 label-unfocused = %index%
-label-unfocused-background = #1E272B
+label-unfocused-background = #BB000000
 label-unfocused-foreground = #E5E5E5
 label-unfocused-padding = 2
-
 label-visible = %index%
-label-visible-background = #1E272B
+label-visible-background = #BB000000
 label-visible-foreground = #E5E5E5
 label-visible-padding = 2
-
 label-urgent = %index%
 label-urgent-background = #FF3333
 label-urgent-padding = 2
@@ -226,53 +166,45 @@ label-urgent-padding = 2
 type = internal/network
 interface = wlp0s20f3
 interval = 3.0
-
 format-connected = <ramp-signal> <label-connected>
-format-connected-foreground = #1E272B
-format-connected-background = #ff79c6
-format-connected-padding = 2
+format-connected-foreground = #C1C1C1
+format-connected-background = #BB000000
+format-connected-padding = 1
 label-connected = " %essid%"
-label-connected-foreground = #1E272B
-
+label-connected-foreground = #C1C1C1
 format-disconnected =
-
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = #1E272B
+ramp-signal-foreground = #ff79c6
 
 [module/eth]
 type = internal/network
 interface = enxa02919af44ca
 interval = 3.0
-
-format-connected-padding = 2
-format-connected-foreground = #1E272B
-format-connected-background = #8be9fd
+format-connected-padding = 1
+format-connected-foreground = #C1C1C1
+format-connected-background = #BB000000
 format-connected-prefix = " "
-format-connected-prefix-foreground = #1E272B
+format-connected-prefix-foreground = #8be9fd
 label-connected = " %local_ip%"
-
 format-disconnected =
 
 [module/date]
 type = internal/date
 interval = 5
-
 date =
 date-alt = " %Y-%m-%d"
-
 time = %H:%M
 time-alt = %H:%M:%S
-
 format-prefix = 
-format-foreground = #1E272B
-format-background = #F5983C
+format-foreground = #C1C1C1
+format-background = #BB000000
 format-padding = 2
-
 label = %date% %time%
+format-prefix-foreground = #FF0000
 
 [settings]
 screenchange-reload = true
@@ -280,3 +212,4 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
