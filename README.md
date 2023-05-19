@@ -231,6 +231,7 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 | tmux kill-server            | kill server (restart configurations) |
 | [Ctrl + b] + Ctrl + s       | save tmux state (tmux-resurrect)     |
 | [Ctrl + b] + Ctrl + r       | restore tmux state (tmux-resurrect)  |
+| [Ctrl + b] + I              | fetch plugins - update plugins       |
 | Alt + n                     | create window                        |
 | Alt + Tab                   | next window                          |
 | Alt + Left                  | select left pane                     |
