@@ -368,16 +368,13 @@ class UbuntuInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
             '''
         )
 
-    def install_ueberzug(self) -> None:
-        """Installs ueberzug terminal image visualizer."""
-        logging.info('installing ueberzug...')
+    def install_w3m(self) -> None:
+        """Installs w3m terminal image visualizer."""
+        logging.info('installing w3m...')
 
         self.run_shell(
             '''
-            sudo apt install -y libxext-dev
-
-            pip install -U ueberzug
-            sudo pip install -U ueberzug
+            sudo apt install -y w3m-img
             '''
         )
 
