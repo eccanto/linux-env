@@ -229,6 +229,7 @@ screen. tmux may be detached from a screen and continue running in the backgroun
 | tmux ls                     | list sessions                        |
 | tmux kill-session -t [NAME] | kill session                         |
 | tmux kill-server            | kill server (restart configurations) |
+| Alt + c                     | enable copy/scroll mode (exit: "q")  |
 | [Ctrl + b] + Ctrl + s       | save tmux state (tmux-resurrect)     |
 | [Ctrl + b] + Ctrl + r       | restore tmux state (tmux-resurrect)  |
 | [Ctrl + b] + I              | fetch plugins - update plugins       |
