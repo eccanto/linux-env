@@ -294,23 +294,24 @@ Depending on the type of file selected, a different application will be used to 
 
 ## Ranger
 
-A VIM-inspired filemanager for the console ([github](https://github.com/ranger/ranger)).
+A VIM-inspired file manager for the console ([github](https://github.com/ranger/ranger)).
 
 ![Ranger](documentation/media/ranger.gif)
 
 
-| shortcut  | description                     |
-|-----------|---------------------------------|
-| i         | display file (preview)          |
-| Shift + s | open shell on current directory |
-| F2        | rename selected file/directory  |
-| yy        | copy selected file/directory    |
-| pp        | paste selected file/directory   |
-| dD        | delete selected file/directory  |
-| Alt   + j | scroll preview down             |
-| Alt   + k | scroll preview up               |
-| Ctrl  + r | reset                           |
-| Shift + w | display logs                    |
+| shortcut  | description                           |
+|-----------|---------------------------------------|
+| i         | display file (preview)                |
+| yp        | copy path of the selected file/folder |
+| Shift + s | open shell on current directory       |
+| F2        | rename selected file/directory        |
+| yy        | copy selected file/directory          |
+| pp        | paste selected file/directory         |
+| dD        | delete selected file/directory        |
+| Alt   + j | scroll preview down                   |
+| Alt   + k | scroll preview up                     |
+| Ctrl  + r | reset                                 |
+| Shift + w | display logs                          |
 
 ## tty-clock
 
