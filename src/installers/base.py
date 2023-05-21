@@ -149,8 +149,8 @@ class BaseInstaller(ABC):  # pylint: disable=too-many-public-methods
         """Installs fzf general-purpose command-line fuzzy finder."""
 
     @abstractmethod
-    def install_ueberzug(self) -> None:
-        """Installs ueberzug terminal image visualizer."""
+    def install_w3m(self) -> None:
+        """Installs w3m terminal image visualizer."""
 
     @abstractmethod
     def install_fonts_nerd(self) -> None:
