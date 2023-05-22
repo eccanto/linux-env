@@ -73,6 +73,7 @@ export EDITOR=vim
 export FZF_DEFAULT_COMMAND='find .           \
   -not \( -path "*/Android" -prune \)        \
   -not \( -path "*/Unity" -prune \)          \
+  -not \( -path "*.mp3" -prune \)            \
   -not \( -path "*/snap" -prune \)           \
   -not \( -path "*/\.*" -prune \)            \
   -not \( -path "*/build" -prune \)          \
@@ -92,4 +93,3 @@ _fix_cursor() {
 }
 
 precmd_functions+=(_fix_cursor)
-

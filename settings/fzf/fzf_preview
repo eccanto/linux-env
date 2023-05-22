@@ -364,6 +364,7 @@ if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
             find "${DIRECTORY}"                                    \
                 -not \( -path "*/Android" -prune \)                \
                 -not \( -path "*/Unity" -prune \)                  \
+                -not \( -path "*.mp3" -prune \)                    \
                 -not \( -path "*/snap" -prune \)                   \
                 -not \( -path "*/\.*" -prune \)                    \
                 -not \( -path "*/build" -prune \)                  \
