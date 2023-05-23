@@ -13,17 +13,16 @@ font xft:URWGothic-Book 9
 
 floating_modifier $mod
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec alacritty -e bash -c "tmux new-session '/usr/bin/neofetch && /usr/bin/zsh'"
 
 # Window kill command
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run -display-run " search"
+bindsym $mod+c exec --no-startup-id alacritty --class floating -e bash -c "VISUAL=vim EDITOR=vim ranger"
+bindsym $mod+d exec --no-startup-id rofi -show run -display-run " search"
 bindsym $mod+i exec --no-startup-id rofi -i -show drun -modi drun -show-icons
 bindsym $mod+Escape exec --no-startup-id ~/.config/polybar/scripts/powermenu_alt
-
-bindsym $mod+c exec --no-startup-id alacritty --class floating -e bash -c "/usr/bin/fzf_preview"
 
 # take screenshot
 bindsym Print exec flameshot gui
@@ -61,7 +60,7 @@ bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
 bindsym $mod+v split v;exec notify-send 'tile vertically'
-bindsym $mod+q split toggle
+bindsym $mod+e split toggle
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -69,7 +68,7 @@ bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+t layout toggle split
 
 # focus in tabbed modes
 bindsym $mod+Tab exec i3_tab_switcher --mode "tab"
@@ -139,7 +138,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 2
 # for_window [class="Org.gnome.Nautilus"] floating enable
 for_window [class="feh"] floating enable
 for_window [class="Matplotlib"] floating enable

@@ -268,10 +268,6 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
         if not self.is_installed('fzf'):
             self.os_installer.install_fzf()
 
-        if click.confirm('Do you want to install "fzf_preview"?'):
-            finder_source = self.SETTINGS_PATH.joinpath('fzf/fzf_preview')
-            self.run_shell(f'sudo cp {finder_source} /usr/bin/fzf_preview')
-
     def install_w3m(self) -> None:
         """Installs w3m terminal image visualizer."""
         if not self.is_installed('w3m'):

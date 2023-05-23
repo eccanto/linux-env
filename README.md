@@ -274,26 +274,6 @@ fzf is a general-purpose command-line fuzzy finder ([github](https://github.com/
 | Ctrl + r | find in history from terminal |
 | Ctrl + t | find path from terminal       |
 
-## fzf preview
-
-A custom script to preview and open files in your system:
-
-```bash
-fzf_preview
-```
-
-![fzf_preview command](documentation/media/fzf_preview.gif)
-
-Depending on the type of file selected, a different application will be used to open it:
-- images: `feh -x`
-- directories: `code`
-- other file types: `nvim`
-
-
-| shortcut | description                                         |
-|----------|-----------------------------------------------------|
-| Win + c  | open fzf_preview in a new alacritty floating window |
-
 ## Ranger
 
 A VIM-inspired file manager for the console ([github](https://github.com/ranger/ranger)).
@@ -301,19 +281,22 @@ A VIM-inspired file manager for the console ([github](https://github.com/ranger/
 ![Ranger](documentation/media/ranger.gif)
 
 
-| shortcut  | description                           |
-|-----------|---------------------------------------|
-| i         | display file (preview)                |
-| yp        | copy path of the selected file/folder |
-| Shift + s | open shell on current directory       |
-| F2        | rename selected file/directory        |
-| yy        | copy selected file/directory          |
-| pp        | paste selected file/directory         |
-| dD        | delete selected file/directory        |
-| Alt   + j | scroll preview down                   |
-| Alt   + k | scroll preview up                     |
-| Ctrl  + r | reset                                 |
-| Shift + w | display logs                          |
+| shortcut  | description                                   |
+|-----------|-----------------------------------------------|
+| Win + c   | open ranger in a terminal                     |
+| f         | find file (using fzf)                         |
+| e         | open file/folder with an external application |
+| i         | display file (preview)                        |
+| yp        | copy path of the selected file/folder         |
+| Shift + s | open shell on current directory               |
+| F2        | rename selected file/directory                |
+| yy        | copy selected file/directory                  |
+| pp        | paste selected file/directory                 |
+| dD        | delete selected file/directory                |
+| Alt   + j | scroll preview down                           |
+| Alt   + k | scroll preview up                             |
+| Ctrl  + r | reset                                         |
+| Shift + w | display logs                                  |
 
 ## tty-clock
 
