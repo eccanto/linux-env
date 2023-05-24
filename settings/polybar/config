@@ -1,4 +1,5 @@
 [bar/i3wmthemer_bar]
+monitor = ${env:MONITOR:}
 width = 100%
 height = 18
 border-top-size = 2
@@ -15,7 +16,7 @@ font-0 = Hack Nerd Font:style=Solid:size=7.2;1
 font-1 = Source Code Pro Semibold:size=7.2;1
 font-2 = Iosevka:size=7.2;1
 modules-left = i3
-modules-right = cpu memory swap wlan eth backlight pulseaudio date battery sysmenu
+modules-right = cpu memory swap wlan eth vpn backlight pulseaudio date battery sysmenu
 wm-restack = i3
 override-redirect = false
 cursor-click = pointer
@@ -42,7 +43,7 @@ ramp-volume-foreground = #F7F729
 
 [module/backlight]
 type = internal/backlight
-card = acpi_video0
+card = amdgpu_bl0
 use-actual-brightness = true
 enable-scroll = true
 format = <ramp> <label>
@@ -51,11 +52,11 @@ format-background = #BB000000
 ramp-padding-left = 2
 label = %percentage%%
 label-padding-right = 2
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 󰃠
+ramp-3 = 󰃟
+ramp-4 = 󰃞
 bar-width = 10
 bar-indicator = |
 bar-fill = ─
@@ -73,7 +74,7 @@ content-foreground = #2180DE
 type = internal/battery
 full-at = 99
 low-at = 10
-battery = BAT0
+battery = BAT1
 adapter = ADP0
 poll-interval = 5
 time-format = %H:%M
@@ -84,36 +85,36 @@ format-low = <label-low> <animation-low>
 label-charging = %percentage%%
 label-discharging = %percentage%%
 label-low = BATTERY LOW
-label-full =  100%
+label-full = 󰂄 100%
 label-full-foreground = #73E87A
 format-charging-padding = 2
 format-discharging-padding = 2
 format-full-padding = 2
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+ramp-capacity-0 = 󰁺
+ramp-capacity-1 = 󰁼
+ramp-capacity-2 = 󰁾
+ramp-capacity-3 = 󰂁
+ramp-capacity-4 = 󰁹
+animation-charging-0 = 󰂆
+animation-charging-1 = 󰂇
+animation-charging-2 = 󰂉
+animation-charging-3 = 󰂊
+animation-charging-4 = 󰂅
 animation-charging-framerate = 750
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-3 = 
-animation-discharging-4 = 
+animation-discharging-0 = 󰁹
+animation-discharging-1 = 󰂁
+animation-discharging-2 = 󰁾
+animation-discharging-3 = 󰁼
+animation-discharging-4 = 󰁺
 animation-discharging-framerate = 750
-animation-low-0 = 
-animation-low-1 = 
+animation-low-0 = 󰂃
+animation-low-1 = 󰂌
 animation-low-framerate = 500
 
 [module/memory]
 type = internal/memory
 format = <label>
-label = %{F#FF5E2C}%{F-} %percentage_used%%
+label = %{F#FF5E2C}%{F-} %percentage_used%%
 label-foreground = #C1C1C1
 label-background = #BB000000
 label-padding-left = 2
@@ -132,7 +133,7 @@ label-padding-right = 2
 type = internal/cpu
 interval = 1
 format = <label>
-label = %{F#50fa7b}%{F-} %percentage%%
+label = %{F#50fa7b}%{F-} %percentage%%
 label-foreground = #C1C1C1
 label-background = #BB000000
 label-padding-left = 2
@@ -164,13 +165,13 @@ label-urgent-padding = 2
 
 [module/wlan]
 type = internal/network
-interface = wlp0s20f3
+interface = wlp3s0
 interval = 3.0
 format-connected = <ramp-signal> <label-connected>
 format-connected-foreground = #C1C1C1
 format-connected-background = #BB000000
 format-connected-padding = 1
-label-connected = " %essid%"
+label-connected = "%essid%"
 label-connected-foreground = #C1C1C1
 format-disconnected =
 ramp-signal-0 = 
@@ -182,15 +183,29 @@ ramp-signal-foreground = #ff79c6
 
 [module/eth]
 type = internal/network
-interface = enxa02919af44ca
+interface = enp2s0
 interval = 3.0
-format-connected-padding = 1
 format-connected-foreground = #C1C1C1
 format-connected-background = #BB000000
+format-connected-padding = 1
 format-connected-prefix = " "
 format-connected-prefix-foreground = #8be9fd
 label-connected = " %local_ip%"
 format-disconnected =
+
+[module/vpn]
+type = internal/network
+interface = vpn0
+interval = 3.0
+
+label-connected = %local_ip%
+label-disconnected = world
+format-connected-prefix = " "
+format-connected-prefix-foreground = "#00CCCC"
+format-connected-padding = 1
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = "#00CC00"
+format-disconnected-padding = 1
 
 [module/date]
 type = internal/date
@@ -212,4 +227,3 @@ screenchange-reload = true
 [global/wm]
 margin-top = 0
 margin-bottom = 0
-
