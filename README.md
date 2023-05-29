@@ -179,9 +179,9 @@ modern web and cloud applications.
 
 ![VSCode](documentation/media/vscode.png)
 
-
 | shortcut                    | description                                                |
 |-----------------------------|------------------------------------------------------------|
+| Ctrl + Shift + Space        | Show diagnostic hover                                      |
 | Ctrl + 0                    | select sidebar                                             |
 | Ctrl + b                    | if the `editor` is focused: toggle sidebar explorer view   |
 | Ctrl + b                    | if the `terminal` is focused: focus previous editor group  |

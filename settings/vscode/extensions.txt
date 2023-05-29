@@ -12,7 +12,6 @@ coolbear.systemd-unit-file
 cschlosser.doxdocgen
 cstrap.python-snippets
 CucumberOpen.cucumber-official
-d-biehl.robotcode
 darkriszty.markdown-table-prettify
 DavidAnson.vscode-markdownlint
 dcasella.i3
