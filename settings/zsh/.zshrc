@@ -84,7 +84,7 @@ export FZF_DEFAULT_COMMAND='find .           \
   -not \( -path "*/__pycache__" -prune \)    \
   -not \( -path "*/.git" -prune \)           \
   -not \( -path "*/VirtualBox VMs" -prune \) \
-  -print'
+  -print 2> /dev/null'
 export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
 
 # change mouse cursor style
