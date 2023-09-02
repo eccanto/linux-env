@@ -48,16 +48,16 @@ $hr
 ${color #29CEFF}Kernel:$color $kernel
 ${color #29CEFF}Machine:$color $machine
 $hr
-${color #F489FF}Uptime:$color $uptime
-${color #F489FF}Frequency (in MHz):$color $freq
-${color #F489FF}Frequency (in GHz):$color $freq_g
-${color #F489FF}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color #F489FF}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color #F489FF}CPU Usage:$color $cpu% ${cpubar 4}
-${color #F489FF}CPU temperature:$color ${hwmon 4 temp 1}°C
-${color #F489FF}Processes:$color $processes  ${color #F489FF}Running:$color $running_processes
+${color #FF9A9A}Uptime:$color $uptime
+${color #FF9A9A}Frequency (in MHz):$color $freq
+${color #FF9A9A}Frequency (in GHz):$color $freq_g
+${color #FF9A9A}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color #FF9A9A}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+${color #FF9A9A}CPU Usage:$color $cpu% ${cpubar 4}
+${color #FF9A9A}CPU temperature:$color ${hwmon 4 temp 1}°C
+${color #FF9A9A}Processes:$color $processes  ${color #FF9A9A}Running:$color $running_processes
 $hr
-${color #FF8000}File systems:
+${color #FF9122}File systems:
  / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
 $hr
 ${color #FFF000}Name              PID     CPU%   MEM%
