@@ -33,6 +33,7 @@ Configuration of my Linux environment.
   - [Generate monitor profile](#generate-monitor-profile)
   - [Reconfigure powerlevel10k](#reconfigure-powerlevel10k)
   - [Disable underlining of the powerlevel10k zsh-syntax-highlighting plugin](#disable-underlining-of-the-powerlevel10k-zsh-syntax-highlighting-plugin)
+  - [Show exit code in powerlevel10k](#show-exit-code-in-powerlevel10k)
   - [Fix polybar brightness module on amd card](#fix-polybar-brightness-module-on-amd-card)
   - [Set polybar on multiple screens](#set-polybar-on-multiple-screens)
   - [Remove absolute path from current working directory](#remove-absolute-path-from-current-working-directory)
@@ -389,6 +390,14 @@ Add the following to your `.zshrc`:
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 ```
+
+### Show exit code in powerlevel10k
+
+```bash
+typeset -g POWERLEVEL9K_STATUS_ERROR=false
+```
+
+Replace `false` with `true` in `~/.p10k.zsh` file.
 
 ## Fix polybar brightness module on amd card
 
