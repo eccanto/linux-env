@@ -237,7 +237,7 @@ exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec_always --no-startup-id feh --bg-fill ${USER_HOME}/.wallpaper.jpg
 exec_always --no-startup-id ${USER_HOME}/.config/polybar/i3wmthemer_bar_launch.sh
-exec_always --no-startup-id bash -c "pkill conky && conky -c ${USER_HOME}/.config/conky/conky.conf"
+exec_always --no-startup-id bash -c "pkill conky; conky -c ${USER_HOME}/.config/conky/conky.conf"
 
 # Theme colors
 client.focused #2180DE #000000 #D0D0D0 #2180DE #2180DE
