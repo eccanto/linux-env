@@ -391,7 +391,7 @@ ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 ```
 
-### Show exit code in powerlevel10k
+## Show exit code in powerlevel10k
 
 ```bash
 typeset -g POWERLEVEL9K_STATUS_ERROR=false
