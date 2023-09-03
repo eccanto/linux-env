@@ -5,8 +5,8 @@ conky.config = {
     border_width = 1,
     cpu_avg_samples = 2,
     default_color = 'white',
-    default_outline_color = 'white',
-    default_shade_color = 'white',
+    default_outline_color = 'black',
+    default_shade_color = 'black',
     double_buffer = true,
     draw_borders = false,
     draw_graph_borders = true,
@@ -37,9 +37,10 @@ conky.config = {
     own_window_transparent = false,
     own_window_argb_visual = true,
     own_window_argb_value = 100,
-    own_window_colour = '#000000',
+    own_window_colour = '000000',
     double_buffer = true,
     update_interval = 2.0,
+    xftalpha = 0.1,
 }
 
 conky.text = [[
