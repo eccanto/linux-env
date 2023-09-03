@@ -34,29 +34,29 @@ conky.config = {
     uppercase = false,
     use_spacer = 'none',
     use_xft = true,
-    own_window_transparent = false,
-    own_window_argb_visual = true,
-    own_window_argb_value = 100,
+    own_window_transparent = true,
+    own_window_argb_visual = false,
+    own_window_argb_value = 255,
     own_window_colour = '000000',
     double_buffer = true,
     update_interval = 2.0,
-    xftalpha = 0.1,
+    xftalpha = 1,
 }
 
 conky.text = [[
-${color #BFD7FF}$nodename
+${color #00FFFF}$nodename
 $hr
-${color #29CEFF}Kernel:$color $kernel
-${color #29CEFF}Machine:$color $machine
+${color #00FF00}Kernel:$color $kernel
+${color #00FF00}Machine:$color $machine
 $hr
-${color #FF9A9A}Uptime:$color $uptime
-${color #FF9A9A}Frequency (in MHz):$color $freq
-${color #FF9A9A}Frequency (in GHz):$color $freq_g
-${color #FF9A9A}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
-${color #FF9A9A}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
-${color #FF9A9A}CPU Usage:$color $cpu% ${cpubar 4}
-${color #FF9A9A}CPU temperature:$color ${hwmon 4 temp 1}°C
-${color #FF9A9A}Processes:$color $processes  ${color #FF9A9A}Running:$color $running_processes
+${color #FF00FF}Uptime:$color $uptime
+${color #FF00FF}Frequency (in MHz):$color $freq
+${color #FF00FF}Frequency (in GHz):$color $freq_g
+${color #FF00FF}RAM Usage:$color $mem/$memmax - $memperc% ${membar 4}
+${color #FF00FF}Swap Usage:$color $swap/$swapmax - $swapperc% ${swapbar 4}
+${color #FF00FF}CPU Usage:$color $cpu% ${cpubar 4}
+${color #FF00FF}CPU temperature:$color ${hwmon 4 temp 1}°C
+${color #FF00FF}Processes:$color $processes  ${color #FF00FF}Running:$color $running_processes
 $hr
 ${color #FF9122}File systems:
  / $color${fs_used /}/${fs_size /} ${fs_bar 6 /}
