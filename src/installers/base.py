@@ -170,7 +170,7 @@ class BaseInstaller(ABC):  # pylint: disable=too-many-public-methods
 
         self.run_shell(
             '''
-            sudo -H pip install -U bsnotifier
+            pipx install bsnotifier
 
             BSNOTIFIER_PATH="$(which bsnotifier)"
             sudo ln -fs "${BSNOTIFIER_PATH}" /usr/bin/bsnotifier

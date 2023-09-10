@@ -31,6 +31,7 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
     OS_INSTALLERS = {
         ('ubuntu', '20.04'): UbuntuInstaller,
         ('ubuntu', '22.04'): UbuntuInstaller,
+        ('ubuntu', '23.04'): UbuntuInstaller,
     }
 
     def __init__(self, style: Any) -> None:
@@ -205,7 +206,7 @@ class SystemInstaller(BaseInstaller):  # pylint: disable=too-many-public-methods
             alacrity_config.mkdir(parents=True, exist_ok=True)
 
             configuration = AlacrittyConfiguration(
-                self.SETTINGS_PATH.joinpath('alacritty/alacritty.yml'), alacrity_config
+                self.SETTINGS_PATH.joinpath('alacritty/alacritty.toml'), alacrity_config
             )
             configuration.setup(self.style.components['alacritty'])
 
