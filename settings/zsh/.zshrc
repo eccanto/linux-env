@@ -67,6 +67,10 @@ bindkey  '\eOF'   end-of-line        # gnome-terminal
 bindkey "^A" beginning-of-line
 bindkey "^E" end-of-line
 
+# fix Ctrl + left/right arrow keys
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 export VISUAL=vim
 export EDITOR=vim
 
