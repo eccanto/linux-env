@@ -351,6 +351,9 @@ VLC command-line.
 ```bash
 # change to Español latam
 setxkbmap -layout latam
+
+# change to English US
+setxkbmap -layout us
 ```
 
 To make this configuration permanent you can add "setxkbmap -layout latam" to `~/.config/i3/config` or use another
