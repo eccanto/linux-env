@@ -199,12 +199,12 @@ interface = tun0
 interval = 3.0
 
 label-connected = %local_ip%
-label-disconnected = world
+label-disconnected = n/a
 format-connected-prefix = " "
 format-connected-prefix-foreground = "#00CCCC"
 format-connected-padding = 1
-format-disconnected-prefix = " "
-format-disconnected-prefix-foreground = "#00CC00"
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = "#C1C1C1"
 format-disconnected-padding = 1
 
 [module/date]
