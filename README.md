@@ -300,6 +300,8 @@ A VIM-inspired file manager for the console ([github](https://github.com/ranger/
 | Alt   + k | scroll preview up                             |
 | Ctrl  + r | reset                                         |
 | Shift + w | display logs                                  |
+| g + n     | create new tab                                |
+| g + c     | close tab                                     |
 
 ## tty-clock
 
