@@ -55,6 +55,12 @@ Configuration of my Linux environment.
 bash install.sh
 ```
 
+to install a particular tool (e.g. `ranger`):
+
+```bash
+bash install.sh -t ranger
+```
+
 # Tools
 
 ## I3
