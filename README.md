@@ -1,5 +1,3 @@
-**WIP**
-
 # Overview
 
 Configuration of my Linux environment.
@@ -9,9 +7,7 @@ Configuration of my Linux environment.
 # Table of contents
 
 - [Get started](#get-started)
-  - [Create a Python virtual environment](#create-a-python-virtual-environment)
-  - [Install dependencies](#install-dependencies)
-  - [Setup environment](#setup-environment)
+  - [Installation](#installation)
 - [Tools](#tools)
   - [I3](#i3)
   - [I3Lock](#i3lock)
@@ -43,40 +39,20 @@ Configuration of my Linux environment.
   - [Enter SSH passphrase once](#enter-ssh-passphrase-once)
   - [Bluetooth - a2dp-sink profile connect failed](#bluetooth---a2dp-sink-profile-connect-failed)
 - [Developers](#developers)
-  - [Add support for a new Linux OS](#add-support-for-a-new-linux-os)
-    - [Architecture](#architecture)
-    - [Example](#example)
   - [Static code analysis tools](#static-code-analysis-tools)
+    - [Install development requirements](#install-development-requirements)
     - [Set up the Git hooks custom directory](#set-up-the-git-hooks-custom-directory)
     - [Python Static Checkers](#python-static-checkers)
 - [Compatibility](#compatibility)
 - [Disclaimer](#disclaimer)
 - [License](#license)
-- [Changelog](#changelog)
 
 # Get started
 
-## Create a Python virtual environment
+## Installation
 
 ```bash
-# create
-python3 -m venv .venv
-
-# activate
-source .venv/bin/activate
-```
-
-## Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Setup environment
-
-##
-```bash
-python main.py -s themes/colored_simple.yml
+bash install.sh
 ```
 
 # Tools
@@ -592,73 +568,21 @@ To solve it, follow these steps:
 
 # Developers
 
-## Add support for a new Linux OS
-
-### Architecture
-
-The following diagram describes the installers basic architecture. To support a new Linux OS you must create an installer class **`YourOS`**`Installer` that implements all the abstract methods of `BaseInstaller` class and register it in the `SystemInstaller:OS_INSTALLERS` mapping.
-
-![Instsallers architecture](documentation/architecture/diagram.png)
-
-### Example
-
-Create an installer class that implements all abstract methods of the `BaseInstaller` class:
-
-```python
-# str/installers/ubuntu.py
-
-...
-
-class UbuntuInstaller(BaseInstaller):
-    """Class in charge of managing the installation of the required packages on Ubuntu."""
-
-    def install_system_requirements(self) -> None:
-        """Installs system requirements."""
-        ...
-
-    def install_i3gaps(self) -> None:
-        """Installs i3 gaps package."""
-        ...
-
-    ...
-```
-
-Register the created class and define its compatibility:
-
-```python
-# src/installer.py
-
-...
-
-from src.installers.ubuntu import UbuntuInstaller
-
-
-class SystemInstaller(BaseInstaller):
-    """Class in charge of managing the installation and configuration of the required packages."""
-
-    OS_INSTALLERS = {
-        ('ubuntu', '20.04'): UbuntuInstaller,
-        ('ubuntu', '22.04'): UbuntuInstaller,
-        ...
-    }
-
-    ...
-```
-
-Get the OS identifier tuple:
-
-```ipython
-In [1]: import distro
-
-In [2]: (distro.id(), distro.version())
-Out[2]: ('ubuntu', '20.04')
-```
-
 ## Static code analysis tools
 
 These are the linters that will help us to follow good practices and style guides of our source
 code. We will be using the following static analysis tools, which will be executed when generating
 a new commit in the repository (**git hooks**).
+
+### Install development requirements
+
+```bash
+pip install -r requirements_dev.txt
+```
+
+```bash
+sudo apt install shellcheck
+```
 
 ### Set up the Git hooks custom directory
 
@@ -671,25 +595,33 @@ git config core.hooksPath .githooks
 ### Python Static Checkers
 
 Tools used:
-- [black](https://github.com/psf/black): Black is the uncompromising Python code formatter.
-- [isort](https://pycqa.github.io/isort/): Python utility / library to sort imports alphabetically, and automatically separated into sections and by type.
-- [prospector](https://github.com/PyCQA/prospector): Prospector is a tool to analyse Python code and output information about errors, potential problems, convention violations and complexity.
+
+* [brunette](https://github.com/odwyersoftware/brunette): A best practice Python code formatter.
+* [isort](https://pycqa.github.io/isort/): Python utility / library to sort imports alphabetically, and automatically
+  separated into sections and by type.
+* [prospector](https://github.com/PyCQA/prospector): Prospector is a tool to analyze Python code and output information
+  about errors, potential problems, convention violations and complexity.
 
   Tools executed by Prospector:
-  - [pylint](https://github.com/PyCQA/pylint): Pylint is a Python static code analysis tool which looks for programming errors,   helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions.
-  - [bandit](https://github.com/PyCQA/bandit): Bandit is a tool designed to find common security issues.
-  - [dodgy](https://github.com/landscapeio/dodgy): It is a series of simple regular expressions designed to detect things such as accidental SCM diff checkins, or passwords or secret keys hard coded into files.
-  - [mccabe](https://github.com/PyCQA/mccabe): Complexity checker.
-  - [mypy](https://github.com/python/mypy): Mypy is an optional static type checker for Python.
-  - [pep257](https://github.com/PyCQA/pydocstyle): pep257 is a static analysis tool for checking compliance with Python PEP 257.
-  - [pep8](https://pep8.readthedocs.io/en/release-1.7.x/): pep8 is a tool to check your Python code against some of the style conventions in PEP 8.
-  - [pyflakes](https://github.com/PyCQA/pyflakes): Pyflakes analyzes programs and detects various errors.
-  - [pyroma](https://github.com/regebro/pyroma): Pyroma is a product aimed at giving a rating of how well a Python project complies with the best practices of the Python packaging ecosystem, primarily PyPI, pip, Distribute etc, as well as a list of issues that could be improved.
+  * [pylint](https://github.com/PyCQA/pylint): Pylint is a Python static code analysis tool which looks for programming
+    errors, helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions.
+  * [bandit](https://github.com/PyCQA/bandit): Bandit is a tool designed to find common security issues.
+  * [dodgy](https://github.com/landscapeio/dodgy): It is a series of simple regular expressions designed to detect
+    things such as accidental SCM diff checkins, or passwords or secret keys hard coded into files.
+  * [mccabe](https://github.com/PyCQA/mccabe): Complexity checker.
+  * [mypy](https://github.com/python/mypy): Mypy is an optional static type checker for Python.
+  * [pydocstyle](https://github.com/PyCQA/pydocstyle): pydocstyle is a static analysis tool for checking compliance
+    with Python [PEP 257](https://peps.python.org/pep-0257/).
+  * [pycodestyle](https://pycodestyle.pycqa.org/en/latest/): pycodestyle is a tool to check your Python code against
+    some of the style conventions in [PEP 8](https://peps.python.org/pep-0008/).
+  * [pyflakes](https://github.com/PyCQA/pyflakes): Pyflakes analyzes programs and detects various errors.
+  * [pyroma](https://github.com/regebro/pyroma): Pyroma is a product aimed at giving a rating of how well a Python
+    project complies with the best practices of the Python packaging ecosystem, primarily PyPI, pip, Distribute etc,
+    as well as a list of issues that could be improved.
 
 # Compatibility
 
-- Ubuntu 22.04 LTS
-- Ubuntu 20.04 LTS
+- Only tested on Ubuntu 23.04
 
 # Disclaimer
 
@@ -698,7 +630,3 @@ I am not responsible for any harm done to your PC by anything in the repository.
 # License
 
 [MIT](./LICENSE)
-
-# Changelog
-
-- 1.0.0 - Initial release.

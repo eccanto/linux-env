@@ -1,0 +1,30 @@
+gui:
+    screenMode: half
+logs:
+    timestamps: true
+    since: ''
+    tail: ''
+commandTemplates:
+    dockerCompose: docker compose
+bulkCommands:
+    services:
+        - name: invap-up
+          attach: true
+          shell: true
+          command: 'INSTALL_MOCKS=true {{ .DockerCompose }} up -d --build --wait'
+          serviceNames: []
+        - name: invap-up-pgc
+          attach: true
+          shell: true
+          command: 'INSTALL_PGC=true {{ .DockerCompose }} up -d --build --wait'
+          serviceNames: []
+        - name: up
+          attach: true
+          shell: true
+          command: '{{ .DockerCompose }} up -d --build --wait'
+          serviceNames: []
+        - name: down
+          attach: true
+          shell: true
+          command: '{{ .DockerCompose }} down'
+          serviceNames: []
