@@ -64,7 +64,7 @@ bash install.sh -t ranger
 get available tools:
 
 ```bash
-bash install -l
+$ bash install.sh -l
 
 24 available tools:
   - vscode
