@@ -61,6 +61,38 @@ to install a particular tool (e.g. `ranger`):
 bash install.sh -t ranger
 ```
 
+get available tools:
+
+```bash
+bash install -l
+
+24 available tools:
+  - vscode
+  - conky
+  - i3lock
+  - alacritty
+  - picom
+  - bat
+  - polybar
+  - rofi
+  - ranger
+  - tmux
+  - i3
+  - fzf
+  - neovim
+  - dunst
+  - btop
+  - lsd
+  - nerd_font
+  - zsh
+  - lazydocker
+  - speedtest
+  - firefox
+  - bsnotifier
+  - lazygit
+  - w3m
+```
+
 # Tools
 
 ## I3

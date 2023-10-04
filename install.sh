@@ -50,29 +50,54 @@ function install_system_requirements() {
     fi
 }
 
+function print_help() {
+    echo ""
+    echo "Usage: $(basename "$0") [OPTIONS]"
+    echo ""
+    echo "Configure linux environment."
+    echo ""
+    echo "Options:"
+    echo "  -t    Tool to install."
+    echo "  -l    Show list of available tools."
+    echo "  -h    Show this message and exit."
+    echo ""
+    echo "Github: https://github.com/eccanto/linux-env"
+}
+
 TOOL=""
-while getopts t: flag; do
+while getopts t:lh flag; do
     case "${flag}" in
         t)
             TOOL=${OPTARG}
             ;;
+        h)
+            print_help
+            exit 0
+            ;;
+        l)
+            echo ""
+            echo "$(find tools -maxdepth 1 -mindepth 1 -type d | wc -l) available tools:"
+            find tools -maxdepth 1 -mindepth 1 -type d -printf "  - %f\n"
+            exit 0
+            ;;
         *)
-            echo "Invalid argument"
+            print_help
             exit 1
             ;;
     esac
 done
 
-confirm "do you want to install the system requirements?" install_system_requirements
-
 if [ -n "${TOOL}" ]; then
     if [ -d "./tools/${TOOL}" ]; then
+        confirm "do you want to install the system requirements?" install_system_requirements
         confirm "do you want to install ${TOOL}?" "./tools/${TOOL}/install.sh"
     else
         echo "tool ${TOOL} not found"
         exit 1
     fi
 else
+    confirm "do you want to install the system requirements?" install_system_requirements
+
     bash ./tools/alacritty/install.sh
     bash ./tools/i3/install.sh
     bash ./tools/i3lock/install.sh
