@@ -17,7 +17,7 @@ function install_system_requirements() {
     sudo apt update --assume-yes
     sudo apt install --assume-yes --quiet                                                                             \
         python3 python3-pip python3-venv build-essential ninja-build meson zip unzip git curl feh flameshot tty-clock \
-        arandr cargo htop vlc neofetch conky-all moreutils peek gucharmap keychain
+        arandr cargo htop vlc moreutils peek gucharmap keychain
 
     if ! command -v node &> /dev/null; then
         curl -o- https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh | sudo bash
