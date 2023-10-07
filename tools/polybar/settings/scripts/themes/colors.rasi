@@ -1,4 +1,3 @@
-
 /* Color-Scheme For All Themes*/
 
 * {
@@ -6,9 +5,9 @@
     background-alt:    #FFFFFF;
     foreground:    #FFFFFF;
     border:    #323232;
-    selected:    #FF8000;
+    selected:    #2180DE;
     urgent:    #EC407A;
-    logo:    #FF8000;
+    logo:    #2180DE;
     on:    #61C766;
     off:    #EC7875;
 }

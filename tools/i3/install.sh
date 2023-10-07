@@ -6,7 +6,7 @@ TEMPORARY_DIRECORY="$(mktemp -d)/i3"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 SETTINGS_DIRECTORY="${SCRIPT_PATH}/settings"
 
-sudo apt install --assume-yes light python3-i3ipc
+sudo apt install --assume-yes light python3-i3ipc libanyevent-i3-perl
 
 git clone --depth=1 https://github.com/i3/i3 "${TEMPORARY_DIRECORY}"
 rm -rf ~/.config/i3/

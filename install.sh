@@ -100,6 +100,7 @@ else
 
     bash ./tools/alacritty/install.sh
     bash ./tools/i3/install.sh
+    bash ./tools/i3-resurrect/install.sh
     bash ./tools/i3lock/install.sh
     bash ./tools/picom/install.sh
     bash ./tools/polybar/install.sh
@@ -122,4 +123,5 @@ else
     bash ./tools/vscode/install.sh
     bash ./tools/firefox/install.sh
     bash ./tools/speedtest/install.sh
+    bash ./tools/cplayer/install.sh
 fi

@@ -5,9 +5,9 @@ readonly file_path="$1"
 
 readonly OPEN_IMAGE="feh -x"
 readonly OPEN_VIDEO="vlc"
-readonly OPEN_AUDIO="nvlc"
+readonly OPEN_AUDIO="cplayer"
 readonly OPEN_FILE="vim"
-readonly OPTIONS_IDES=( "nvim" "code" "ranger" "nvlc" )
+readonly OPTIONS_IDES=( "nvim" "code" "ranger" "cplayer" )
 
 function choice_ide {
     local options=($@)
@@ -45,9 +45,9 @@ if [[ -n "${file_path}" ]]; then
         if file "${file_path}" | grep -qE 'image|bitmap'; then
             ${OPEN_IMAGE} "${file_path}"
         elif file "${file_path}" | grep -qE 'mkv|mp4'; then
-            { nohup ${OPEN_VIDEO} "${file_path}" & } &
+            { nohup ${OPEN_VIDEO} "${file_path}" >/dev/null 2>&1 & } &
         elif file "${file_path}" | grep -qE 'Audio'; then
-            { nohup alacritty -e bash -c "${OPEN_AUDIO} \"${file_path}\"" & } &
+            { nohup alacritty -e bash -c "${OPEN_AUDIO} \"${file_path}\"" >/dev/null 2>&1 & } &
         else
             ${OPEN_FILE} "${file_path}"
         fi
@@ -58,10 +58,18 @@ if [[ -n "${file_path}" ]]; then
         case "${choice}" in
             "")
                 ;;
-            nvim | nvlc)
-                { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-session ${choice} ." & } &
+            nvim | cplayer)
+                if pgrep -x "tmux" > /dev/null; then
+                    { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-session ${choice} ." >/dev/null 2>&1 & } &
+                else
+                    session_id=$(tmux ls | grep attached | head -1 | cut -d ':' -f 1)
+                    if [[ "${choice}" == "cplayer" ]]; then
+                        { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-window -t ${session_id} cplayer -p ." >/dev/null 2>&1 & } &
+                    else
+                        { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-window -t ${session_id} ${choice} ." >/dev/null 2>&1 & } &
+                    fi
+                fi
                 ;;
-
             *)
                 cd "${file_path}"
                 VISUAL=vim EDITOR=vim $choice .
