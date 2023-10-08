@@ -62,11 +62,10 @@ if [[ -n "${file_path}" ]]; then
                 if pgrep -x "tmux" > /dev/null; then
                     { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-session ${choice} ." >/dev/null 2>&1 & } &
                 else
-                    session_id=$(tmux ls | grep attached | head -1 | cut -d ':' -f 1)
                     if [[ "${choice}" == "cplayer" ]]; then
-                        { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-window -t ${session_id} cplayer -p ." >/dev/null 2>&1 & } &
+                        tmux new-window "cd \"${file_path}\"; cplayer -p ."
                     else
-                        { nohup alacritty -e bash -c "cd \"${file_path}\" && tmux new-window -t ${session_id} ${choice} ." >/dev/null 2>&1 & } &
+                        tmux new-window "cd \"${file_path}\"; ${choice} ."
                     fi
                 fi
                 ;;
