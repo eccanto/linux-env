@@ -12,4 +12,3 @@ fi
 
 MONITOR=${MONITOR} polybar i3wmthemer_bar &
 picom --experimental-backends -b
-feh --bg-fill /home/eccanto/.wallpaper.jpg

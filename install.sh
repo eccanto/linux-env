@@ -50,6 +50,15 @@ function install_system_requirements() {
     fi
 }
 
+function install_wallpaper() {
+    local wallpaper
+
+    wallpaper=$(find ./wallpapers -iname "*.jpg" | fzf --preview "echo 'Set {} as wallpaper'")
+    cp "${wallpaper}" ~/.wallpaper.jpg
+
+    i3-msg restart
+}
+
 function print_help() {
     echo ""
     echo "Usage: $(basename "$0") [OPTIONS]"
@@ -65,7 +74,8 @@ function print_help() {
 }
 
 TOOL=""
-while getopts t:lh flag; do
+INSTALL_WALLPAPER=false
+while getopts t:lhw flag; do
     case "${flag}" in
         t)
             TOOL=${OPTARG}
@@ -73,6 +83,9 @@ while getopts t:lh flag; do
         h)
             print_help
             exit 0
+            ;;
+        w)
+            INSTALL_WALLPAPER=true
             ;;
         l)
             echo ""
@@ -95,6 +108,8 @@ if [ -n "${TOOL}" ]; then
         echo "tool ${TOOL} not found"
         exit 1
     fi
+elif [[ "${INSTALL_WALLPAPER}" == "true" ]]; then
+    install_wallpaper
 else
     confirm "do you want to install the system requirements?" install_system_requirements
 
@@ -124,4 +139,6 @@ else
     bash ./tools/firefox/install.sh
     bash ./tools/speedtest/install.sh
     bash ./tools/cplayer/install.sh
+
+    install_wallpaper
 fi
