@@ -93,6 +93,12 @@ $ bash install.sh -l
   - w3m
 ```
 
+to install a wallpaper:
+
+```bash
+bash install.sh -w
+```
+
 # Tools
 
 ## I3

@@ -69,6 +69,7 @@ function print_help() {
     echo "  -t    Tool to install."
     echo "  -l    Show list of available tools."
     echo "  -h    Show this message and exit."
+    echo "  -w    Install wallpaper."
     echo ""
     echo "Github: https://github.com/eccanto/linux-env"
 }
