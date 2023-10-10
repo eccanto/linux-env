@@ -376,6 +376,9 @@ setxkbmap -layout latam
 
 # change to English US
 setxkbmap -layout us
+
+# chante to English US and select compose key
+setxkbmap -layout us -option compose:ralt
 ```
 
 To make this configuration permanent you can add "setxkbmap -layout latam" to `~/.config/i3/config` or use another
