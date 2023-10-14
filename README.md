@@ -322,6 +322,8 @@ A VIM-inspired file manager for the console ([github](https://github.com/ranger/
 | Shift + w | display logs                                  |
 | g + n     | create new tab                                |
 | g + c     | close tab                                     |
+| :mkdir    | create directory                              |
+| :touch    | create file                                   |
 
 ## tty-clock
 
