@@ -18,7 +18,7 @@ conky.config = {
   minimum_width = 333,
   alignment = 'top_right',
   gap_x = 22,
-  gap_y = 22
+  gap_y = 42
 };
 
 conky.text = [[
