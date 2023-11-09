@@ -204,6 +204,7 @@ modern web and cloud applications.
 
 | shortcut                    | description                                                |
 |-----------------------------|------------------------------------------------------------|
+| Ctrl + ;                    | Find and jump to word                                      |
 | Ctrl + Shift + Space        | Show diagnostic hover                                      |
 | Ctrl + 0                    | select sidebar                                             |
 | Ctrl + b                    | if the `editor` is focused: toggle sidebar explorer view   |

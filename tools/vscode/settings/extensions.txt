@@ -1,8 +1,8 @@
 alefragnani.project-manager
+alexkrechik.cucumberautocomplete
 analytic-signal.preview-mp4
 ban.quietlight-plus
 batisteo.vscode-django
-bungcip.better-toml
 burkeholland.simple-react-snippets
 chouzz.vscode-better-align
 christian-kohler.path-intellisense
@@ -30,7 +30,6 @@ GitHub.github-vscode-theme
 GrapeCity.gc-excelviewer
 gurumukhi.selected-lines-count
 hediet.vscode-drawio
-iocave.monkey-patch
 jeff-hykin.better-cpp-syntax
 josetr.cmake-language-support-vscode
 KevinRose.vsc-python-indent
@@ -72,7 +71,6 @@ praveencrony.total-lines
 rangav.vscode-thunder-client
 redhat.java
 redhat.vscode-xml
-rid9.datetime
 robocorp.robotframework-lsp
 ryuta46.multi-command
 s-nlf-fh.glassit
@@ -81,9 +79,11 @@ SimonSiefke.svg-preview
 SirTori.indenticator
 streetsidesoftware.code-spell-checker
 sukumo28.wav-preview
+tamasfe.even-better-toml
 tomoki1207.pdf
 tushortz.python-extended-snippets
 twxs.cmake
+usernamehw.find-jump
 VisualStudioExptTeam.intellicode-api-usage-examples
 VisualStudioExptTeam.vscodeintellicode
 vscjava.vscode-java-debug

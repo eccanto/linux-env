@@ -4,7 +4,7 @@
     // "window.zoomLevel": -1,
     "editor.fontSize": 12,
     "terminal.integrated.fontSize": 12,
-    "workbench.editor.showTabs": true,
+    "workbench.editor.showTabs": "multiple",
     "editor.minimap.enabled": false,
     "editor.scrollbar.vertical": "hidden",
     "editor.overviewRulerBorder": false,
@@ -13,7 +13,7 @@
     "editor.guides.indentation": false,
     "editor.glyphMargin": false,
     "python.terminal.activateEnvironment": false,
-    "workbench.sideBar.location": "right",
+    "workbench.sideBar.location": "left",
     "indenticator.width": 1,
     "indenticator.color.dark": "rgba(255, 255, 255, 0.3)",
     "svgPreview.autoOpen": false,
@@ -109,7 +109,6 @@
     "terminal.integrated.fontFamily": "Hack Nerd Font",
     "terminal.integrated.gpuAcceleration": "on",
     "terminal.integrated.scrollback": 100000,
-    "workbench.activityBar.visible": false,
     "redhat.telemetry.enabled": false,
     "terminal.integrated.tabs.enabled": false,
     "window.menuBarVisibility": "hidden",
@@ -128,6 +127,7 @@
         "glassit",
         "hediet",
         "hspace",
+        "indenticator",
         "ipdb",
         "isort",
         "levelname",
@@ -188,5 +188,8 @@
     "material-icon-theme.hidesExplorerArrows": true,
     "material-icon-theme.folders.color": "#66B2FF",
     "terminal.integrated.env.linux": {},
-    "glassit.alpha": 215
+    "glassit.alpha": 215,
+    "workbench.activityBar.location": "hidden",
+    "update.showReleaseNotes": false,
+    "console-ninja.featureSet": "Community"
 }
