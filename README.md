@@ -307,7 +307,7 @@ A VIM-inspired file manager for the console ([github](https://github.com/ranger/
 
 | shortcut  | description                                   |
 |-----------|-----------------------------------------------|
-| Win + c   | open ranger in a terminal                     |
+| Win + e   | open ranger as explorer                       |
 | f         | find file (using fzf)                         |
 | e         | open file/folder with an external application |
 | i         | display file (preview)                        |
