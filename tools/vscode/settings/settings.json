@@ -30,6 +30,7 @@
     "workbench.editor.tabSizing": "fit",
     "autoDocstring.docstringFormat": "sphinx",
     "workbench.colorCustomizations": {
+        "editor.foreground": "#dbdbdb",
         "editorWhitespace.foreground": "#2e2e2e",
         "editor.background": "#000000",
         "menu.background": "#000000",
