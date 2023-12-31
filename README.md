@@ -202,33 +202,35 @@ modern web and cloud applications.
 
 ![VSCode](documentation/media/vscode.png)
 
-| shortcut                    | description                                                |
-|-----------------------------|------------------------------------------------------------|
-| Ctrl + ;                    | Find and jump to word                                      |
-| Ctrl + Shift + Space        | Show diagnostic hover                                      |
-| Ctrl + 0                    | select sidebar                                             |
-| Ctrl + b                    | if the `editor` is focused: toggle sidebar explorer view   |
-| Ctrl + b                    | if the `terminal` is focused: focus previous editor group  |
-| Ctrl + shift + b            | toggle and focus sidebar explorer view                     |
-| Alt  + [Left,Right,Up,Down] | focus [Left,Right,Up,Down] group and side bar (circularly) |
-| Alt  + Up                   | if the `terminal` is focused: focus previous group         |
-| Ctrl + [Left,Right,Up,Down] | move to [Left,Right,Up,Down] group                         |
-| Ctrl + Alt + Shift + Right  | resize: increase group view width                          |
-| Ctrl + Alt + Shift + Left   | resize: decrease group view width                          |
-| Ctrl + Alt + Shift + Up     | resize: increase group view height                         |
-| Ctrl + Alt + Shift + Down   | resize: decrease group view height                         |
-| Ctrl + Alt + f              | toggle editor width (maximize focused editor split)        |
-| Ctrl + m                    | open markdown preview on the Side                          |
-| Ctrl + g                    | go to line/column                                          |
-| Ctrl + Space                | search suggestions                                         |
-| Ctrl + Shift + [Up,Down]    | move lines [Up,Down]                                       |
-| Ctrl + Shift + d            | go to definition                                           |
-| Ctrl + [Up,Down]            | scroll to [Up,Down]                                        |
-| Alt  + Shift + [Left,Right] | select words [Left,Right]                                  |
-| Alt  + Shift + [Up,Down]    | mark select multi-line [Up,Down]                           |
-| Alt  + ,                    | go to back                                                 |
-| Alt  + .                    | go to forward                                              |
-| Ctrl + Enter                | open file in split view [from explorer view]               |
+| shortcut                                   | description                                                         |
+|--------------------------------------------|---------------------------------------------------------------------|
+| Alt + s                                    | [navigation] Find and jump to word                                  |
+| Alt  + b                                   | [navigation] Breadcrumb keyboard navigation                         |
+| Alt  + f                                   | [navigation] File navigation                                        |
+| Alt  + g                                   | [navigation] String navigation                                      |
+| Alt  + \                                   | [navigation] Bracket matching                                       |
+| Alt  + d                                   | [navigation] Go to definition                                       |
+| Alt  + ,                                   | [navigation] Go to back                                             |
+| Alt  + .                                   | [navigation] Go to forward                                          |
+| Ctrl + g                                   | [navigation] Go to line/column                                      |
+| Ctrl + r                                   | [editor] Rename                                                     |
+| Ctrl + Shift + m                           | [editor] Display problems panel                                     |
+| Ctrl + Shift + Space                       | [editor] Display problem diagnostic hover                           |
+| Ctrl + Space                               | [editor] Display suggestions                                        |
+| Ctrl + 0                                   | [editor] Select sidebar                                             |
+| Ctrl + b                                   | [editor] If the `editor` is focused: toggle sidebar explorer view   |
+| Ctrl + b                                   | [editor] If the `terminal` is focused: focus previous editor group  |
+| Ctrl + shift + b                           | [editor] Toggle and focus sidebar explorer view                     |
+| Alt  + Shift + [Up,Down]                   | [editor] Mark select multi-line [Up,Down]                           |
+| Ctrl + Shift + [Up,Down]                   | [editor] Move lines [Up,Down]                                       |
+| Ctrl + [Up,Down]                           | [editor] Scroll to [Up,Down]                                        |
+| Alt  + [Left,Right,Up,Down]                | [split] Focus [Left,Right,Up,Down] group and side bar (circularly)  |
+| Alt  + Up                                  | [split] If the `terminal` is focused: focus previous group          |
+| Ctrl + Alt + [Left,Right,Up,Down]          | [split] Move to [Left,Right,Up,Down] group                          |
+| Ctrl + Alt + Shift + [Left,Right,Up,Down]  | [split] Resize group view width                                     |
+| Ctrl + Alt + f                             | [split] Full screen selected group                                  |
+| Ctrl + m                                   | [preview] Open markdown preview on the Side                         |
+| Ctrl + Enter                               | [explorer] Open file in split view                                  |
 
 ## Neovim
 
