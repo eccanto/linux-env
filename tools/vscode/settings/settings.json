@@ -9,7 +9,7 @@
         "editor.wordWrap": "off",
     },
     "workbench.editor.showTabs": "multiple",
-    "editor.minimap.enabled": false,
+    "editor.minimap.enabled": true,
     "editor.scrollbar.vertical": "auto",
     "editor.overviewRulerBorder": false,
     "editor.hideCursorInOverviewRuler": true,
