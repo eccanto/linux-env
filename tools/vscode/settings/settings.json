@@ -116,7 +116,6 @@
     "terminal.integrated.scrollback": 100000,
     "redhat.telemetry.enabled": false,
     "terminal.integrated.tabs.enabled": false,
-    "window.menuBarVisibility": "hidden",
     "hediet.vscode-drawio.theme": "Kennedy",
     "cSpell.userWords": [
         "arange",
@@ -196,5 +195,6 @@
     "glassit.alpha": 215,
     "workbench.activityBar.location": "hidden",
     "update.showReleaseNotes": false,
-    "console-ninja.featureSet": "Community"
+    "console-ninja.featureSet": "Community",
+    "window.menuBarVisibility": "hidden"
 }
