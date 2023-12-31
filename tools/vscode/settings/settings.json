@@ -180,7 +180,7 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.cursorBlinking": "expand",
-    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorSmoothCaretAnimation": "off",
     "[python]": {
         "editor.formatOnType": true
     },

@@ -206,14 +206,15 @@ modern web and cloud applications.
 |--------------------------------------------|---------------------------------------------------------------------|
 | Alt + s                                    | [navigation] Find and jump to word                                  |
 | Alt  + b                                   | [navigation] Breadcrumb keyboard navigation                         |
-| Alt  + f                                   | [navigation] File navigation                                        |
-| Alt  + g                                   | [navigation] String navigation                                      |
+| Alt  + f                                   | [navigation] Find file                                              |
+| Alt  + g                                   | [navigation] Find string                                            |
 | Alt  + \                                   | [navigation] Bracket matching                                       |
 | Alt  + d                                   | [navigation] Go to definition                                       |
 | Alt  + ,                                   | [navigation] Go to back                                             |
 | Alt  + .                                   | [navigation] Go to forward                                          |
 | Ctrl + g                                   | [navigation] Go to line/column                                      |
 | Ctrl + r                                   | [editor] Rename                                                     |
+| Shift + Del                                | [editor] Delete line                                                |
 | Ctrl + Shift + m                           | [editor] Display problems panel                                     |
 | Ctrl + Shift + Space                       | [editor] Display problem diagnostic hover                           |
 | Ctrl + Space                               | [editor] Display suggestions                                        |
