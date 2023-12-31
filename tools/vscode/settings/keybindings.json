@@ -396,5 +396,25 @@
     {
         "key": "alt+g",
         "command": "workbench.action.findInFiles"
+    },
+    {
+        "key": "ctrl+shift+4",
+        "command": "cursorEndSelect",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "cursorHomeSelect",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+shift+4",
+        "command": "cursorEnd",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+shift+-",
+        "command": "cursorHome",
+        "when": "editorTextFocus"
     }
 ]

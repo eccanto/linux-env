@@ -214,6 +214,10 @@ modern web and cloud applications.
 | Alt  + .                                   | [navigation] Go to forward                                          |
 | Ctrl + g                                   | [navigation] Go to line/column                                      |
 | Ctrl + r                                   | [editor] Rename                                                     |
+| Ctrl + $                                   | [editor] Move to end and select                                     |
+| Alt + $                                    | [editor] Move to end                                                |
+| Ctrl + _                                   | [editor] Move to home and select                                    |
+| Alt + _                                    | [editor] Move to home                                               |
 | Shift + Del                                | [editor] Delete line                                                |
 | Ctrl + Shift + m                           | [editor] Display problems panel                                     |
 | Ctrl + Shift + Space                       | [editor] Display problem diagnostic hover                           |
