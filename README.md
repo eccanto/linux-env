@@ -213,6 +213,11 @@ modern web and cloud applications.
 | Alt  + ,                                   | [navigation] Go to back                                             |
 | Alt  + .                                   | [navigation] Go to forward                                          |
 | Ctrl + g                                   | [navigation] Go to line/column                                      |
+| Ctrl + n                                   | [terminal] Create new terminal                                      |
+| Ctrl + s                                   | [terminal] Split terminal                                           |
+| Ctrl + q                                   | [terminal] Kill terminal                                            |
+| Ctrl + j                                   | [terminal] Focus previous terminal                                  |
+| Ctrl + k                                   | [terminal] Focus next terminal                                      |
 | Ctrl + r                                   | [editor] Rename                                                     |
 | Ctrl + $                                   | [editor] Move to end and select                                     |
 | Alt + $                                    | [editor] Move to end                                                |

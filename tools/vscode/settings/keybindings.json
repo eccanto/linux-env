@@ -416,5 +416,30 @@
         "key": "alt+shift+-",
         "command": "cursorHome",
         "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.terminal.new",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.terminal.split",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus"
     }
 ]
