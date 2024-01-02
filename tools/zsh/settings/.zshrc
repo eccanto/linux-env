@@ -37,6 +37,7 @@ alias history='history 0'
 alias xcp='tr -d "\n" | xclip -sele clic'
 alias lzg='lazygit'
 alias lzd='lazydocker'
+alias ccd='cd $(fzf)'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
