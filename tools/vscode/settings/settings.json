@@ -115,7 +115,6 @@
     "terminal.integrated.gpuAcceleration": "on",
     "terminal.integrated.scrollback": 100000,
     "redhat.telemetry.enabled": false,
-    "terminal.integrated.tabs.enabled": false,
     "hediet.vscode-drawio.theme": "Kennedy",
     "cSpell.userWords": [
         "arange",
@@ -123,11 +122,14 @@
         "boxplot",
         "Ccanto",
         "cmap",
+        "Codeium",
         "coloredlogs",
         "drawio",
+        "ezodf",
         "facecolor",
         "fancybox",
         "figsize",
+        "fillna",
         "glassit",
         "hediet",
         "hspace",
@@ -140,7 +142,9 @@
         "msecs",
         "mypy",
         "ncols",
+        "nightlies",
         "nrows",
+        "opendoc",
         "playsound",
         "psql",
         "psutil",
@@ -175,6 +179,7 @@
         "yaxis",
         "ylabel",
         "ylim",
+        "yticklabels",
         "yticks"
     ],
     "typescript.updateImportsOnFileMove.enabled": "always",
@@ -196,5 +201,7 @@
     "workbench.activityBar.location": "hidden",
     "update.showReleaseNotes": false,
     "console-ninja.featureSet": "Community",
-    "window.menuBarVisibility": "hidden"
+    "window.menuBarVisibility": "hidden",
+    "terminal.integrated.tabs.location": "left",
+    "terminal.integrated.tabs.enabled": false
 }
