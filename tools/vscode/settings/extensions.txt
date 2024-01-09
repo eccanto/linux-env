@@ -6,6 +6,7 @@ batisteo.vscode-django
 burkeholland.simple-react-snippets
 chouzz.vscode-better-align
 christian-kohler.path-intellisense
+Codeium.codeium
 codezombiech.gitignore
 Compulim.vscode-clock
 coolbear.systemd-unit-file
