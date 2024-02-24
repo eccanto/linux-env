@@ -16,5 +16,5 @@ popd
 rm -rf "${TEMPORARY_DIRECORY}"
 
 mkdir -p ~/.config/neofetch/
-cp "${SETTINGS_DIRECTORY}"/* ~/.config/neofetch/
+cp -r "${SETTINGS_DIRECTORY}"/* ~/.config/neofetch/
 sed -i -r "s#USER_HOME#$HOME#g" ~/.config/neofetch/config.conf

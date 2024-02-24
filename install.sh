@@ -17,7 +17,7 @@ function install_system_requirements() {
     sudo apt update --assume-yes
     sudo apt install --assume-yes --quiet                                                                             \
         python3 python3-pip python3-venv build-essential ninja-build meson zip unzip git curl feh flameshot tty-clock \
-        arandr cargo htop vlc moreutils peek gucharmap keychain
+        arandr cargo htop vlc moreutils peek gucharmap keychain pipx
 
     if ! command -v node &> /dev/null; then
         curl -o- https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh | sudo bash
@@ -28,7 +28,7 @@ function install_system_requirements() {
         lua_temporary_direcory="$(mktemp -d)"
 
         pushd "${lua_temporary_direcory}"
-            curl -R -O http://www.lua.org/ftp/lua-5.4.6.tar.gz
+            curl -R -O https://www.lua.org/ftp/lua-5.4.6.tar.gz
             tar zxf lua-5.4.6.tar.gz
             cd lua-5.4.6
             make all test

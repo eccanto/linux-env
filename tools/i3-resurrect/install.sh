@@ -7,14 +7,9 @@ OS_VERSION="$(. /etc/os-release; echo "${VERSION_ID}")"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 SETTINGS_DIRECTORY="${SCRIPT_PATH}/settings"
 
-if [[ "${OS_NAME}" != "Ubuntu" ]]; then
-    echo "Unsupported OS"
-    exit 1
-fi
-
 rm -rf ~/.config/i3-resurrect/
 
-if [[ "${OS_VERSION}" == "23."* ]]; then
+if command -v pipx &> /dev/null; then
     if ! command -v i3-resurrect &> /dev/null; then
         pipx install i3-resurrect
     else
