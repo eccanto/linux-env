@@ -2,16 +2,21 @@
 
 set -xeu
 
+VERSION=1.7.5
+
 TEMPORARY_DIRECORY="$(mktemp -d)/rofi"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 SETTINGS_DIRECTORY="${SCRIPT_PATH}/settings"
 
-sudo apt-get install --assume-yes libgtk2.0-dev flex
+sudo apt-get install --assume-yes libgtk2.0-dev flex bison
 
-git clone --depth=1 https://github.com/davatorium/rofi.git "${TEMPORARY_DIRECORY}"
+git clone --depth=1 --branch "${VERSION}" https://github.com/davatorium/rofi.git "${TEMPORARY_DIRECORY}"
+
 rm -rf ~/.config/rofi/
 
 pushd "${TEMPORARY_DIRECORY}"
+    git checkout "${VERSION}"
+
     meson setup build
     ninja -C build
     sudo ninja -C build install

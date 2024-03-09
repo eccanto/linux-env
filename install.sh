@@ -2,16 +2,7 @@
 
 set -eu
 
-function confirm() {
-    local message=$1
-    local command=$2
-
-    read -r -p "${message} [y/N] " response
-    response=${response,,}
-    if [[ "$response" =~ ^(yes|y)$ ]]; then
-        $command
-    fi
-}
+source ./common.sh
 
 function install_system_requirements() {
     sudo apt update --assume-yes
@@ -127,6 +118,7 @@ else
     bash ./tools/fzf/install.sh
     bash ./tools/bat/install.sh
     bash ./tools/lsd/install.sh
+    bash ./tools/neofetch/install.sh
     bash ./tools/lazygit/install.sh
     bash ./tools/lazydocker/install.sh
     bash ./tools/btop/install.sh

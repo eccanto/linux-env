@@ -11,4 +11,4 @@ if [[ -z "${MONITOR}" ]]; then
 fi
 
 MONITOR=${MONITOR} polybar i3wmthemer_bar &
-picom --experimental-backends -b
+picom --daemon

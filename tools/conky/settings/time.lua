@@ -15,6 +15,7 @@ conky.config = {
   override_utf8_locale = true,
   use_xft = true,
   uppercase = false,
+  border_width = 10,
   minimum_width = 333,
   alignment = 'top_right',
   gap_x = 22,

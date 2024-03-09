@@ -2,6 +2,8 @@
 
 set -xeu
 
+VERSION=v11.2
+
 TEMPORARY_DIRECORY="$(mktemp -d)/picom"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 SETTINGS_DIRECTORY="${SCRIPT_PATH}/settings"
@@ -11,7 +13,7 @@ sudo apt install --assume-yes meson libxext-dev libxcb1-dev libxcb-damage0-dev l
     libxcb-present-dev libxcb-xinerama0-dev libpixman-1-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libpcre2-dev \
     libevdev-dev uthash-dev libev-dev libx11-xcb-dev libxcb-glx0-dev libpcre3-dev libxcb-dpms0-dev libepoxy-dev
 
-git clone --depth=1 https://github.com/yshui/picom.git "${TEMPORARY_DIRECORY}"
+git clone --depth=1 --branch "${VERSION}" https://github.com/yshui/picom.git "${TEMPORARY_DIRECORY}"
 rm -rf ~/.config/picom
 
 pushd "${TEMPORARY_DIRECORY}"
