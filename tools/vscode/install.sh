@@ -2,6 +2,16 @@
 
 set -xeu
 
+SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+source "${SCRIPT_PATH}/../../common.sh"
+
+function install_extensions() {
+    echo "installing vscode extensions..."
+
+    xargs -n 1 code --install-extension < "${VSCODE_SETTINGS}/extensions.txt"
+}
+
 TEMPORARY_DIRECORY="$(mktemp -d)"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 VSCODE_SETTINGS="${SCRIPT_PATH}/settings"
@@ -16,4 +26,5 @@ rm -rf "${TEMPORARY_DIRECORY}"
 
 mkdir -p ~/.config/Code/User/
 cp "${VSCODE_SETTINGS}/settings.json" "${VSCODE_SETTINGS}/keybindings.json" ~/.config/Code/User/
-xargs -n 1 code --install-extension < "${VSCODE_SETTINGS}/extensions.txt"
+
+confirm "do you want to install the vscode extensions?" install_extensions
