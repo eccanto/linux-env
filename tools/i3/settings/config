@@ -19,6 +19,9 @@ bindsym $mod+Return exec alacritty -e bash -c "tmux new-session '/usr/bin/neofet
 bindsym $mod+e exec alacritty --class floating -e bash -c "VISUAL=vim EDITOR=vim ranger"
 bindsym $mod+d exec rofi -show run -display-run " search"
 
+# lock screen
+bindsym $mod+l exec lock
+
 # Window kill command
 bindsym $mod+Shift+q kill
 
@@ -109,33 +112,18 @@ mode "restore" {
 }
 
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # move focused workspace between monitors
-bindsym $mod+Ctrl+Shift+h move workspace to output Left
-bindsym $mod+Ctrl+Shift+j move workspace to output down
-bindsym $mod+Ctrl+Shift+k move workspace to output up
-bindsym $mod+Ctrl+Shift+l move workspace to output right
-
 bindsym $mod+Ctrl+Shift+Left move workspace to output Left
 bindsym $mod+Ctrl+Shift+Down move workspace to output down
 bindsym $mod+Ctrl+Shift+Up move workspace to output up
