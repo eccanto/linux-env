@@ -4,7 +4,7 @@ set -eu
 
 source ./common.sh
 
-function install_system_requirements() {
+function install_system_requirements_debian() {
     sudo apt update --assume-yes
     sudo apt install --assume-yes --quiet                                                                             \
         python3 python3-pip python3-venv build-essential ninja-build meson zip unzip git curl feh flameshot tty-clock \
@@ -28,6 +28,23 @@ function install_system_requirements() {
 
         rm -rf "${lua_temporary_direcory}"
     fi
+
+    if ! command -v rustc &> /dev/null; then
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+        if [[ -f "${HOME}/.cargo/env" ]]; then
+            # shellcheck disable=SC1091
+            source "${HOME}/.cargo/env"
+        fi
+
+        rustup default nightly && rustup update
+    fi
+}
+
+function install_system_requirements_arch() {
+    sudo pacman -Sy
+    sudo pacman -S python-pip python-pipx python3-i3ipc git zip unzip curl feh flameshot arandr htop peek gucharmap \
+                   nodejs-lts-iron npm lua keychain pyenv
 
     if ! command -v rustc &> /dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -92,9 +109,16 @@ while getopts t:lhw flag; do
     esac
 done
 
+os_name=$(get_os)
+
 if [ -n "${TOOL}" ]; then
     if [ -d "./tools/${TOOL}" ]; then
-        confirm "do you want to install the system requirements?" install_system_requirements
+        if [[ ${os_name} == Ubuntu* ]]; then
+            confirm "do you want to install the system requirements?" install_system_requirements_debian
+        elif [[ ${os_name} == Manjaro* ]]; then
+            confirm "do you want to install the system requirements?" install_system_requirements_arch
+        fi
+
         confirm "do you want to install ${TOOL}?" "./tools/${TOOL}/install.sh"
     else
         echo "tool ${TOOL} not found"
@@ -103,7 +127,11 @@ if [ -n "${TOOL}" ]; then
 elif [[ "${INSTALL_WALLPAPER}" == "true" ]]; then
     install_wallpaper
 else
-    confirm "do you want to install the system requirements?" install_system_requirements
+    if [[ ${os_name} == Ubuntu* ]]; then
+        confirm "do you want to install the system requirements?" install_system_requirements_debian
+    elif [[ ${os_name} == Manjaro* ]]; then
+        confirm "do you want to install the system requirements?" install_system_requirements_arch
+    fi
 
     bash ./tools/alacritty/install.sh
     bash ./tools/i3/install.sh
@@ -121,7 +149,6 @@ else
     bash ./tools/neofetch/install.sh
     bash ./tools/lazygit/install.sh
     bash ./tools/lazydocker/install.sh
-    bash ./tools/btop/install.sh
     bash ./tools/bsnotifier/install.sh
     bash ./tools/dunst/install.sh
     bash ./tools/ranger/install.sh
@@ -130,7 +157,6 @@ else
     bash ./tools/neovim/install.sh
     bash ./tools/vscode/install.sh
     bash ./tools/firefox/install.sh
-    bash ./tools/speedtest/install.sh
     bash ./tools/cplayer/install.sh
 
     install_wallpaper

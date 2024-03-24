@@ -2,25 +2,33 @@
 
 set -xeu
 
-VERSION=1.7.5
-
 TEMPORARY_DIRECORY="$(mktemp -d)/rofi"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 SETTINGS_DIRECTORY="${SCRIPT_PATH}/settings"
 
-sudo apt-get install --assume-yes libgtk2.0-dev flex bison
+source "${SCRIPT_PATH}/../../common.sh"
 
-git clone --depth=1 --branch "${VERSION}" https://github.com/davatorium/rofi.git "${TEMPORARY_DIRECORY}"
+os_name=$(get_os)
+if [[ ${os_name} == Ubuntu* ]]; then
+    VERSION=1.7.5
+    sudo apt-get install --assume-yes libgtk2.0-dev flex bison
 
-rm -rf ~/.config/rofi/
+    git clone --depth=1 --branch "${VERSION}" https://github.com/davatorium/rofi.git "${TEMPORARY_DIRECORY}"
 
-pushd "${TEMPORARY_DIRECORY}"
-    git checkout "${VERSION}"
+    rm -rf ~/.config/rofi/
 
-    meson setup build
-    ninja -C build
-    sudo ninja -C build install
-popd
+    pushd "${TEMPORARY_DIRECORY}"
+        git checkout "${VERSION}"
+
+        meson setup build
+        ninja -C build
+        sudo ninja -C build install
+    popd
+
+    rm -rf "${TEMPORARY_DIRECORY}"
+elif [[ ${os_name} == Manjaro* ]]; then
+    sudo pacman -S rofi
+fi
 
 mkdir -p ~/.config/rofi/
 cp -r "${SETTINGS_DIRECTORY}"/* ~/.config/rofi/

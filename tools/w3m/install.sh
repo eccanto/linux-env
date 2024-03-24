@@ -2,18 +2,27 @@
 
 set -xeu
 
-TEMPORARY_DIRECORY="$(mktemp -d)/w3m"
+SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 
-sudo apt install --assume-yes libgc-dev
+source "${SCRIPT_PATH}/../../common.sh"
 
-git clone --depth=1 https://github.com/tats/w3m.git "${TEMPORARY_DIRECORY}"
+os_name=$(get_os)
+if [[ ${os_name} == Ubuntu* ]]; then
+    TEMPORARY_DIRECORY="$(mktemp -d)/w3m"
 
-pushd "${TEMPORARY_DIRECORY}"
-    mkdir build
-    cd build
-    ../configure
-    make
-    sudo mv w3m /usr/bin/w3m
-popd
+    sudo apt install --assume-yes libgc-dev
 
-rm -rf "${TEMPORARY_DIRECORY}"
+    git clone --depth=1 https://github.com/tats/w3m.git "${TEMPORARY_DIRECORY}"
+
+    pushd "${TEMPORARY_DIRECORY}"
+        mkdir build
+        cd build
+        ../configure
+        make
+        sudo mv w3m /usr/bin/w3m
+    popd
+
+    rm -rf "${TEMPORARY_DIRECORY}"
+elif [[ ${os_name} == Manjaro* ]]; then
+    sudo pacman -S w3m
+fi

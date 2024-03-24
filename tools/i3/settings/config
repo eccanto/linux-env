@@ -184,6 +184,7 @@ for_window [class="feh"] floating enable
 for_window [class="Arandr"] floating enable
 for_window [class="Gucharmap"] floating enable
 for_window [class="Gnome-calculator"] floating enable
+for_window [class="kcalc"] floating enable
 for_window [class="GParted"] floating enable border normal
 for_window [instance="floating"] floating enable border pixel 2
 for_window [instance="floating"] resize grow left 280, resize grow right 280, resize grow down 0, resize grow up 0

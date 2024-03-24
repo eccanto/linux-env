@@ -12,3 +12,8 @@ function confirm() {
         $command
     fi
 }
+
+function get_os() {
+    version=$(grep -E '^(VERSION|NAME)=' /etc/os-release | sed 's/^\(NAME\|VERSION\)=//g' | tr -d '"')
+    echo ${version}
+}

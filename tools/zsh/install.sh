@@ -6,7 +6,14 @@ TEMPORARY_DIRECORY="$(mktemp -d)/powerlevel10k"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 ZSH_CONFIGURATION_FILE=$(realpath "${SCRIPT_PATH}/settings/.zshrc")
 
-sudo apt install --assume-yes zsh
+source "${SCRIPT_PATH}/../../common.sh"
+
+os_name=$(get_os)
+if [[ ${os_name} == Ubuntu* ]]; then
+    sudo apt install --assume-yes zsh
+elif [[ ${os_name} == Manjaro* ]]; then
+    sudo pacman -S zsh
+fi
 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${TEMPORARY_DIRECORY}"
 rm -rf ~/.zsh

@@ -16,13 +16,20 @@ TEMPORARY_DIRECORY="$(mktemp -d)"
 SCRIPT_PATH="$(dirname -- "${BASH_SOURCE[0]}")"
 VSCODE_SETTINGS="${SCRIPT_PATH}/settings"
 
-wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O "${TEMPORARY_DIRECORY}/vscode-latest.deb"
+source "${SCRIPT_PATH}/../../common.sh"
 
-pushd "${TEMPORARY_DIRECORY}"
-    sudo dpkg -i vscode-latest.deb
-popd
+os_name=$(get_os)
+if [[ ${os_name} == Ubuntu* ]]; then
+    wget https://update.code.visualstudio.com/latest/linux-deb-x64/stable -O "${TEMPORARY_DIRECORY}/vscode-latest.deb"
 
-rm -rf "${TEMPORARY_DIRECORY}"
+    pushd "${TEMPORARY_DIRECORY}"
+        sudo dpkg -i vscode-latest.deb
+    popd
+
+    rm -rf "${TEMPORARY_DIRECORY}"
+elif [[ ${os_name} == Manjaro* ]]; then
+    sudo pacman -S code
+fi
 
 mkdir -p ~/.config/Code/User/
 cp "${VSCODE_SETTINGS}/settings.json" "${VSCODE_SETTINGS}/keybindings.json" ~/.config/Code/User/
