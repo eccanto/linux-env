@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -eu
+
+PATH=$1
+
+if [[ -f "$PATH" ]]; then
+    if [[ "${PATH}" =~ \.(wav|mp3)$ ]]; then
+        /usr/bin/vendor_perl/exiftool "${PATH}"
+    elif [[ "${PATH}" =~ \.(png|jpg|jpeg)$ ]]; then
+        /usr/bin/identify "${PATH}"
+    else
+        /usr/bin/bat --color=always "${PATH}"
+    fi
+else
+    /usr/bin/ls -l "${PATH}"
+fi

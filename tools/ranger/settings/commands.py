@@ -11,7 +11,11 @@ class FzfCommand(Command):
     name = 'fzf'
 
     def execute(self):
-        fzf = self.fm.execute_command('source ~/.zshrc && fzf', universal_newlines=True, stdout=subprocess.PIPE)
+        fzf = self.fm.execute_command(
+            'source ~/.zshrc && (find | fzf --preview="fzf_preview {}")',
+            universal_newlines=True,
+            stdout=subprocess.PIPE,
+        )
         stdout, _ = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.rstrip('\n'))
