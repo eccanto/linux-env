@@ -438,11 +438,18 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 
 ## Show exit code in powerlevel10k
 
+
+To show **fail** exit code change value to `true` in `~/.p10k.zsh` file.
+
 ```bash
-typeset -g POWERLEVEL9K_STATUS_ERROR=false
+typeset -g POWERLEVEL9K_STATUS_ERROR=true
 ```
 
-Replace `false` with `true` in `~/.p10k.zsh` file.
+To show **success** exit code change value to `true` in `~/.p10k.zsh` file.
+
+```bash
+typeset -g POWERLEVEL9K_STATUS_OK=true
+```
 
 ## Fix polybar brightness module on amd card
 
