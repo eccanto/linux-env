@@ -43,8 +43,8 @@ function install_system_requirements_debian() {
 
 function install_system_requirements_arch() {
     sudo pacman -Sy
-    sudo pacman -S python-pip python-pipx python3-i3ipc git zip unzip curl feh flameshot arandr htop peek gucharmap \
-                   nodejs-lts-iron npm lua keychain pyenv noto-fonts-emoji xdotool
+    sudo pacman -S python-pip python-pipx python-i3ipc git zip unzip curl feh flameshot arandr htop nodejs-lts-iron \
+        npm lua keychain pyenv noto-fonts-emoji xdotool base-devel dmenu_run file-roller mpv
 
     if ! command -v rustc &> /dev/null; then
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

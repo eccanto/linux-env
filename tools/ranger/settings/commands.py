@@ -12,7 +12,7 @@ class FzfCommand(Command):
 
     def execute(self):
         fzf = self.fm.execute_command(
-            'source ~/.zshrc && (find | fzf --preview="fzf_preview {}")',
+            'source ~/.zshrc && fzf --preview="fzf_preview {}"',
             universal_newlines=True,
             stdout=subprocess.PIPE,
         )

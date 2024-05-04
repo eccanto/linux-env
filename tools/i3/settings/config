@@ -17,7 +17,8 @@ bindsym Print exec flameshot gui
 bindsym $mod+Escape exec ~/.config/polybar/scripts/powermenu_alt
 bindsym $mod+Return exec alacritty -e bash -c "tmux new-session '/usr/bin/neofetch && /usr/bin/zsh'"
 bindsym $mod+e exec alacritty --class floating -e bash -c "VISUAL=vim EDITOR=vim ranger"
-bindsym $mod+d exec rofi -show run -display-run " search"
+bindsym $mod+Shift+d exec rofi -show run -display-run " search"
+bindsym $mod+d exec dmenu_recency
 
 # lock screen
 bindsym $mod+l exec lock

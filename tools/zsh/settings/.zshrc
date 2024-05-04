@@ -86,6 +86,8 @@ export FZF_DEFAULT_COMMAND='find .           \
   -not \( -path "*/build" -prune \)          \
   -not \( -path "*/PackageCache" -prune \)   \
   -not \( -path "*/.venv" -prune \)          \
+  -not \( -path "*/.cache" -prune \)         \
+  -not \( -path "*/.local" -prune \)         \
   -not \( -path "*/.mypy_cache" -prune \)    \
   -not \( -path "*/node_modules" -prune \)   \
   -not \( -path "*/__pycache__" -prune \)    \
@@ -116,4 +118,6 @@ eval "$(pyenv init -)"
 
 eval $(keychain -q --noask --eval id_rsa)
 
-setxkbmap -layout us
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
+setxkbmap -layout us -option compose:ralt
