@@ -38,6 +38,7 @@ Configuration of my Linux environment.
   - [Change permissions on sys brightness permanently using udev](#change-permissions-on-sys-brightness-permanently-using-udev)
   - [Enter SSH passphrase once](#enter-ssh-passphrase-once)
   - [Bluetooth - a2dp-sink profile connect failed](#bluetooth---a2dp-sink-profile-connect-failed)
+  - [Changing i3 workspace monitors](#changing-i3-workspace-monitors)
 - [Developers](#developers)
   - [Static code analysis tools](#static-code-analysis-tools)
     - [Install development requirements](#install-development-requirements)
@@ -634,6 +635,20 @@ To solve it, follow these steps:
     pulseaudio --start
     sudo systemctl restart bluetooth
     ```
+
+## Changing i3 workspace monitors
+
+To set `workspace 1` on the `HDMI-2` monitor add this line to `~/.config/i3/config`:
+
+```bash
+workspace 1 output HDMI-2
+```
+
+To set `workspace 2` on the `DP-1` monitor add this line to `~/.config/i3/config`:
+
+```bash
+workspace 2 output DP-1
+```
 
 # Developers
 
