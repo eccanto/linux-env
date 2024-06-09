@@ -115,9 +115,12 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 eval $(keychain -q --noask --eval id_rsa)
 
 export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
+
+export PATH="${HOME}/.local/share/gem/ruby/3.0.0/bin:$PATH"
 
 setxkbmap -layout us -option compose:ralt

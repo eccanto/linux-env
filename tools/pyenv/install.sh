@@ -12,3 +12,5 @@ if [[ ${os_name} == Ubuntu* ]]; then
 elif [[ ${os_name} == Manjaro* ]]; then
     sudo pacman -S tk
 fi
+
+git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
