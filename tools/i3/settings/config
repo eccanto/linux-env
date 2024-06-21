@@ -18,7 +18,7 @@ bindsym $mod+Escape exec ~/.config/polybar/scripts/powermenu_alt
 bindsym $mod+Return exec alacritty -e bash -c "tmux new-session '/usr/bin/neofetch && /usr/bin/zsh'"
 bindsym $mod+e exec alacritty --class floating -e bash -c "VISUAL=vim EDITOR=vim ranger"
 bindsym $mod+Shift+d exec rofi -show run -display-run " search"
-bindsym $mod+d exec dmenu_recency -nb "#1F1F1F" -nf "#C0C0C0" -sb "#0066CC" -sf "#E0E0E0"
+bindsym $mod+d exec dmenu_recency -nb "#1F1F1F" -nf "#C0C0C0" -sb "#2180DE" -sf "#000000" -h 26 -y 6
 
 # lock screen
 bindsym $mod+l exec lock
@@ -149,6 +149,9 @@ set $ws6 6
 set $ws7 7
 set $ws8 8
 
+workspace 1 output HDMI-2
+workspace 2 output DP-1
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -226,11 +229,10 @@ mode "resize" {
 }
 
 # autostart applications
-exec --no-startup-id bsnotifier -l "20" -o "$(mktemp)"
-exec --no-startup-id nm-applet
-exec_always --no-startup-id feh --bg-fill USER_HOME/.wallpaper.jpg
-exec_always --no-startup-id USER_HOME/.config/polybar/i3wmthemer_bar_launch.sh
-exec_always --no-startup-id bash -c "pkill conky; conky -d -c USER_HOME/.config/conky/time.lua; conky -d -c USER_HOME/.config/conky/general.lua"
+exec_always --no-startup-id bash ~/.screenlayout/home.sh
+exec_always --no-startup-id feh --bg-fill ~/.wallpaper.jpg
+exec_always --no-startup-id ~/.config/polybar/i3wmthemer_bar_launch.sh
+exec_always --no-startup-id bash -c "pkill conky; conky -d -c ~/.config/conky/general.lua"
 
 # theme
 client.background #1E272B
@@ -239,9 +241,11 @@ client.focused_inactive #7D7D7D #000000 #2180DE #2180DE #484848
 client.unfocused #5C5C5C #000000 #A6A6A6 #78824B #2C2C2C
 client.urgent #2180DE #000000 #D0D0D0 #2180DE #2180DE
 client.placeholder #EAD49B #1E272B #EAD49B #78824B #78824B
+
 smart_gaps off
-gaps inner 4
-gaps outer 2
+gaps inner 10
+gaps outer 0
+gaps top 28
 
 # volume controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +1%
