@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-pkill polybar
-
-sleep 1;
-
-# set HDMI as primary monitor if is connected
-MONITOR="$(xrandr -q | grep ' connected ' | grep HDMI | cut -d' ' -f1 | head -1)"
-if [[ -z "${MONITOR}" ]]; then
-    MONITOR="$(xrandr -q | grep ' connected ' | cut -d' ' -f1 | head -1)"
+if type "xrandr"; then
+    for monitor in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+        if [[ "${monitor}" == HDMI* ]]; then
+            MONITOR=$monitor polybar --reload i3wmthemer_primary_bar &
+        else
+            MONITOR=$monitor polybar --reload i3wmthemer_secondary_bar &
+        fi
+    done
+else
+    polybar --reload i3wmthemer_primary_bar &
 fi
 
-MONITOR=${MONITOR} polybar i3wmthemer_bar &
-picom --daemon
+picom --daemon --config /home/eccanto/.config/picom/picom.conf
