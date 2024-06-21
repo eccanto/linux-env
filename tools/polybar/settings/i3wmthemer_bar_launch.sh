@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+pkill polybar
+
+sleep 0.5
+
 if type "xrandr"; then
     for monitor in $(xrandr --query | grep " connected" | cut -d" " -f1); do
         if [[ "${monitor}" == HDMI* ]]; then
