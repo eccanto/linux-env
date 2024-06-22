@@ -247,6 +247,8 @@ gaps inner 10
 gaps outer 0
 gaps top 28
 
+title_align center
+
 # volume controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +1%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -1%
