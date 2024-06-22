@@ -20,9 +20,9 @@ padding-right = 1
 
 background = ${colors.background}
 foreground = ${colors.font}
-font-0 = Hack Nerd Font:style=Solid:size=7.2;2
-font-1 = Source Code Pro Semibold:size=7.2;2
-font-2 = Iosevka:size=7.2;2
+font-0 = Hack Nerd Font:style=Solid:size=8;2
+font-1 = Source Code Pro Semibold:size=8;2
+font-2 = Iosevka:size=8;2
 modules-left = i3 application
 modules-right = cpu memory swap wlan eth vpn backlight pulseaudio date battery sysmenu
 wm-restack = i3
@@ -47,9 +47,9 @@ padding-right = 0
 
 background = ${colors.background}
 foreground = ${colors.font}
-font-0 = Hack Nerd Font:style=Solid:size=7.2;2
-font-1 = Source Code Pro Semibold:size=7.2;2
-font-2 = Iosevka:size=7.2;2
+font-0 = Hack Nerd Font:style=Solid:size=8;2
+font-1 = Source Code Pro Semibold:size=8;2
+font-2 = Iosevka:size=8;2
 modules-left = i3
 modules-right = date
 wm-restack = i3
@@ -260,15 +260,15 @@ format-disconnected-padding = 1
 [module/date]
 type = internal/date
 interval = 5
-date = " %d/%m/%Y"
+date = "%d/%m/%Y"
 date-alt =
-time = %H:%M
-time-alt = %H:%M
+time = " %H:%M"
+time-alt = " %H:%M"
 format-prefix = " "
 format-foreground = ${colors.font}
 format-background = ${colors.background}
 format-padding = 1
-label = %date% %time%
+label = %time% %date%
 format-prefix-foreground = ${colors.primary}
 
 [settings]
