@@ -60,7 +60,7 @@ bottom = false
 
 [module/application]
 type = custom/script
-exec = echo "$(xdotool getactivewindow getwindowname)"
+exec = echo "$(xdotool getactivewindow getwindowname 2> /dev/null)"
 exec-if = pgrep -x polybar
 interval = 0.3
 format = "<label>"
