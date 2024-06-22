@@ -78,6 +78,12 @@ export VISUAL=vim
 export EDITOR=vim
 
 export FZF_DEFAULT_COMMAND='find .           \
+  -not \( -path "*/Pictures" -prune \)       \
+  -not \( -path "*/Videos" -prune \)         \
+  -not \( -path "*/Music" -prune \)          \
+  -not \( -path "*/output" -prune \)         \
+  -not \( -path "*/dist" -prune \)           \
+  -not \( -path "*/chroma_db" -prune \)      \
   -not \( -path "*/Android" -prune \)        \
   -not \( -path "*/Unity" -prune \)          \
   -not \( -path "*.mp3" -prune \)            \
